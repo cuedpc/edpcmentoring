@@ -88,6 +88,9 @@ DATABASES = {
     }
 }
 
+# Login URLs
+LOGIN_URL = 'ucamwebauth:raven_login'
+LOGIN_REDIRECT_URL = '/'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -130,7 +133,6 @@ STATIC_URL = '/static/'
 # Raven configuration
 UCAMWEBAUTH_LOGIN_URL = 'https://demo.raven.cam.ac.uk/auth/authenticate.html'
 UCAMWEBAUTH_LOGOUT_URL = 'https://demo.raven.cam.ac.uk/auth/logout.html'
-UCAMWEBAUTH_LOGOUT_REDIRECT = 'http://www.cam.ac.uk/'
 UCAMWEBAUTH_CERTS = {901: """-----BEGIN CERTIFICATE-----
 MIIDzTCCAzagAwIBAgIBADANBgkqhkiG9w0BAQQFADCBpjELMAkGA1UEBhMCR0Ix
 EDAOBgNVBAgTB0VuZ2xhbmQxEjAQBgNVBAcTCUNhbWJyaWRnZTEgMB4GA1UEChMX
