@@ -55,86 +55,94 @@
         </div>
     </div>
 
-    <div class="campl-column6">
-        <div class="campl-content-container campl-right-padding">
-            <h1>Your mentors</h1>
+    <div class="campl-row">
+        <div class="campl-column6">
+            <div class="campl-content-container campl-right-padding">
+                <h1>Actions</h1>
 
-            <table class="campl-table-bordered campl-table-striped campl-table">
-                <thead>
-                    <tr>
-                        <th>CRSid</th>
-                        <th width="100%">Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>test0001</td>
-                        <td>Bob Mockup</td>
-                    </tr>
-                </tbody>
-            </table>
+                <p><a href="#" class="campl-secondary-cta">
+                    Record a meeting with a mentor/mentee
+                </a></p>
 
-            <p><a href="#" class="campl-primary-cta">
-                Record a meeting with a mentor
-            </a></p>
+                <p><a href="#" class="campl-secondary-cta">
+                    Record a new mentor/mentee relationship
+                </a></p>
+
+                <p><a href="#" class="campl-secondary-cta">
+                    Stop being someone's mentor/mentee
+                </a></p>
+
+                <h1>Your mentorship settings</h1>
+                <div class="campl-control-group">
+                    <div class="campl-controls">
+                        <label class="campl-checkbox">
+                            <input type="checkbox" id="want-mentor" value="want-mentor" />
+                            I want a mentee
+                        </label>
+                        <span class="campl-help-block">
+                            You will be put into the list of people willing to take
+                            on a new mentee.
+                        </span>
+
+                        <label class="campl-checkbox">
+                            <input type="checkbox" id="want-mentor" value="want-mentor" />
+                            I want a mentor
+                        </label>
+                        <span class="campl-help-block">
+                            You will be put into the list of people currently
+                            seeking a mentor.
+                        </span>
+                    </div>
+                </div>
+                <div class="campl-form-actions">
+                    <button type="button" class="campl-btn campl-primary-cta">
+                        Save mentorship settings
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="campl-column6">
-        <div class="campl-content-container campl-left-padding">
-            <h1>Your mentees</h1>
+        <div class="campl-column6">
+            <div class="campl-content-container campl-left-padding">
+                <h1>Your mentors</h1>
 
-            <table class="campl-table-bordered campl-table-striped campl-table">
-                <thead>
-                    <tr>
-                        <th>CRSid</th>
-                        <th width="100%">Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>test0012</td>
-                        <td>Jane Test</td>
-                    </tr>
-                    <tr>
-                        <td>test0013</td>
-                        <td>Malcolm Example</td>
-                    </tr>
-                </tbody>
-            </table>
+                <table class="campl-table-bordered campl-table-striped campl-table">
+                    <thead>
+                        <tr>
+                            <th>CRSid</th>
+                            <th width="100%">Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>test0001</td>
+                            <td>Bob Mockup</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <p><a href="#" class="campl-primary-cta">
-                Record a meeting with a mentee
-            </a></p>
+                <h1>Your mentees</h1>
+
+                <table class="campl-table-bordered campl-table-striped campl-table">
+                    <thead>
+                        <tr>
+                            <th>CRSid</th>
+                            <th width="100%">Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>test0012</td>
+                            <td>Jane Test</td>
+                        </tr>
+                        <tr>
+                            <td>test0013</td>
+                            <td>Malcolm Example</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-
-    <h1>Your mentorship settings</h1>
-    <div class="campl-control-group">
-        <div class="campl-controls">
-            <label class="campl-checkbox">
-                <input type="checkbox" id="want-mentor" value="want-mentor" />
-                I want a mentee
-            </label>
-            <span class="campl-help-block">
-                You will be put into the list of people willing to take on a
-                new mentee.
-            </span>
-
-            <label class="campl-checkbox">
-                <input type="checkbox" id="want-mentor" value="want-mentor" />
-                I want a mentor
-            </label>
-            <span class="campl-help-block">
-                You will be put into the list of people currently seeking a
-                mentor.
-            </span>
-        </div>
-    </div>
-    <div class="campl-form-actions">
-        <button type="button" class="campl-btn campl-primary-cta">
-            Save mentorship settings
-        </button>
     </div>
 </div>
 {% endblock %}
