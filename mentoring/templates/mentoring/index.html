@@ -1,0 +1,140 @@
+{% extends "mentoring/layout/default.html" %}
+
+{% with "Mentoring Scheme" as title %}
+    {% block title %}{{ title }}{% endblock %}
+    {% block pagetitle %}{{ title }}{% endblock %}
+{% endwith %}
+
+{% block content %}
+<div class="campl-content-container">
+    <div class="campl-notifications-panel campl-information-panel
+        campl-notifications-container clearfix">
+        <div class="campl-column2">
+            <p class="campl-notifications-icon campl-information-icon">
+                Information:
+            </p>
+        </div>
+        <div class="campl-column8">
+            <p>
+            You have been invited to become the <strong>mentor</strong> of
+            <strong>Sally Sample</strong> (test0013).
+            </p>
+        </div>
+        <div class="campl-column2" style="text-align: right">
+            <a href="#" class="campl-secondary-cta">
+                Decline
+            </a>
+            &nbsp;&nbsp;
+            <a href="#" class="campl-primary-cta">
+                Accept
+            </a>
+        </div>
+    </div>
+
+    <div class="campl-notifications-panel campl-information-panel
+        campl-notifications-container clearfix">
+        <div class="campl-column2">
+            <p class="campl-notifications-icon campl-information-icon">
+                Information:
+            </p>
+        </div>
+        <div class="campl-column8">
+            <p>
+            You have been invited to become the <strong>mentee</strong> of
+            <strong>Jennifer Fictitious</strong> (test0014).
+            </p>
+        </div>
+        <div class="campl-column2" style="text-align: right">
+            <a href="#" class="campl-secondary-cta">
+                Decline
+            </a>
+            &nbsp;&nbsp;
+            <a href="#" class="campl-primary-cta">
+                Accept
+            </a>
+        </div>
+    </div>
+
+    <div class="campl-column6">
+        <div class="campl-content-container campl-right-padding">
+            <h1>Your mentors</h1>
+
+            <table class="campl-table-bordered campl-table-striped campl-table">
+                <thead>
+                    <tr>
+                        <th>CRSid</th>
+                        <th width="100%">Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>test0001</td>
+                        <td>Bob Mockup</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><a href="#" class="campl-primary-cta">
+                Record a meeting with a mentor
+            </a></p>
+        </div>
+    </div>
+
+    <div class="campl-column6">
+        <div class="campl-content-container campl-left-padding">
+            <h1>Your mentees</h1>
+
+            <table class="campl-table-bordered campl-table-striped campl-table">
+                <thead>
+                    <tr>
+                        <th>CRSid</th>
+                        <th width="100%">Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>test0012</td>
+                        <td>Jane Test</td>
+                    </tr>
+                    <tr>
+                        <td>test0013</td>
+                        <td>Malcolm Example</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><a href="#" class="campl-primary-cta">
+                Record a meeting with a mentee
+            </a></p>
+        </div>
+    </div>
+
+    <h1>Your mentorship settings</h1>
+    <div class="campl-control-group">
+        <div class="campl-controls">
+            <label class="campl-checkbox">
+                <input type="checkbox" id="want-mentor" value="want-mentor" />
+                I want a mentee
+            </label>
+            <span class="campl-help-block">
+                You will be put into the list of people willing to take on a
+                new mentee.
+            </span>
+
+            <label class="campl-checkbox">
+                <input type="checkbox" id="want-mentor" value="want-mentor" />
+                I want a mentor
+            </label>
+            <span class="campl-help-block">
+                You will be put into the list of people currently seeking a
+                mentor.
+            </span>
+        </div>
+    </div>
+    <div class="campl-form-actions">
+        <button type="button" class="campl-btn campl-primary-cta">
+            Save mentorship settings
+        </button>
+    </div>
+</div>
+{% endblock %}

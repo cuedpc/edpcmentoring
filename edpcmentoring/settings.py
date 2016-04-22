@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'ucamwebauth',
+    'mentoring',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -89,8 +90,8 @@ DATABASES = {
 }
 
 # Login URLs
-LOGIN_URL = 'ucamwebauth:raven_login'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'raven_login'
+LOGIN_REDIRECT_URL = 'mentoring:index'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators

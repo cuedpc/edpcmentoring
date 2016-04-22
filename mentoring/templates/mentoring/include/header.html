@@ -1,0 +1,55 @@
+<!--[if lt IE 7]>
+<div class="lt-ie9 lt-ie8 lt-ie7">
+<![endif]-->
+<!--[if IE 7]>
+<div class="lt-ie9 lt-ie8">
+<![endif]-->
+<!--[if IE 8]>
+<div class="lt-ie9">
+<![endif]-->
+
+{% include "mentoring/include/global_header.html" %}
+
+<div class="campl-row campl-page-header">
+    <div class="campl-wrap clearfix">
+        <div class="campl-column12">
+            <div class="campl-content-container">
+                <p class="campl-page-title">
+                    EDPC Mentoring Scheme
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="campl-row campl-page-header">
+    <div class="campl-wrap clearfix campl-local-navigation" id="local-nav">
+        <div class="campl-local-navigation-container">
+            <ul class="campl-unstyled-list">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Previous Meetings</a></li>
+                <li><a href="#">Invitations (2)</a></li>
+                <li><a href="#">Administration</a>
+                    <ul class="campl-unstyled-list local-dropdown-menu">
+                        <li><a href="#">Assign mentors</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </div>
+    </div>
+    {% if section_title %}
+    <div class="campl-wrap clearfix campl-page-sub-title campl-recessed-sub-title">
+        <div class="campl-column12">
+            <div class="campl-content-container">
+                <p class="campl-sub-title">{{ section_title }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<div class="campl-main-content">
+    <div class="campl-row campl-content
+                {% if section_title %}campl-recessed-content{% endif %}">
+        <div class="campl-wrap clearfix">
