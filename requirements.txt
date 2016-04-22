@@ -1,2 +1,6 @@
 django
 django-ucamwebauth
+
+# For a pleasing developer experience
+pylint
+ipython
