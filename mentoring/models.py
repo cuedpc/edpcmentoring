@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db import models
 
-@admin.site.register
 class StaffMember(models.Model):
     """
     An extension of the standard Django "User" to indicate that a particular
@@ -18,37 +17,110 @@ class StaffMember(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     division = models.CharField(max_length=1)
     arrived_on = models.DateField()
-    departed_on = models.DateField(null=True, blank=True)
-    expected_departure_on = models.DateField(null=True, blank=True)
+    departed_on = models.DateField(blank=True, null=True)
+    expected_departure_on = models.DateField(blank=True, null=True)
 
     def __str__(self):
-        return self.user
+        return str(self.user)
 
-@admin.site.register
-class MentorshipSettings(models.Model):
+admin.site.register(StaffMember)
+
+class MentorshipPreferences(models.Model):
     """
     Records the mentorship opinions of a StaffMember.
 
     """
-    staff_member = models.OneToOneField('StaffMember', on_delete=models.CASCADE)
+    class Meta:
+        verbose_name_plural = "mentorship preferences"
+
+    staff_member = models.OneToOneField(
+        'StaffMember', on_delete=models.CASCADE)
     is_seeking_mentor = models.BooleanField()
     is_seeking_mentee = models.BooleanField()
+    mentor_requirements = models.TextField(blank=True)
+    mentee_requirements = models.TextField(blank=True)
 
-@admin.site.register
-class MentorshipRelationships(models.Model):
+admin.site.register(MentorshipPreferences)
+
+class MentorshipRelationship(models.Model):
     """
     Records a mentorship relation.
 
     """
-    mentor_staff_member = models.OneToOneField(
-        'StaffMember', related_name='mentees')
-    mentee_staff_member = models.OneToOneField(
-        'StaffMember', related_name='mentors')
+    mentor = models.ForeignKey('StaffMember', related_name='mentees')
+    mentee = models.ForeignKey('StaffMember', related_name='mentors')
 
-    initiated_by_staff_member = models.OneToOneField(
-        'StaffMember', related_name='mentor_relationship_initiated')
-    finished_by_staff_member = models.OneToOneField(
-        'StaffMember', related_name='mentor_relationship_finished', null=True)
+    started_on = models.DateField()
+    ended_on = models.DateField(blank=True, null=True)
+    ended_by = models.ForeignKey(
+        'StaffMember', related_name='mentor_relationships_ended',
+        blank=True, null=True)
 
-    initiated_on = models.DateField()
-    finished_on = models.DateField(null=True, blank=True)
+admin.site.register(MentorshipRelationship)
+
+class Invitation(models.Model):
+    """
+    An invitation to form a mentoring relationship.
+
+    """
+    # The possible responses to an invitation.
+    ACCEPT = 'A'
+    DECLINE = 'D'
+    RESPONSES = ((ACCEPT, 'Accept'), (DECLINE, 'Decline'))
+
+    mentor = models.ForeignKey('StaffMember', related_name='mentor_invitations')
+    mentee = models.ForeignKey('StaffMember', related_name='mentee_invitations')
+
+    created_by = models.ForeignKey(
+        'StaffMember', related_name='invitations_created')
+    created_on = models.DateField()
+
+    mentor_response = models.CharField(max_length=1, choices=RESPONSES)
+    mentee_response = models.CharField(max_length=1, choices=RESPONSES)
+
+    # Note: English spelling, not American
+    cancelled_on = models.DateField(blank=True, null=True)
+
+    relationship = models.OneToOneField(
+        'MentorshipRelationship', blank=True, null=True)
+
+admin.site.register(Invitation)
+
+class Meeting(models.Model):
+    """
+    A mentor/mentee meeting.
+
+    The in-database duration is likely to have a ludicrous resolution (maybe
+    microsecond) but using a DurationField in this model has the advantage that
+    it is exposed as a standard Python timedelta object.
+
+    """
+    held_on = models.DateField()
+    approximate_duration = models.DurationField()
+
+admin.site.register(Meeting)
+
+class MeetingAttendance(models.Model):
+    """
+    The attendance of a StaffMember at a Meeting. The role at the meeting may be
+    blank to allow for future mentor/mentee meetings with multiple participants
+    but it is expected that this will not be exposed in the UI to begin with.
+
+    """
+    MENTOR = 'MR'
+    MENTEE = 'ME'
+    ROLES = ((MENTOR, 'Mentor'), (MENTEE, 'ME'))
+
+    meeting = models.ForeignKey('Meeting', related_name='attendances')
+    attendee = models.ForeignKey('StaffMember')
+    role = models.CharField(max_length=1, choices=ROLES)
+
+admin.site.register(MeetingAttendance)
+
+class TrainingEvent(models.Model):
+    held_on = models.DateField()
+    details_url = models.URLField(blank=True)
+    attendees = models.ManyToManyField('StaffMember')
+
+admin.site.register(TrainingEvent)
+

@@ -53,6 +53,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'ucamwebauth.middleware.DefaultErrorBehaviour',
+    'mentoring.middleware.StaffMemberMiddleware',
 ]
 
 ROOT_URLCONF = 'edpcmentoring.urls'
