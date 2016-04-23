@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from .models import StaffMember, MentorshipPreferences
 
 class StaffMemberTestCase(TestCase):
-    fixtures = ['staff_members']
+    fixtures = ['test_staff_and_users']
 
     def setUp(self):
         self.non_staff_user = User.objects.filter(

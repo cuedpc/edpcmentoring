@@ -8,7 +8,7 @@ from .middleware import StaffMemberMiddleware
 from .models import StaffMember
 
 class StaffRequiredTestCase(TestCase):
-    fixtures = ['staff_members']
+    fixtures = ['test_staff_and_users']
 
     def setUp(self):
         self.factory = RequestFactory()
