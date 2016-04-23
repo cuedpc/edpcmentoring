@@ -1,7 +1,7 @@
 from functools import wraps
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseForbidden
+from django.core.exceptions import PermissionDenied
 
 def staff_member_required(f):
     """A decorator which wraps login_required additionally checking that the
@@ -17,7 +17,7 @@ def staff_member_required(f):
         staff_member = getattr(request, 'staff_member')
         if user is not None and user.is_authenticated():
             if staff_member is None or not staff_member.is_current:
-                return HttpResponseForbidden('<p>Forbidden</p>')
+                raise PermissionDenied()
         return f(request, *args, **kwargs)
 
     return wrapper

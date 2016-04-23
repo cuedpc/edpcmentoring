@@ -27,14 +27,16 @@
         <div class="campl-local-navigation-container">
             <ul class="campl-unstyled-list">
                 <li><a href="{% url 'index' %}">Dashboard</a></li>
-                <li><a href="#">Previous Meetings</a></li>
-                <li><a href="#">Invitations (2)</a></li>
-                <li><a href="#">Administration</a>
+                {% if user.is_staff %}
+                <li><a href="{% url 'admin:index' %}">Admin interface</a></li>
+                {% endif %}
+                {% if staff_member %}
+                <li><a href="#">{{ staff_member.user.get_full_name }}</a>
                     <ul class="campl-unstyled-list local-dropdown-menu">
-                        <li><a href="#">Assign mentors</a></li>
+                        <li><a href="{% url 'raven_logout' %}">Log out</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Help</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>

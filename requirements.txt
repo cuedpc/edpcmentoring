@@ -1,4 +1,5 @@
-django
+django<1.10
+django-annoying
 django-ucamwebauth
 mock
 

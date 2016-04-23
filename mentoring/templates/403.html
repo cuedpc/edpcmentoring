@@ -1,0 +1,16 @@
+{% extends "mentoring/layout/default.html" %}
+
+{% with "Mentoring Scheme" as title %}
+    {% block title %}{{ title }}{% endblock %}
+    {% block pagetitle %}{{ title }}{% endblock %}
+{% endwith %}
+
+{% block content %}
+    <h1>You do not have access to this page</h1>
+
+    {% if user.is_authenticated %}
+    <p>You are currently logged in as <strong>{{ user.username }}</strong>.
+    If you wish you may <a href="{% url 'raven_logout' %}">log out</a> and log
+    back in as a different user.</p>
+    {% endif %}
+{% endblock %}

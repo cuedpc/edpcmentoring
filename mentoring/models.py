@@ -1,11 +1,10 @@
-from django.contrib import admin
+from annoying.fields import AutoOneToOneField
 from django.contrib.auth.models import User
 from django.db import models
 
-class CurrentStaffMemberManager(models.Manager):
-    def get_queryset(self):
-        all_objects = super(CurrentStaffMemberManager, self).get_queryset()
-        return all_objects.filter(departed_on__isnull=True)
+class StaffMemberManager(models.Manager):
+    def current(self):
+        return self.filter(is_current=True)
 
 class StaffMember(models.Model):
     """
@@ -25,18 +24,12 @@ class StaffMember(models.Model):
     arrived_on = models.DateField()
     departed_on = models.DateField(blank=True, null=True)
     expected_departure_on = models.DateField(blank=True, null=True)
+    is_current = models.BooleanField()
 
-    current_members = CurrentStaffMemberManager()
-    objects = models.Manager()
+    objects = StaffMemberManager()
 
     def __str__(self):
         return str(self.user)
-
-    @property
-    def is_current(self):
-        return self.departed_on is None
-
-admin.site.register(StaffMember)
 
 class MentorshipPreferences(models.Model):
     """
@@ -46,30 +39,30 @@ class MentorshipPreferences(models.Model):
     class Meta:
         verbose_name_plural = "mentorship preferences"
 
-    staff_member = models.OneToOneField(
-        'StaffMember', on_delete=models.CASCADE)
-    is_seeking_mentor = models.BooleanField()
-    is_seeking_mentee = models.BooleanField()
+    staff_member = AutoOneToOneField(
+        'StaffMember', on_delete=models.CASCADE,
+        related_name='mentorship_preferences',
+        primary_key=True)
+    is_seeking_mentor = models.BooleanField(default=False)
+    is_seeking_mentee = models.BooleanField(default=False)
     mentor_requirements = models.TextField(blank=True)
     mentee_requirements = models.TextField(blank=True)
-
-admin.site.register(MentorshipPreferences)
 
 class MentorshipRelationship(models.Model):
     """
     Records a mentorship relation.
 
     """
-    mentor = models.ForeignKey('StaffMember', related_name='mentees')
-    mentee = models.ForeignKey('StaffMember', related_name='mentors')
+    mentor = models.ForeignKey(
+        'StaffMember', related_name='mentees', on_delete=models.CASCADE)
+    mentee = models.ForeignKey(
+        'StaffMember', related_name='mentors', on_delete=models.CASCADE)
 
     started_on = models.DateField()
     ended_on = models.DateField(blank=True, null=True)
     ended_by = models.ForeignKey(
         'StaffMember', related_name='mentor_relationships_ended',
         blank=True, null=True)
-
-admin.site.register(MentorshipRelationship)
 
 class Invitation(models.Model):
     """
@@ -97,8 +90,6 @@ class Invitation(models.Model):
     relationship = models.OneToOneField(
         'MentorshipRelationship', blank=True, null=True)
 
-admin.site.register(Invitation)
-
 class Meeting(models.Model):
     """
     A mentor/mentee meeting.
@@ -110,8 +101,6 @@ class Meeting(models.Model):
     """
     held_on = models.DateField()
     approximate_duration = models.DurationField()
-
-admin.site.register(Meeting)
 
 class MeetingAttendance(models.Model):
     """
@@ -128,12 +117,8 @@ class MeetingAttendance(models.Model):
     attendee = models.ForeignKey('StaffMember')
     role = models.CharField(max_length=1, choices=ROLES)
 
-admin.site.register(MeetingAttendance)
-
 class TrainingEvent(models.Model):
     held_on = models.DateField()
     details_url = models.URLField(blank=True)
     attendees = models.ManyToManyField('StaffMember')
-
-admin.site.register(TrainingEvent)
 
