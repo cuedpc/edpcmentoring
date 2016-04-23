@@ -1,0 +1,27 @@
+{% extends "mentoring/layout/default.html" %}
+
+{% block pageheader %}
+{{ block.super }}
+<div class="campl-wrap clearfix campl-page-sub-title
+            campl-recessed-sub-title">
+    <div class="campl-column12">
+        <div class="campl-content-container">
+            <p class="campl-sub-title">
+                {% block sectiontitle %}{% endblock %}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block contentwrapper %}
+<div class="campl-main-content">
+    <div class="campl-row campl-content campl-recessed-content">
+        <div class="campl-wrap clearfix">
+            <div class="campl-content-container">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
