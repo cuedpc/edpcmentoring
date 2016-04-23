@@ -2,13 +2,19 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db import models
 
+class CurrentStaffMemberManager(models.Manager):
+    def get_queryset(self):
+        all_objects = super(CurrentStaffMemberManager, self).get_queryset()
+        return all_objects.filter(departed_on__isnull=True)
+
 class StaffMember(models.Model):
     """
     An extension of the standard Django "User" to indicate that a particular
     user is a member of staff.
 
     A "current" member of staff is one with no "departed_on" date and with an
-    "arrived_on" date in the past.
+    "arrived_on" date in the past. An object manager which operates only on
+    current members of staff can be accessed via the "current" attribute.
 
     The "expected_departure_on" date is based on the staff's contract and is not
     a strong indicator of whether the staff member is "current".
@@ -20,8 +26,15 @@ class StaffMember(models.Model):
     departed_on = models.DateField(blank=True, null=True)
     expected_departure_on = models.DateField(blank=True, null=True)
 
+    current_members = CurrentStaffMemberManager()
+    objects = models.Manager()
+
     def __str__(self):
         return str(self.user)
+
+    @property
+    def is_current(self):
+        return self.departed_on is None
 
 admin.site.register(StaffMember)
 

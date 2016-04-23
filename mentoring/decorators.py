@@ -15,8 +15,9 @@ def staff_member_required(f):
     def wrapper(request, *args, **kwargs):
         user = getattr(request, 'user')
         staff_member = getattr(request, 'staff_member')
-        if user is not None and user.is_authenticated() and staff_member is None:
-            return HttpResponseForbidden('<p>Forbidden</p>')
+        if user is not None and user.is_authenticated():
+            if staff_member is None or not staff_member.is_current:
+                return HttpResponseForbidden('<p>Forbidden</p>')
         return f(request, *args, **kwargs)
 
     return wrapper

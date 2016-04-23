@@ -1,6 +1,8 @@
 django
 django-ucamwebauth
+mock
 
 # For a pleasing developer experience
 pylint
 ipython
+fake-factory
