@@ -12,17 +12,17 @@ class StaffMemberTestCase(TestCase):
         self.departed_staff_user = StaffMember.objects.filter(
             departed_on__isnull=False).first().user
 
-    def test_current_staff_members(self):
-        self.assertGreater(StaffMember.objects.current().count(), 0)
-        for o in StaffMember.objects.current().all():
+    def test_active_staff_members(self):
+        self.assertGreater(StaffMember.objects.active().count(), 0)
+        for o in StaffMember.objects.active().all():
             self.assertIsNone(o.departed_on)
-            self.assertTrue(o.is_current)
+            self.assertTrue(o.is_active)
 
     def test_departed_staff_members(self):
         members = StaffMember.objects.filter(departed_on__isnull=False)
         self.assertGreater(members.count(), 0)
         for o in members:
-            self.assertFalse(o.is_current)
+            self.assertFalse(o.is_active)
 
     def test_non_staff_members(self):
         non_staff_users = User.objects.filter(staffmember__isnull=True)
@@ -32,7 +32,7 @@ class StaffMemberTestCase(TestCase):
                 StaffMember.objects.get(user=o)
 
     def test_preferences(self):
-        staff_member = StaffMember.objects.current().first()
+        staff_member = StaffMember.objects.active().first()
 
         # Check that there is not currently a mentorship preferences instance
         # for this user.

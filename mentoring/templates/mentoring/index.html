@@ -2,5 +2,59 @@
 {% block title %}EDPC Mentoring Scheme{% endblock %}
 
 {% block content %}
-hello
+
+<h1>Your mentors</h1>
+
+{% with staff_member.get_mentors as mentors %}
+
+{% if mentors %}
+<table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
+    <thead>
+        <tr>
+            <th>CRSid</th>
+            <th width="100%">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for m in mentors %}
+    <tr>
+        <td>{{ m.user.username }}</td>
+        <td>{{ m.user.get_full_name }}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>You do not currently have any mentors.</p>
+{% endif %}
+
+{% endwith %}
+
+<h1>Your mentees</h1>
+
+{% with staff_member.get_mentees as mentees %}
+
+{% if mentees %}
+<table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
+    <thead>
+        <tr>
+            <th>CRSid</th>
+            <th width="100%">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for m in mentees %}
+    <tr>
+        <td>{{ m.user.username }}</td>
+        <td>{{ m.user.get_full_name }}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <p>You do not currently have any mentees.</p>
+{% endif %}
+
+{% endwith %}
+
 {% endblock %}

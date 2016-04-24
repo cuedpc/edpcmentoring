@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.db import models
 
 class StaffMemberManager(models.Manager):
-    def current(self):
-        return self.filter(is_current=True)
+    def active(self):
+        return self.filter(is_active=True)
 
 class StaffMember(models.Model):
     """
@@ -24,12 +24,20 @@ class StaffMember(models.Model):
     arrived_on = models.DateField()
     departed_on = models.DateField(blank=True, null=True)
     expected_departure_on = models.DateField(blank=True, null=True)
-    is_current = models.BooleanField()
+    is_active = models.BooleanField()
 
     objects = StaffMemberManager()
 
     def __str__(self):
         return str(self.user)
+
+    def get_mentors(self):
+        relationships = self.mentee_relationships.filter(is_active=True)
+        return [r.mentor for r in relationships]
+
+    def get_mentees(self):
+        relationships = self.mentor_relationships.filter(is_active=True)
+        return [r.mentee for r in relationships]
 
 class MentorshipPreferences(models.Model):
     """
@@ -54,15 +62,19 @@ class MentorshipRelationship(models.Model):
 
     """
     mentor = models.ForeignKey(
-        'StaffMember', related_name='mentees', on_delete=models.CASCADE)
+        'StaffMember', related_name='mentor_relationships',
+        on_delete=models.CASCADE)
     mentee = models.ForeignKey(
-        'StaffMember', related_name='mentors', on_delete=models.CASCADE)
+        'StaffMember', related_name='mentee_relationships',
+        on_delete=models.CASCADE)
 
     started_on = models.DateField()
     ended_on = models.DateField(blank=True, null=True)
     ended_by = models.ForeignKey(
         'StaffMember', related_name='mentor_relationships_ended',
         blank=True, null=True)
+
+    is_active = models.BooleanField()
 
 class Invitation(models.Model):
     """

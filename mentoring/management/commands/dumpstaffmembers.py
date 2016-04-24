@@ -32,5 +32,5 @@ class Command(BaseCommand):
     def dump_staff_members(self, file_object):
         writer = csv.writer(file_object)
         writer.writerow([k for k, _ in FIELDS])
-        for o in StaffMember.objects.current():
+        for o in StaffMember.objects.active():
             writer.writerow([cb(o) for _, cb in FIELDS])

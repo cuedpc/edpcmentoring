@@ -37,12 +37,15 @@
     <div class="campl-wrap clearfix campl-local-navigation" id="local-nav">
         <div class="campl-local-navigation-container">
             <ul class="campl-unstyled-list">
-                <li><a href="{% url 'index' %}">Dashboard</a></li>
+                <li><a href="{% url 'index' %}">Home</a></li>
                 {% if user.is_staff %}
                 <li><a href="{% url 'admin:index' %}">Admin interface</a></li>
                 {% endif %}
                 {% if staff_member %}
-                <li><a href="#">{{ staff_member.user.get_full_name }}</a>
+                <li><a href="#">
+                        {{ staff_member.user.get_full_name }}
+                        ({{ staff_member.user.username }})
+                    </a>
                     <ul class="campl-unstyled-list local-dropdown-menu">
                         <li><a href="{% url 'raven_logout' %}">Log out</a></li>
                     </ul>

@@ -16,7 +16,7 @@ def staff_member_required(f):
         user = getattr(request, 'user')
         staff_member = getattr(request, 'staff_member')
         if user is not None and user.is_authenticated():
-            if staff_member is None or not staff_member.is_current:
+            if staff_member is None or not staff_member.is_active:
                 raise PermissionDenied()
         return f(request, *args, **kwargs)
 

@@ -6,7 +6,7 @@ from .models import (
 )
 
 class StaffMemberAdmin(admin.ModelAdmin):
-    list_display = ('crsid', 'full_name', 'division', 'is_current',
+    list_display = ('crsid', 'full_name', 'division', 'is_active',
                     'arrived_on', 'departed_on', 'expected_departure_on')
 
     list_filter = ('arrived_on', 'departed_on', 'expected_departure_on')
@@ -22,7 +22,7 @@ class StaffMemberAdmin(admin.ModelAdmin):
 
 class MentorshipRelationshipAdmin(admin.ModelAdmin):
     list_display = ('description', 'mentor_crsid',
-                    'mentee_crsid',
+                    'mentee_crsid', 'is_active',
                     'started_on', 'ended_on')
 
     def mentor_crsid(self, obj):
