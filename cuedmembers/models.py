@@ -35,7 +35,7 @@ class Member(models.Model):
     should judge if a Member is currently a member of the Department.
 
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name='cued_member')
     division = models.CharField(max_length=1)
     is_active = models.BooleanField()
 

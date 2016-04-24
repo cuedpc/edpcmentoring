@@ -18,7 +18,7 @@ class MemberTestCase(TestCase):
             self.assertFalse(o.is_active)
 
     def test_non_members(self):
-        non_member_users = User.objects.filter(member__isnull=True)
+        non_member_users = User.objects.filter(cued_member__isnull=True)
         self.assertGreater(non_member_users.count(), 0)
         for o in non_member_users:
             with self.assertRaises(Member.DoesNotExist):
