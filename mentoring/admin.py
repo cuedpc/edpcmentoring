@@ -10,6 +10,8 @@ class MentorshipRelationshipAdmin(admin.ModelAdmin):
                     'mentee_crsid', 'is_active',
                     'started_on', 'ended_on')
 
+    list_filter = ('is_active',)
+
     def mentor_crsid(self, obj):
         return obj.mentor.user.username
 
