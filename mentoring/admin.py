@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import MentorshipRelationship
+from .models import Relationship
 
-class MentorshipRelationshipAdmin(admin.ModelAdmin):
+class RelationshipAdmin(admin.ModelAdmin):
     list_display = ('description', 'mentor_crsid',
                     'mentee_crsid', 'is_active',
                     'started_on', 'ended_on')
@@ -19,4 +19,4 @@ class MentorshipRelationshipAdmin(admin.ModelAdmin):
             obj.mentor.user.get_full_name(),
             obj.mentee.user.get_full_name())
 
-admin.site.register(MentorshipRelationship, MentorshipRelationshipAdmin)
+admin.site.register(Relationship, RelationshipAdmin)

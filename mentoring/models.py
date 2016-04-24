@@ -1,7 +1,7 @@
 from django.db import models
 from cuedmembers.models import Member
 
-class MentorshipRelationshipManager(models.Manager):
+class RelationshipManager(models.Manager):
     def active(self):
         """A query-set of active relationships."""
         return self.filter(is_active=True)
@@ -10,7 +10,7 @@ class MentorshipRelationshipManager(models.Manager):
         """A query-set of inactive relationships."""
         return self.filter(is_active=False)
 
-class MentorshipRelationship(models.Model):
+class Relationship(models.Model):
     """
     Records a mentorship relation.
 
@@ -30,7 +30,7 @@ class MentorshipRelationship(models.Model):
 
     is_active = models.BooleanField()
 
-    objects = MentorshipRelationshipManager()
+    objects = RelationshipManager()
 
     def __str__(self):
         return '{} mentoring {}'.format(self.mentor, self.mentee)

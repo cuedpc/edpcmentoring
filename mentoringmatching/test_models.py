@@ -2,9 +2,9 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from cuedmembers.models import Member
 
-from .models import MentorshipPreferences
+from .models import Preferences
 
-class MentorshipPreferencesTestCase(TestCase):
+class PreferencesTestCase(TestCase):
     fixtures = ['test_users', 'test_members']
 
     def test_preferences(self):
@@ -12,14 +12,14 @@ class MentorshipPreferencesTestCase(TestCase):
 
         # Check that there is not currently a mentorship preferences instance
         # for this user.
-        with self.assertRaises(MentorshipPreferences.DoesNotExist):
-            MentorshipPreferences.objects.get(member=member)
+        with self.assertRaises(Preferences.DoesNotExist):
+            Preferences.objects.get(member=member)
 
-        # Mentorship preferences should auto create
+        #  preferences should auto create
         prefs = member.mentorship_preferences
 
         # Now there should be an object
-        MentorshipPreferences.objects.get(member=member)
+        Preferences.objects.get(member=member)
 
         self.assertFalse(prefs.is_seeking_mentor)
         self.assertFalse(prefs.is_seeking_mentee)

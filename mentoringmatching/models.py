@@ -1,15 +1,15 @@
 from django.db import models
 from annoying.fields import AutoOneToOneField
 from cuedmembers.models import Member
-from mentoring.models import MentorshipRelationship
+from mentoring.models import Relationship
 
-class MentorshipPreferences(models.Model):
+class Preferences(models.Model):
     """
     Records the mentorship opinions of a Member.
 
     """
     class Meta:
-        verbose_name_plural = 'Mentorship preferences'
+        verbose_name_plural = ' preferences'
 
     member = AutoOneToOneField(
         Member, on_delete=models.CASCADE,
@@ -43,5 +43,4 @@ class Invitation(models.Model):
     # Note: English spelling, not American
     cancelled_on = models.DateField(blank=True, null=True)
 
-    relationship = models.OneToOneField(
-        MentorshipRelationship, blank=True, null=True)
+    relationship = models.OneToOneField(Relationship, blank=True, null=True)
