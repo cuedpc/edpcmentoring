@@ -86,23 +86,9 @@ class Meeting(models.Model):
     it is exposed as a standard Python timedelta object.
 
     """
+    relationship = models.ForeignKey('MentorshipRelationship')
     held_on = models.DateField()
     approximate_duration = models.DurationField()
-
-class MeetingAttendance(models.Model):
-    """
-    The attendance of a Member at a Meeting. The role at the meeting may be
-    blank to allow for future mentor/mentee meetings with multiple participants
-    but it is expected that this will not be exposed in the UI to begin with.
-
-    """
-    MENTOR = 'MR'
-    MENTEE = 'ME'
-    ROLES = ((MENTOR, 'Mentor'), (MENTEE, 'ME'))
-
-    meeting = models.ForeignKey('Meeting', related_name='attendances')
-    attendee = models.ForeignKey(Member)
-    role = models.CharField(max_length=1, choices=ROLES)
 
 class TrainingEvent(models.Model):
     held_on = models.DateField()

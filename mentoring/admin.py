@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import (
     MentorshipPreferences, MentorshipRelationship,
-    Invitation, Meeting, MeetingAttendance, TrainingEvent
+    Invitation, Meeting, TrainingEvent
 )
 
 class MentorshipRelationshipAdmin(admin.ModelAdmin):
@@ -39,5 +39,4 @@ admin.site.register(MentorshipPreferences, MentorshipPreferencesAdmin)
 
 admin.site.register(Invitation)
 admin.site.register(Meeting)
-admin.site.register(MeetingAttendance)
 admin.site.register(TrainingEvent)
