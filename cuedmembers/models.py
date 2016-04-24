@@ -52,3 +52,6 @@ class Member(models.Model):
 
         """
         return self.user.username
+
+    def __str__(self):
+        return '{} ({})'.format(self.user.get_full_name(), self.crsid)
