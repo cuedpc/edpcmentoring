@@ -22,3 +22,6 @@ urlpatterns = [
     url(r'', include('ucamwebauth.urls')),
     url(r'', include('mentoring.urls')),
 ]
+
+# Override admin site header
+admin.site.site_header = 'EDPC Mentoring Scheme Administration'
