@@ -56,7 +56,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'ucamwebauth.middleware.DefaultErrorBehaviour',
-    'mentoring.middleware.StaffMemberMiddleware',
+    'cuedmembers.middleware.MemberMiddleware',
 ]
 
 ROOT_URLCONF = 'edpcmentoring.urls'
@@ -72,7 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'mentoring.context_processors.staff_member',
+                'cuedmembers.context_processors.cued_member',
             ],
         },
     },

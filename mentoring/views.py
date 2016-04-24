@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .decorators import staff_member_required
+from cuedmembers.decorators import member_required
 
-@staff_member_required
+@member_required
 def index(request):
     return render(request, 'mentoring/index.html')

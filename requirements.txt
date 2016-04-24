@@ -10,3 +10,4 @@ fake-factory
 # For a pleasing developer experience
 pylint
 ipython
+Werkzeug
