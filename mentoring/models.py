@@ -44,7 +44,7 @@ class Meeting(models.Model):
     it is exposed as a standard Python timedelta object.
 
     """
-    relationship = models.ForeignKey(Relationship)
+    relationship = models.ForeignKey(Relationship, related_name='meetings')
     held_on = models.DateField()
     approximate_duration = models.DurationField()
 

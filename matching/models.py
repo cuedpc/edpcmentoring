@@ -34,7 +34,7 @@ class Invitation(models.Model):
     mentee = models.ForeignKey(User, related_name='mentee_invitations')
 
     created_by = models.ForeignKey(
-        User, related_name='mentorship_invitations_created')
+        User, related_name='created_invitations')
     created_on = models.DateField()
 
     mentor_response = models.CharField(max_length=1, choices=RESPONSES)
@@ -46,4 +46,5 @@ class Invitation(models.Model):
     cancelled_on = models.DateField(blank=True, null=True)
 
     relationship_started = models.ForeignKey(
-        Relationship, blank=True, null=True)
+        Relationship, blank=True, null=True,
+        related_name='started_by_invitations')

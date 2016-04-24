@@ -4,4 +4,4 @@ from django.contrib.auth.models import User
 class TrainingEvent(models.Model):
     held_on = models.DateField()
     details_url = models.URLField(blank=True)
-    attendees = models.ManyToManyField(User)
+    attendees = models.ManyToManyField(User, related_name='training_events')
