@@ -8,6 +8,7 @@ class PreferencesTestCase(TestCase):
 
     def test_preferences(self):
         member = Member.objects.active().first()
+        user = member.user
 
         # Check that there is not currently a mentorship preferences instance
         # for this user.
@@ -15,7 +16,7 @@ class PreferencesTestCase(TestCase):
             Preferences.objects.get(user=member.user)
 
         #  preferences should auto create
-        prefs = member.mentorship_preferences
+        prefs = user.mentorship_preferences
 
         # Now there should be an object
         Preferences.objects.get(user=member.user)
