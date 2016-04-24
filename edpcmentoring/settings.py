@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'cuedmembers',
 
     'mentoring',
-    'meetings',
     'matching',
     'training',
 ]

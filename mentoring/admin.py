@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Relationship
+from .models import Relationship, Meeting
 
 class RelationshipAdmin(admin.ModelAdmin):
     list_display = ('description', 'mentor_crsid',
@@ -20,3 +20,8 @@ class RelationshipAdmin(admin.ModelAdmin):
             obj.mentee.get_full_name())
 
 admin.site.register(Relationship, RelationshipAdmin)
+
+class MeetingAdmin(admin.ModelAdmin):
+    list_display = ('get_mentor',)
+
+admin.site.register(Meeting, MeetingAdmin)
