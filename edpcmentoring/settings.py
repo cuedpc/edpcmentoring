@@ -42,7 +42,11 @@ INSTALLED_APPS = [
 
     'ucamwebauth',
     'cuedmembers',
+
     'mentoring',
+    'mentoringmeetings',
+    'mentoringmatching',
+    'mentortraining',
 ]
 
 MIDDLEWARE_CLASSES = [
