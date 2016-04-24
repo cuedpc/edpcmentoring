@@ -1,5 +1,5 @@
 from django.db import models
-from cuedmembers.models import Member
+from django.contrib.auth.models import User
 
 class RelationshipManager(models.Manager):
     def active(self):
@@ -16,19 +16,19 @@ class Relationship(models.Model):
 
     """
     mentor = models.ForeignKey(
-        Member, related_name='mentor_relationships',
+        User, related_name='mentor_relationships',
         on_delete=models.CASCADE)
     mentee = models.ForeignKey(
-        Member, related_name='mentee_relationships',
+        User, related_name='mentee_relationships',
         on_delete=models.CASCADE)
 
     started_on = models.DateField()
     ended_on = models.DateField(blank=True, null=True)
     ended_by = models.ForeignKey(
-        Member, related_name='mentor_relationships_ended',
+        User, related_name='mentor_relationships_ended',
         blank=True, null=True)
 
-    is_active = models.BooleanField()
+    is_active = models.BooleanField(default=True)
 
     objects = RelationshipManager()
 

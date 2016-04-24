@@ -9,14 +9,14 @@ class RelationshipAdmin(admin.ModelAdmin):
     list_filter = ('is_active',)
 
     def mentor_crsid(self, obj):
-        return obj.mentor.user.username
+        return obj.mentor.username
 
     def mentee_crsid(self, obj):
-        return obj.mentee.user.username
+        return obj.mentee.username
 
     def description(self, obj):
         return '{} mentoring {}'.format(
-            obj.mentor.user.get_full_name(),
-            obj.mentee.user.get_full_name())
+            obj.mentor.get_full_name(),
+            obj.mentee.get_full_name())
 
 admin.site.register(Relationship, RelationshipAdmin)

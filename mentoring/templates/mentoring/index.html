@@ -5,7 +5,7 @@
 
 <h1>Your mentors</h1>
 
-{% with cued_member.mentee_relationships.active as relationships %}
+{% with user.mentee_relationships.active as relationships %}
 
 {% if relationships %}
 <table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
@@ -18,8 +18,8 @@
     <tbody>
 {% for r in relationships %}
     <tr>
-        <td>{{ r.mentor.user.username }}</td>
-        <td>{{ r.mentor.user.get_full_name }}</td>
+        <td>{{ r.mentor.username }}</td>
+        <td>{{ r.mentor.get_full_name }}</td>
     </tr>
 {% endfor %}
     </tbody>
@@ -32,7 +32,7 @@
 
 <h1>Your mentees</h1>
 
-{% with cued_member.mentor_relationships.active as relationships %}
+{% with user.mentor_relationships.active as relationships %}
 
 {% if relationships %}
 <table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
@@ -45,8 +45,8 @@
     <tbody>
 {% for r in relationships %}
     <tr>
-        <td>{{ r.mentee.user.username }}</td>
-        <td>{{ r.mentee.user.get_full_name }}</td>
+        <td>{{ r.mentee.username }}</td>
+        <td>{{ r.mentee.get_full_name }}</td>
     </tr>
 {% endfor %}
     </tbody>
