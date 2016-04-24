@@ -32,3 +32,6 @@ class MentorshipRelationship(models.Model):
 
     objects = MentorshipRelationshipManager()
 
+    def __str__(self):
+        return '{} mentoring {}'.format(self.mentor, self.mentee)
+
