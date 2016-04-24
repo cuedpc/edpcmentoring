@@ -5,9 +5,9 @@
 
 <h1>Your mentors</h1>
 
-{% with staff_member.get_mentors as mentors %}
+{% with cued_member.mentee_relationships.active as relationships %}
 
-{% if mentors %}
+{% if relationships %}
 <table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
     <thead>
         <tr>
@@ -16,25 +16,25 @@
         </tr>
     </thead>
     <tbody>
-{% for m in mentors %}
+{% for r in relationships %}
     <tr>
-        <td>{{ m.user.username }}</td>
-        <td>{{ m.user.get_full_name }}</td>
+        <td>{{ r.mentor.user.username }}</td>
+        <td>{{ r.mentor.user.get_full_name }}</td>
     </tr>
 {% endfor %}
     </tbody>
 </table>
 {% else %}
-<p>You do not currently have any mentors.</p>
+    <p>You do not currently have any mentors.</p>
 {% endif %}
 
 {% endwith %}
 
 <h1>Your mentees</h1>
 
-{% with staff_member.get_mentees as mentees %}
+{% with cued_member.mentor_relationships.active as relationships %}
 
-{% if mentees %}
+{% if relationships %}
 <table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
     <thead>
         <tr>
@@ -43,10 +43,10 @@
         </tr>
     </thead>
     <tbody>
-{% for m in mentees %}
+{% for r in relationships %}
     <tr>
-        <td>{{ m.user.username }}</td>
-        <td>{{ m.user.get_full_name }}</td>
+        <td>{{ r.mentee.user.username }}</td>
+        <td>{{ r.mentee.user.get_full_name }}</td>
     </tr>
 {% endfor %}
     </tbody>

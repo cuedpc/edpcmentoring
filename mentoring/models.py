@@ -20,6 +20,15 @@ class MentorshipPreferences(models.Model):
     mentor_requirements = models.TextField(blank=True)
     mentee_requirements = models.TextField(blank=True)
 
+class MentorshipRelationshipManager(models.Manager):
+    def active(self):
+        """A query-set of active relationships."""
+        return self.filter(is_active=True)
+
+    def inactive(self):
+        """A query-set of inactive relationships."""
+        return self.filter(is_active=False)
+
 class MentorshipRelationship(models.Model):
     """
     Records a mentorship relation.
@@ -39,6 +48,8 @@ class MentorshipRelationship(models.Model):
         blank=True, null=True)
 
     is_active = models.BooleanField()
+
+    objects = MentorshipRelationshipManager()
 
 class Invitation(models.Model):
     """
