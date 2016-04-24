@@ -8,9 +8,6 @@ class Preferences(models.Model):
     Records the mentorship opinions of a Member.
 
     """
-    class Meta:
-        verbose_name_plural = ' preferences'
-
     member = AutoOneToOneField(
         Member, on_delete=models.CASCADE,
         related_name='mentorship_preferences',
