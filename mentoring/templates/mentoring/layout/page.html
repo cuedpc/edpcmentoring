@@ -41,10 +41,10 @@
                 {% if user.is_staff %}
                 <li><a href="{% url 'admin:index' %}">Admin interface</a></li>
                 {% endif %}
-                {% if staff_member %}
+                {% if cued_member %}
                 <li><a href="#">
-                        {{ staff_member.user.get_full_name }}
-                        ({{ staff_member.user.username }})
+                        {{ cued_member.user.get_full_name }}
+                        ({{ cued_member.crsid }})
                     </a>
                     <ul class="campl-unstyled-list local-dropdown-menu">
                         <li><a href="{% url 'raven_logout' %}">Log out</a></li>
