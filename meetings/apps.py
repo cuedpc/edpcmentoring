@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
-class MentoringMeetingsConfig(AppConfig):
-    name = 'mentoringmeetings'
+class MeetingsConfig(AppConfig):
+    name = 'meetings'
     verbose_name = 'Mentoring Meetings'
