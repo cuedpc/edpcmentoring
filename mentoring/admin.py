@@ -9,7 +9,8 @@ class StaffMemberAdmin(admin.ModelAdmin):
     list_display = ('crsid', 'full_name', 'division', 'is_active',
                     'arrived_on', 'departed_on', 'expected_departure_on')
 
-    list_filter = ('arrived_on', 'departed_on', 'expected_departure_on')
+    list_filter = ('is_active', 'arrived_on', 'departed_on',
+                   'expected_departure_on')
 
     def get_queryset(self, request):
         return StaffMember.objects.get_queryset()
