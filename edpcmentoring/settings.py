@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'mentoring',
     'mentoringmeetings',
     'mentoringmatching',
-    'mentortraining',
+    'mentoringtraining',
 ]
 
 MIDDLEWARE_CLASSES = [
