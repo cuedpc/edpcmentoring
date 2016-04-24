@@ -22,6 +22,13 @@ class RelationshipAdmin(admin.ModelAdmin):
 admin.site.register(Relationship, RelationshipAdmin)
 
 class MeetingAdmin(admin.ModelAdmin):
-    list_display = ('get_mentor',)
+    list_display = ('held_on', 'approximate_duration', 'mentor',
+                    'mentee')
+
+    def mentor(self, obj):
+        return obj.relationship.mentor
+
+    def mentee(self, obj):
+        return obj.relationship.mentee
 
 admin.site.register(Meeting, MeetingAdmin)
