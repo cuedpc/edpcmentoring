@@ -20,7 +20,7 @@ app_name = 'mentoring'
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('ucamwebauth.urls')),
-    url(r'', include('mentoring.urls')),
+    url(r'', include('frontend.urls')),
 ]
 
 # Override admin site header
