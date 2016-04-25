@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Member, Status
+from .models import Member, Status, ResearchGroup
 
 class MemberAdmin(admin.ModelAdmin):
     list_display = ('crsid', 'full_name', 'division', 'research_group',
@@ -23,3 +23,9 @@ class StatusAdmin(admin.ModelAdmin):
     list_filter = ('role',)
 
 admin.site.register(Status, StatusAdmin)
+
+class ResearchGroupAdmin(admin.ModelAdmin):
+    list_display = ('description', 'division')
+    lift_filter = ('division')
+
+admin.site.register(ResearchGroup, ResearchGroupAdmin)
