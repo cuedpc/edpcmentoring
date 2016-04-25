@@ -3,6 +3,36 @@ from django.db import models
 
 from django.contrib.auth import get_user_model
 
+class ResearchGroupManager(models.Manager):
+    def divisions(self):
+        """Returns a list all all divisions."""
+        return [
+            v['division'] for v in
+            ResearchGroup.objects.values('division').distinct()
+        ]
+
+class ResearchGroup(models.Model):
+    """
+    A research group in CUED.
+
+    """
+    DIVISIONS = [
+        ('A', 'Energy, Fluids and Turbomachinery'),
+        ('B', 'Electrical Engineering'),
+        ('C', 'Mechanics, Materials and Design'),
+        ('D', 'Civil Engineering'),
+        ('E', 'Manufacturing and Management'),
+        ('F', 'Information Engineering'),
+    ]
+
+    division = models.CharField(max_length=1, choices=DIVISIONS)
+    description = models.CharField(max_length=50)
+
+    objects = ResearchGroupManager()
+
+    def __str__(self):
+        return self.description
+
 class Status(models.Model):
     """
     A member of CUED may have multiple statuses. Each status has a separate
@@ -93,18 +123,9 @@ class Member(models.Model):
     phone number. The "arrived" flag is folded into the is_active field.
 
     """
-    DIVISIONS = [
-        ('A', 'Energy, Fluids and Turbomachinery'),
-        ('B', 'Electrical Engineering'),
-        ('C', 'Mechanics, Materials and Design'),
-        ('D', 'Civil Engineering'),
-        ('E', 'Manufacturing and Management'),
-        ('F', 'Information Engineering'),
-        ('', 'No Division'),
-    ]
-
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 related_name='cued_member')
+    research_group = models.ForeignKey(ResearchGroup, null=True)
 
     is_active = models.BooleanField(default=True)
     last_inactive_on = models.DateField(blank=True, null=True)
@@ -113,10 +134,6 @@ class Member(models.Model):
 
     first_names = models.CharField(
         max_length=100, default='', blank=True)
-    division = models.CharField(max_length=1, choices=DIVISIONS,
-                                blank=True, default='')
-    research_group = models.CharField(
-        max_length=100, blank=True, default='')
 
     objects = MemberManager()
 

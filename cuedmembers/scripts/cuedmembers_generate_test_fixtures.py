@@ -13,38 +13,23 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from faker import Faker
 
-from cuedmembers.models import Member, Status
-
-RESEARCH_GROUPS = {
-    'A': ['Energy Group', 'Fluids Group', 'Turbomachinery Group'],
-    'B': ['Electronics, Power and Energy Conversion Group',
-          'Photonics Group',
-          'Solid State Electronics and Nanoscale Science Group'],
-    'C': ['Applied Mechanics', 'Biomechanics', 'Engineering Design',
-          'Materials Engineering'],
-    'D': ['Construction Engineering Group',
-          'Geotechnical and Environmental Group',
-          'Structures Group', 'Sustainable Development Group'],
-    'E': ['Manufacturing Systems', 'Production Processes',
-          'Strategy and Policy'],
-    'F': ['Computational and Biological Learning Laboratory',
-          'Control Group', 'Machine Intelligence Laboratory',
-          'Signal Processing and Communications Laboratory'],
-}
+from cuedmembers.models import Member, Status, ResearchGroup
 
 STATUSES = [Status.VISITOR, Status.POSTGRAD, Status.STAFF]
 
 def sample_person(fake):
     """Use the faker to sample a fake person. Returns a dictionary containing
-    first_name, last_name, division, first_names and research_group.
+    first_name, last_name, first_names and research_group.
 
     """
     # For the sake of database testing, gender is binary when it comes to
     # generating names and prefixes.
     if random.random() < 0.5:
-        make_first_name, make_prefix = fake.first_name_female, fake.prefix_female
+        make_first_name = fake.first_name_female
+        make_prefix = fake.prefix_female
     else:
-        make_first_name, make_prefix = fake.first_name_male, fake.prefix_male
+        make_first_name = fake.first_name_male
+        make_prefix = fake.prefix_male
 
     first_name_list = [make_first_name() for _ in range(random.randint(1, 4))]
     prefix = make_prefix()
@@ -53,13 +38,14 @@ def sample_person(fake):
     last_name = fake.last_name()
 
     if random.random() < 0.2:
-        division, research_group = '', ''
+        research_group = None
     else:
-        division = random.choice('ABCDEF')
-        research_group = random.choice(RESEARCH_GROUPS[division])
+        division = random.choice(ResearchGroup.objects.divisions())
+        research_group = random.choice(
+            ResearchGroup.objects.filter(division=division))
 
     return dict(
-        first_name=first_name, last_name=last_name, division=division,
+        first_name=first_name, last_name=last_name,
         first_names=first_names, research_group=research_group)
 
 def sample_date_after(whence=None):
@@ -94,7 +80,6 @@ def run():
                 user=u, is_active=random.random() < 0.75,
                 arrived_on=sample_date_before())
             member.first_names = m['first_names']
-            member.division = m['division']
             member.research_group = m['research_group']
             member.save()
 

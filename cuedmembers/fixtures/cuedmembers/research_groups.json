@@ -1,0 +1,170 @@
+[
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 1,
+  "fields": {
+    "division": "C",
+    "description": "Applied Mechanics"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 2,
+  "fields": {
+    "division": "C",
+    "description": "Biomechanics"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 3,
+  "fields": {
+    "division": "C",
+    "description": "Engineering Design"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 4,
+  "fields": {
+    "division": "C",
+    "description": "Materials Engineering"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 5,
+  "fields": {
+    "division": "E",
+    "description": "Manufacturing Systems"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 6,
+  "fields": {
+    "division": "E",
+    "description": "Production Processes"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 7,
+  "fields": {
+    "division": "E",
+    "description": "Strategy and Policy"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 8,
+  "fields": {
+    "division": "B",
+    "description": "Electronics, Power and Energy Conversion Group"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 9,
+  "fields": {
+    "division": "B",
+    "description": "Photonics Group"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 10,
+  "fields": {
+    "division": "B",
+    "description": "Solid State Electronics and Nanoscale Science Group"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 11,
+  "fields": {
+    "division": "A",
+    "description": "Energy Group"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 12,
+  "fields": {
+    "division": "A",
+    "description": "Fluids Group"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 13,
+  "fields": {
+    "division": "A",
+    "description": "Turbomachinery Group"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 14,
+  "fields": {
+    "division": "F",
+    "description": "Computational and Biological Learning Laboratory"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 15,
+  "fields": {
+    "division": "F",
+    "description": "Control Group"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 16,
+  "fields": {
+    "division": "F",
+    "description": "Machine Intelligence Laboratory"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 17,
+  "fields": {
+    "division": "F",
+    "description": "Signal Processing and Communications Laboratory"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 18,
+  "fields": {
+    "division": "D",
+    "description": "Construction Engineering Group"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 19,
+  "fields": {
+    "division": "D",
+    "description": "Geotechnical and Environmental Group"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 20,
+  "fields": {
+    "division": "D",
+    "description": "Structures Group"
+  }
+},
+{
+  "model": "cuedmembers.researchgroup",
+  "pk": 21,
+  "fields": {
+    "division": "D",
+    "description": "Sustainable Development Group"
+  }
+}
+]

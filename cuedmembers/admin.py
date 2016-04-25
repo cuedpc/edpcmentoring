@@ -3,17 +3,18 @@ from django.contrib import admin
 from .models import Member, Status
 
 class MemberAdmin(admin.ModelAdmin):
-    list_display = ('crsid', 'full_name', 'is_active',
-                    'division', 'research_group',
-                    'arrived_on')
+    list_display = ('crsid', 'full_name', 'division', 'research_group',
+                    'is_active', 'arrived_on')
 
-    list_filter = ('is_active', 'division', 'arrived_on')
-
-    def get_queryset(self, request):
-        return Member.objects.get_queryset()
+    list_filter = ('is_active', 'arrived_on')
 
     def full_name(self, obj):
         return obj.user.get_full_name()
+
+    def division(self, obj):
+        if obj.research_group is None:
+            return None
+        return obj.research_group.division
 
 admin.site.register(Member, MemberAdmin)
 
