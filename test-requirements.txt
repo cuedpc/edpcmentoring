@@ -1,0 +1,3 @@
+# Requirements for running tests but not for running in production.
+mock
+fake-factory

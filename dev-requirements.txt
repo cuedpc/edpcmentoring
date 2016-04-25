@@ -1,0 +1,4 @@
+# Requirements to make developers' lives easier.
+pylint
+ipython
+Werkzeug
