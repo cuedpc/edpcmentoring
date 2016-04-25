@@ -37,7 +37,7 @@ class Invitation(models.Model):
 
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name='created_invitations')
-    created_on = models.DateField()
+    created_on = models.DateField(auto_now_add=True)
 
     mentor_response = models.CharField(max_length=1, choices=RESPONSES)
     mentee_response = models.CharField(max_length=1, choices=RESPONSES)
