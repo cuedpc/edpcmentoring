@@ -1,351 +1,1242 @@
 [
-    {
-      "model": "cuedmembers.member",
-      "pk": 1,
-      "fields": {
-        "user": 1,
-        "division": "F",
-        "arrived_on": "2013-01-17",
-        "departed_on": null,
-        "expected_departure_on": "2017-02-24",
-        "is_active": true
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 2,
-      "fields": {
-        "user": 2,
-        "division": "E",
-        "arrived_on": "2014-12-09",
-        "departed_on": null,
-        "expected_departure_on": "2017-01-02",
-        "is_active": true
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 3,
-      "fields": {
-        "user": 3,
-        "division": "C",
-        "arrived_on": "2007-08-08",
-        "departed_on": null,
-        "expected_departure_on": "2024-06-27",
-        "is_active": true
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 4,
-      "fields": {
-        "user": 4,
-        "division": "B",
-        "arrived_on": "2008-12-21",
-        "departed_on": "2009-11-01",
-        "expected_departure_on": null,
-        "is_active": false
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 5,
-      "fields": {
-        "user": 5,
-        "division": "D",
-        "arrived_on": "2003-05-13",
-        "departed_on": "2011-11-02",
-        "expected_departure_on": "2011-11-13",
-        "is_active": false
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 6,
-      "fields": {
-        "user": 6,
-        "division": "D",
-        "arrived_on": "2013-11-26",
-        "departed_on": "2014-11-28",
-        "expected_departure_on": "2020-03-14",
-        "is_active": false
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 7,
-      "fields": {
-        "user": 7,
-        "division": "E",
-        "arrived_on": "2009-12-03",
-        "departed_on": null,
-        "expected_departure_on": "2025-12-18",
-        "is_active": true
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 8,
-      "fields": {
-        "user": 8,
-        "division": "D",
-        "arrived_on": "2004-05-02",
-        "departed_on": "2011-02-08",
-        "expected_departure_on": "2013-10-29",
-        "is_active": false
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 9,
-      "fields": {
-        "user": 9,
-        "division": "B",
-        "arrived_on": "2004-06-17",
-        "departed_on": "2014-12-28",
-        "expected_departure_on": "2008-01-02",
-        "is_active": false
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 10,
-      "fields": {
-        "user": 10,
-        "division": "F",
-        "arrived_on": "2007-04-03",
-        "departed_on": null,
-        "expected_departure_on": "2023-09-15",
-        "is_active": true
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 11,
-      "fields": {
-        "user": 11,
-        "division": "E",
-        "arrived_on": "2011-01-04",
-        "departed_on": null,
-        "expected_departure_on": "2027-01-28",
-        "is_active": true
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 12,
-      "fields": {
-        "user": 12,
-        "division": "B",
-        "arrived_on": "2004-06-25",
-        "departed_on": "2006-09-04",
-        "expected_departure_on": "2007-02-04",
-        "is_active": false
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 13,
-      "fields": {
-        "user": 13,
-        "division": "F",
-        "arrived_on": "2014-11-22",
-        "departed_on": "2015-10-07",
-        "expected_departure_on": null,
-        "is_active": false
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 14,
-      "fields": {
-        "user": 14,
-        "division": "E",
-        "arrived_on": "2009-12-27",
-        "departed_on": null,
-        "expected_departure_on": "2024-08-22",
-        "is_active": true
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 15,
-      "fields": {
-        "user": 15,
-        "division": "B",
-        "arrived_on": "2006-05-15",
-        "departed_on": "2015-12-30",
-        "expected_departure_on": null,
-        "is_active": false
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 16,
-      "fields": {
-        "user": 16,
-        "division": "D",
-        "arrived_on": "2002-12-03",
-        "departed_on": "2009-07-22",
-        "expected_departure_on": "2010-04-21",
-        "is_active": false
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 17,
-      "fields": {
-        "user": 17,
-        "division": "B",
-        "arrived_on": "2012-04-13",
-        "departed_on": "2015-04-29",
-        "expected_departure_on": "2020-08-30",
-        "is_active": false
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 18,
-      "fields": {
-        "user": 18,
-        "division": "E",
-        "arrived_on": "2008-12-12",
-        "departed_on": null,
-        "expected_departure_on": "2019-04-27",
-        "is_active": true
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 19,
-      "fields": {
-        "user": 19,
-        "division": "C",
-        "arrived_on": "2003-02-13",
-        "departed_on": "2013-09-12",
-        "expected_departure_on": "2009-08-04",
-        "is_active": false
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 20,
-      "fields": {
-        "user": 20,
-        "division": "D",
-        "arrived_on": "2005-06-29",
-        "departed_on": null,
-        "expected_departure_on": "2017-01-05",
-        "is_active": true
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 21,
-      "fields": {
-        "user": 21,
-        "division": "E",
-        "arrived_on": "2008-01-02",
-        "departed_on": null,
-        "expected_departure_on": "2022-10-07",
-        "is_active": true
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 22,
-      "fields": {
-        "user": 22,
-        "division": "C",
-        "arrived_on": "2000-06-09",
-        "departed_on": "2005-09-16",
-        "expected_departure_on": "2009-01-15",
-        "is_active": false
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 23,
-      "fields": {
-        "user": 23,
-        "division": "C",
-        "arrived_on": "2011-01-04",
-        "departed_on": null,
-        "expected_departure_on": "2024-06-09",
-        "is_active": true
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 24,
-      "fields": {
-        "user": 24,
-        "division": "E",
-        "arrived_on": "2014-03-02",
-        "departed_on": null,
-        "expected_departure_on": "2020-12-26",
-        "is_active": true
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 25,
-      "fields": {
-        "user": 25,
-        "division": "B",
-        "arrived_on": "2009-08-02",
-        "departed_on": null,
-        "expected_departure_on": "2019-11-25",
-        "is_active": true
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 26,
-      "fields": {
-        "user": 26,
-        "division": "E",
-        "arrived_on": "2010-12-28",
-        "departed_on": "2014-04-03",
-        "expected_departure_on": "2020-04-22",
-        "is_active": false
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 27,
-      "fields": {
-        "user": 27,
-        "division": "E",
-        "arrived_on": "2014-08-09",
-        "departed_on": null,
-        "expected_departure_on": "2022-09-30",
-        "is_active": true
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 28,
-      "fields": {
-        "user": 28,
-        "division": "E",
-        "arrived_on": "2007-01-10",
-        "departed_on": "2013-12-29",
-        "expected_departure_on": "2012-02-07",
-        "is_active": false
-      }
-    },
-    {
-      "model": "cuedmembers.member",
-      "pk": 29,
-      "fields": {
-        "user": 29,
-        "division": "C",
-        "arrived_on": "2006-09-12",
-        "departed_on": "2011-09-13",
-        "expected_departure_on": "2012-05-22",
-        "is_active": false
-      }
-    }
+{
+  "model": "cuedmembers.member",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2009-10-22",
+    "perferred_name": "",
+    "division": "D",
+    "research_group": "Sustainable Development Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2008-08-18",
+    "perferred_name": "",
+    "division": "E",
+    "research_group": "Strategy and Policy"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2013-01-02",
+    "perferred_name": "",
+    "division": "E",
+    "research_group": "Strategy and Policy"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 4,
+  "fields": {
+    "user": 6,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2011-09-27",
+    "perferred_name": "",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 5,
+  "fields": {
+    "user": 9,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2016-01-10",
+    "perferred_name": "",
+    "division": "D",
+    "research_group": "Structures Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 6,
+  "fields": {
+    "user": 11,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2009-03-26",
+    "perferred_name": "",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 7,
+  "fields": {
+    "user": 13,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2013-01-03",
+    "perferred_name": "",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 8,
+  "fields": {
+    "user": 14,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2013-04-13",
+    "perferred_name": "",
+    "division": "D",
+    "research_group": "Structures Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 9,
+  "fields": {
+    "user": 16,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2012-10-07",
+    "perferred_name": "",
+    "division": "E",
+    "research_group": "Strategy and Policy"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 10,
+  "fields": {
+    "user": 18,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2011-03-22",
+    "perferred_name": "",
+    "division": "B",
+    "research_group": "Electronics, Power and Energy Conversion Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 11,
+  "fields": {
+    "user": 19,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2015-11-25",
+    "perferred_name": "",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 12,
+  "fields": {
+    "user": 21,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2011-09-10",
+    "perferred_name": "",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 13,
+  "fields": {
+    "user": 22,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2009-11-14",
+    "perferred_name": "",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 14,
+  "fields": {
+    "user": 26,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2010-02-23",
+    "perferred_name": "",
+    "division": "E",
+    "research_group": "Strategy and Policy"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 15,
+  "fields": {
+    "user": 27,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2010-01-29",
+    "perferred_name": "",
+    "division": "F",
+    "research_group": "Control Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 16,
+  "fields": {
+    "user": 28,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2010-02-13",
+    "perferred_name": "",
+    "division": "D",
+    "research_group": "Construction Engineering Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 17,
+  "fields": {
+    "user": 30,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2007-05-21",
+    "perferred_name": "",
+    "division": "F",
+    "research_group": "Computational and Biological Learning Laboratory"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 18,
+  "fields": {
+    "user": 32,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2008-07-19",
+    "perferred_name": "",
+    "division": "C",
+    "research_group": "Applied Mechanics"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 19,
+  "fields": {
+    "user": 33,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2014-12-28",
+    "perferred_name": "",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 20,
+  "fields": {
+    "user": 35,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2009-12-01",
+    "perferred_name": "",
+    "division": "A",
+    "research_group": "Turbomachinery Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 21,
+  "fields": {
+    "user": 36,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2005-11-20",
+    "perferred_name": "",
+    "division": "D",
+    "research_group": "Geotechnical and Environmental Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 22,
+  "fields": {
+    "user": 39,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2015-08-29",
+    "perferred_name": "",
+    "division": "F",
+    "research_group": "Machine Intelligence Laboratory"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 23,
+  "fields": {
+    "user": 40,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2008-03-18",
+    "perferred_name": "",
+    "division": "A",
+    "research_group": "Turbomachinery Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 24,
+  "fields": {
+    "user": 41,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2015-05-04",
+    "perferred_name": "",
+    "division": "B",
+    "research_group": "Electronics, Power and Energy Conversion Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 25,
+  "fields": {
+    "user": 42,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2006-09-23",
+    "perferred_name": "",
+    "division": "B",
+    "research_group": "Solid State Electronics and Nanoscale Science Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 26,
+  "fields": {
+    "user": 45,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2010-04-25",
+    "perferred_name": "",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 27,
+  "fields": {
+    "user": 46,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2015-06-03",
+    "perferred_name": "",
+    "division": "F",
+    "research_group": "Signal Processing and Communications Laboratory"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 28,
+  "fields": {
+    "user": 47,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2015-07-09",
+    "perferred_name": "",
+    "division": "F",
+    "research_group": "Machine Intelligence Laboratory"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 29,
+  "fields": {
+    "user": 50,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2011-04-01",
+    "perferred_name": "",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 30,
+  "fields": {
+    "user": 55,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2009-10-13",
+    "perferred_name": "",
+    "division": "C",
+    "research_group": "Engineering Design"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 31,
+  "fields": {
+    "user": 56,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2006-11-25",
+    "perferred_name": "",
+    "division": "C",
+    "research_group": "Biomechanics"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 32,
+  "fields": {
+    "user": 57,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2012-05-08",
+    "perferred_name": "",
+    "division": "E",
+    "research_group": "Strategy and Policy"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 33,
+  "fields": {
+    "user": 60,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2007-01-10",
+    "perferred_name": "",
+    "division": "E",
+    "research_group": "Production Processes"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 34,
+  "fields": {
+    "user": 63,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2012-09-13",
+    "perferred_name": "",
+    "division": "E",
+    "research_group": "Strategy and Policy"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 35,
+  "fields": {
+    "user": 64,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2007-11-26",
+    "perferred_name": "",
+    "division": "A",
+    "research_group": "Fluids Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 36,
+  "fields": {
+    "user": 67,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2010-11-12",
+    "perferred_name": "",
+    "division": "D",
+    "research_group": "Sustainable Development Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 37,
+  "fields": {
+    "user": 69,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2010-04-16",
+    "perferred_name": "",
+    "division": "A",
+    "research_group": "Turbomachinery Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 38,
+  "fields": {
+    "user": 70,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2011-05-26",
+    "perferred_name": "",
+    "division": "E",
+    "research_group": "Production Processes"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 39,
+  "fields": {
+    "user": 73,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2011-05-04",
+    "perferred_name": "",
+    "division": "B",
+    "research_group": "Electronics, Power and Energy Conversion Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 40,
+  "fields": {
+    "user": 75,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2009-05-08",
+    "perferred_name": "",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 41,
+  "fields": {
+    "user": 76,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2011-08-31",
+    "perferred_name": "",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 42,
+  "fields": {
+    "user": 81,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2015-02-02",
+    "perferred_name": "",
+    "division": "D",
+    "research_group": "Construction Engineering Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 43,
+  "fields": {
+    "user": 84,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2012-03-19",
+    "perferred_name": "",
+    "division": "B",
+    "research_group": "Solid State Electronics and Nanoscale Science Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 44,
+  "fields": {
+    "user": 85,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2011-11-15",
+    "perferred_name": "",
+    "division": "E",
+    "research_group": "Manufacturing Systems"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 45,
+  "fields": {
+    "user": 86,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2009-12-10",
+    "perferred_name": "",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 46,
+  "fields": {
+    "user": 89,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2010-05-05",
+    "perferred_name": "",
+    "division": "D",
+    "research_group": "Structures Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 47,
+  "fields": {
+    "user": 93,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2015-05-16",
+    "perferred_name": "",
+    "division": "F",
+    "research_group": "Signal Processing and Communications Laboratory"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 48,
+  "fields": {
+    "user": 96,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2007-01-18",
+    "perferred_name": "",
+    "division": "F",
+    "research_group": "Machine Intelligence Laboratory"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 49,
+  "fields": {
+    "user": 97,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2013-04-20",
+    "perferred_name": "",
+    "division": "C",
+    "research_group": "Engineering Design"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 50,
+  "fields": {
+    "user": 98,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2012-07-05",
+    "perferred_name": "",
+    "division": "F",
+    "research_group": "Machine Intelligence Laboratory"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 1,
+  "fields": {
+    "member": 1,
+    "role": "P",
+    "start_on": "2004-12-13",
+    "end_on": "2011-11-27"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 2,
+  "fields": {
+    "member": 2,
+    "role": "S",
+    "start_on": "2004-08-22",
+    "end_on": "2012-11-11"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 3,
+  "fields": {
+    "member": 3,
+    "role": "S",
+    "start_on": "2012-01-31",
+    "end_on": "2019-06-07"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 4,
+  "fields": {
+    "member": 4,
+    "role": "S",
+    "start_on": "2007-11-07",
+    "end_on": "2012-03-27"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 5,
+  "fields": {
+    "member": 5,
+    "role": "V",
+    "start_on": "2013-07-18",
+    "end_on": "2024-08-01"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 6,
+  "fields": {
+    "member": 5,
+    "role": "S",
+    "start_on": "2008-02-29",
+    "end_on": "2020-01-08"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 7,
+  "fields": {
+    "member": 6,
+    "role": "P",
+    "start_on": "1999-05-10",
+    "end_on": "2019-11-07"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 8,
+  "fields": {
+    "member": 7,
+    "role": "P",
+    "start_on": "2006-04-02",
+    "end_on": "2020-10-14"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 9,
+  "fields": {
+    "member": 8,
+    "role": "S",
+    "start_on": "2004-09-17",
+    "end_on": "2023-09-24"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 10,
+  "fields": {
+    "member": 9,
+    "role": "V",
+    "start_on": "2009-12-11",
+    "end_on": "2015-04-23"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 11,
+  "fields": {
+    "member": 10,
+    "role": "V",
+    "start_on": "2002-12-09",
+    "end_on": "2017-01-30"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 12,
+  "fields": {
+    "member": 11,
+    "role": "S",
+    "start_on": "2010-11-06",
+    "end_on": "2025-09-27"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 13,
+  "fields": {
+    "member": 12,
+    "role": "P",
+    "start_on": "2008-07-15",
+    "end_on": "2022-02-19"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 14,
+  "fields": {
+    "member": 13,
+    "role": "P",
+    "start_on": "2006-03-03",
+    "end_on": "2018-06-12"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 15,
+  "fields": {
+    "member": 13,
+    "role": "S",
+    "start_on": "2002-07-07",
+    "end_on": "2020-03-26"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 16,
+  "fields": {
+    "member": 14,
+    "role": "V",
+    "start_on": "2000-08-01",
+    "end_on": "2020-04-03"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 17,
+  "fields": {
+    "member": 15,
+    "role": "P",
+    "start_on": "2005-04-02",
+    "end_on": "2015-03-28"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 18,
+  "fields": {
+    "member": 16,
+    "role": "V",
+    "start_on": "2000-01-19",
+    "end_on": "2015-09-23"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 19,
+  "fields": {
+    "member": 17,
+    "role": "V",
+    "start_on": "2000-04-27",
+    "end_on": "2008-10-29"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 20,
+  "fields": {
+    "member": 18,
+    "role": "S",
+    "start_on": "2006-07-20",
+    "end_on": "2019-06-14"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 21,
+  "fields": {
+    "member": 18,
+    "role": "P",
+    "start_on": "2006-05-30",
+    "end_on": "2015-05-14"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 22,
+  "fields": {
+    "member": 19,
+    "role": "P",
+    "start_on": "2012-10-31",
+    "end_on": "2018-08-08"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 23,
+  "fields": {
+    "member": 20,
+    "role": "S",
+    "start_on": "2008-07-29",
+    "end_on": "2020-04-11"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 24,
+  "fields": {
+    "member": 20,
+    "role": "P",
+    "start_on": "1999-05-10",
+    "end_on": "2013-11-03"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 25,
+  "fields": {
+    "member": 21,
+    "role": "P",
+    "start_on": "1999-07-21",
+    "end_on": "2008-02-03"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 26,
+  "fields": {
+    "member": 22,
+    "role": "P",
+    "start_on": "2004-11-01",
+    "end_on": "2017-11-24"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 27,
+  "fields": {
+    "member": 23,
+    "role": "P",
+    "start_on": "1997-11-19",
+    "end_on": "2015-03-02"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 28,
+  "fields": {
+    "member": 24,
+    "role": "S",
+    "start_on": "2011-09-20",
+    "end_on": "2025-11-08"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 29,
+  "fields": {
+    "member": 25,
+    "role": "S",
+    "start_on": "1996-11-14",
+    "end_on": "2009-06-10"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 30,
+  "fields": {
+    "member": 25,
+    "role": "V",
+    "start_on": "2005-04-24",
+    "end_on": "2009-08-07"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 31,
+  "fields": {
+    "member": 26,
+    "role": "P",
+    "start_on": "2008-02-02",
+    "end_on": "2017-05-15"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 32,
+  "fields": {
+    "member": 27,
+    "role": "V",
+    "start_on": "2011-12-21",
+    "end_on": "2019-05-03"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 33,
+  "fields": {
+    "member": 28,
+    "role": "P",
+    "start_on": "2013-05-29",
+    "end_on": "2018-01-24"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 34,
+  "fields": {
+    "member": 29,
+    "role": "S",
+    "start_on": "2010-09-10",
+    "end_on": "2021-05-21"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 35,
+  "fields": {
+    "member": 30,
+    "role": "S",
+    "start_on": "2003-03-24",
+    "end_on": "2013-06-09"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 36,
+  "fields": {
+    "member": 31,
+    "role": "P",
+    "start_on": "1997-11-21",
+    "end_on": "2014-02-15"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 37,
+  "fields": {
+    "member": 31,
+    "role": "V",
+    "start_on": "2003-08-31",
+    "end_on": "2011-05-09"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 38,
+  "fields": {
+    "member": 32,
+    "role": "P",
+    "start_on": "2002-02-28",
+    "end_on": "2017-01-08"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 39,
+  "fields": {
+    "member": 33,
+    "role": "P",
+    "start_on": "1999-04-20",
+    "end_on": "2012-02-23"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 40,
+  "fields": {
+    "member": 34,
+    "role": "P",
+    "start_on": "2004-05-30",
+    "end_on": "2016-07-13"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 41,
+  "fields": {
+    "member": 35,
+    "role": "P",
+    "start_on": "1997-05-29",
+    "end_on": "2012-11-28"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 42,
+  "fields": {
+    "member": 35,
+    "role": "S",
+    "start_on": "2001-06-13",
+    "end_on": "2014-12-16"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 43,
+  "fields": {
+    "member": 36,
+    "role": "P",
+    "start_on": "2007-12-31",
+    "end_on": "2017-01-04"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 44,
+  "fields": {
+    "member": 37,
+    "role": "S",
+    "start_on": "2009-04-11",
+    "end_on": "2014-01-20"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 45,
+  "fields": {
+    "member": 38,
+    "role": "V",
+    "start_on": "2001-01-12",
+    "end_on": "2018-05-19"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 46,
+  "fields": {
+    "member": 39,
+    "role": "S",
+    "start_on": "2003-08-23",
+    "end_on": "2020-12-22"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 47,
+  "fields": {
+    "member": 40,
+    "role": "S",
+    "start_on": "2008-05-03",
+    "end_on": "2019-10-08"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 48,
+  "fields": {
+    "member": 41,
+    "role": "S",
+    "start_on": "2005-02-06",
+    "end_on": "2014-07-30"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 49,
+  "fields": {
+    "member": 42,
+    "role": "V",
+    "start_on": "2008-08-01",
+    "end_on": "2021-09-08"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 50,
+  "fields": {
+    "member": 43,
+    "role": "S",
+    "start_on": "2007-03-09",
+    "end_on": "2021-08-26"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 51,
+  "fields": {
+    "member": 43,
+    "role": "P",
+    "start_on": "2002-04-22",
+    "end_on": "2014-09-22"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 52,
+  "fields": {
+    "member": 44,
+    "role": "V",
+    "start_on": "2005-02-05",
+    "end_on": "2019-12-11"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 53,
+  "fields": {
+    "member": 45,
+    "role": "P",
+    "start_on": "2002-12-23",
+    "end_on": "2015-12-21"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 54,
+  "fields": {
+    "member": 46,
+    "role": "P",
+    "start_on": "1999-06-24",
+    "end_on": "2019-11-12"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 55,
+  "fields": {
+    "member": 47,
+    "role": "V",
+    "start_on": "2009-07-10",
+    "end_on": "2024-03-14"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 56,
+  "fields": {
+    "member": 47,
+    "role": "P",
+    "start_on": "2008-07-02",
+    "end_on": "2026-03-03"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 57,
+  "fields": {
+    "member": 48,
+    "role": "V",
+    "start_on": "2003-05-16",
+    "end_on": "2010-06-26"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 58,
+  "fields": {
+    "member": 49,
+    "role": "S",
+    "start_on": "2011-12-01",
+    "end_on": "2020-06-12"
+  }
+},
+{
+  "model": "cuedmembers.status",
+  "pk": 59,
+  "fields": {
+    "member": 50,
+    "role": "P",
+    "start_on": "2002-09-04",
+    "end_on": "2016-05-28"
+  }
+}
 ]
-

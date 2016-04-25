@@ -4,10 +4,9 @@ from .models import Member
 
 class MemberAdmin(admin.ModelAdmin):
     list_display = ('crsid', 'full_name', 'division', 'is_active',
-                    'arrived_on', 'departed_on', 'expected_departure_on')
+                    'arrived_on', 'last_inactive_on')
 
-    list_filter = ('is_active', 'arrived_on', 'departed_on',
-                   'expected_departure_on')
+    list_filter = ('is_active', 'arrived_on')
 
     def get_queryset(self, request):
         return Member.objects.get_queryset()

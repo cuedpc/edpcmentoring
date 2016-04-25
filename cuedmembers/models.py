@@ -10,6 +10,25 @@ class MemberManager(models.Manager):
         """A query-set of inactive users."""
         return self.filter(is_active=False)
 
+class Status(models.Model):
+    """
+    A member of CUED may have multiple statuses. Each status has a separate
+    start and end date.
+
+    The start_on and end_on dates are provided by the Department.
+
+    """
+    STAFF = 'S'
+    POSTGRAD = 'P'
+    VISITOR = 'V'
+    ROLES = ((STAFF, 'Staff'), (POSTGRAD, 'Postgrad'), (VISITOR, 'Visitor'))
+
+    member = models.ForeignKey(
+        'Member', on_delete=models.CASCADE, related_name='statuses')
+    role = models.CharField(max_length=1, choices=ROLES)
+    start_on = models.DateField()
+    end_on = models.DateField()
+
 class Member(models.Model):
     """
     An extension of the standard Django User to indicate that a particular
@@ -18,31 +37,54 @@ class Member(models.Model):
     There is a one-to-one mapping of Users to People however not every User is
     necessarily a Member.
 
-    An "active" member is currently present at CUED. This usually implies that
-    their departed_on date is NULL and their arrived_on date is in the past but
-    that is not required. Instead, "active" means that the Member is currently
-    included in the daily snapshot of Department members provided by CUED.
+    The "Surname" and "Fnames" fields from the Department are mapped through to
+    the associated User. The "preferred name" is stored in this model.
 
-    The arrived_on and expected_departure_on dates are provided by the
-    department.
+    An "active" member is currently present at CUED.
 
-    The departed_on date is the date which the Member last stopped being an
-    active Member. An active Member will usually have a departed_on date of NULL
-    but if someone leaves the Department and returns they may become active
-    despite having a departed_on date.
+    Information in this model is expected to be provided by the Department. See
+    http://www-itsd.eng.cam.ac.uk/datadownloads/support/div_people.html for some
+    discussion of what the fields mean.
+
+    The arrived_on date is provided by the Department but should not be used to
+    determine "active" status.
+
+    The last_inactive_on date is the date which the Member last stopped being an
+    active Member. An active Member will usually have a last_inactive_on date of
+    NULL but if someone leaves the Department and returns they may become active
+    despite having a last_inactive_on date.
 
     The upshot of all this is that is_active is the primary means by which one
     should judge if a Member is currently a member of the Department.
 
+    This model does not include role/course, host/supervisor, room number or
+    phone number. The "arrived" flag is folded into the is_active field.
+
     """
+    DIVISIONS = [
+        ('A', 'Energy, Fluids and Turbomachinery'),
+        ('B', 'Electrical Engineering'),
+        ('C', 'Mechanics, Materials and Design'),
+        ('D', 'Civil Engineering'),
+        ('E', 'Manufacturing and Management'),
+        ('F', 'Information Engineering'),
+        ('', 'No Division'),
+    ]
+
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 related_name='cued_member')
-    division = models.CharField(max_length=1)
+
     is_active = models.BooleanField()
+    last_inactive_on = models.DateField(blank=True, null=True)
 
     arrived_on = models.DateField()
-    departed_on = models.DateField(blank=True, null=True)
-    expected_departure_on = models.DateField(blank=True, null=True)
+
+    perferred_name = models.CharField(
+        max_length=100, default='', blank=True)
+    division = models.CharField(max_length=1, choices=DIVISIONS,
+                                blank=True, default='')
+    research_group = models.CharField(
+        max_length=100, blank=True, default='')
 
     objects = MemberManager()
 
