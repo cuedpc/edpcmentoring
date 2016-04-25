@@ -60,7 +60,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='member',
             name='research_group',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='cuedmembers.ResearchGroup'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='cuedmembers.ResearchGroup', related_name='members'),
         ),
         migrations.AddField(
             model_name='member',

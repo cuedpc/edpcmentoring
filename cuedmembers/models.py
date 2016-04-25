@@ -117,7 +117,8 @@ class Member(models.Model):
     """
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 related_name='cued_member')
-    research_group = models.ForeignKey(ResearchGroup, null=True)
+    research_group = models.ForeignKey(ResearchGroup, null=True,
+                                       related_name='members')
 
     is_active = models.BooleanField(default=True)
     last_inactive_on = models.DateField(blank=True, null=True)
