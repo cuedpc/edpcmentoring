@@ -1,0 +1,99 @@
+{% extends "projectlight/layout/page.html" %}
+
+{# Default title if non other is supplied #}
+{% block title %}EDPC Mentoring Scheme{% endblock %}
+
+{# Application specific navigation #}
+{% block nav %}
+    <li><a href="{% url 'index' %}">Home</a></li>
+    {% if user.is_staff %}
+        <li><a href="{% url 'admin:index' %}">Admin interface</a></li>
+    {% endif %}
+    {% if user.cued_member %}
+    <li><a href="#">
+            {{ user.cued_member.user.get_full_name }}
+            ({{ user.cued_member.crsid }})
+        </a>
+        <ul class="campl-unstyled-list local-dropdown-menu">
+            <li><a href="{% url 'raven_logout' %}">Log out</a></li>
+        </ul>
+    </li>
+{% endif %}
+{% endblock nav %}
+
+{# Local footer for this application #}
+{% block localfooter %}
+    <div class="campl-column3 campl-footer-navigation">
+        <div class="campl-content-container campl-navigation-list">
+            <h3><a href="">About the Scheme</a></h3>
+            <ul class="campl-unstyled-list">
+                <li>
+                    <a href="">Lorem ipsum dolor</a>
+                </li>
+                <li>
+                    <a href="">Sit amet</a>
+                </li>
+                <li>
+                    <a href="">Consectetur adipisicing elit</a>
+                </li>
+                <li>
+                    <a href="">Sed do eiusmod</a>
+                </li>
+                <li>
+                    <a href="">Tempor incididunt</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="campl-column3 campl-footer-navigation">
+        <div class="campl-content-container campl-navigation-list">
+            <h3><a href="#">About the EDPC</a></h3>
+            <ul class="campl-unstyled-list">
+                <li>
+                    <a href="">Quis nostrud exercitation</a>
+                </li>
+                <li>
+                    <a href="">Ullamco laboris nisi</a>
+                </li>
+                <li>
+                    <a href="">Ut aliquip ex ea commodo</a>
+                </li>
+                <li>
+                    <a href="">Duis aute irure dolor</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="campl-column3 campl-footer-navigation">
+        <div class="campl-content-container campl-navigation-list">
+            <h3><a href="">Mentoring links</a></h3>
+            <ul class="campl-unstyled-list">
+                <li>
+                    <a href="">Excepteur sint occaecat</a>
+                </li>
+                <li>
+                    <a href="">Cupidatat non proident</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="campl-column3 campl-footer-navigation last">
+        <div class="campl-content-container campl-navigation-list">
+            <h3><a href="">Resources</a></h3>
+            <ul class="campl-unstyled-list">
+                <li>
+                    <a href="">Sunt in culpa qui officia</a>
+                </li>
+                <li>
+                    <a href="">Deserunt mollit anim</a>
+                </li>
+                <li>
+                    <a href="">Id est laborum</a>
+                </li>
+                <li>
+                    <a href="">Duis aute irure dolor</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock localfooter %}

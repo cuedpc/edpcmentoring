@@ -1,0 +1,72 @@
+{% extends "projectlight/layout/base.html" %}
+
+{% block metatags %}
+{{ block.super }}
+{% include "projectlight/include/metatags.html" %}
+{% endblock metatags %}
+
+{% block extrahead %}
+{{ block.super }}
+{% include "projectlight/include/extrahead.html" %}
+{% endblock extrahead %}
+
+{% block content %}
+<div class="campl-theme-2">
+<!--[if lt IE 7]>
+<div class="lt-ie9 lt-ie8 lt-ie7">
+<![endif]-->
+<!--[if IE 7]>
+<div class="lt-ie9 lt-ie8">
+<![endif]-->
+<!--[if IE 8]>
+<div class="lt-ie9">
+<![endif]-->
+
+{% include "projectlight/include/global_header.html" %}
+
+<div class="campl-row campl-page-header">
+    <div class="campl-wrap clearfix">
+        <div class="campl-column12">
+            <div class="campl-content-container">
+                <p class="campl-page-title">
+                    {% block title %}{% endblock %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="campl-row campl-page-header">
+    <div class="campl-wrap clearfix campl-local-navigation" id="local-nav">
+        <div class="campl-local-navigation-container">
+            <ul class="campl-unstyled-list">
+                {% block nav %}{% endblock nav %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="campl-main-content">
+    <div class="campl-row campl-content">
+        <div class="campl-wrap clearfix">
+            <div class="campl-content-container">
+                {% block maincontent %}{% endblock maincontent %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="campl-row campl-local-footer">
+    <div class="campl-wrap clearfix">
+        {% block localfooter %}{% endblock localfooter %}
+    </div>
+</div>
+
+{% include "projectlight/include/global_footer.html" %}
+
+<!--[if lte IE 8]>
+</div>
+<![endif]-->
+{% include "projectlight/include/scripttags.html" %}
+</div>
+{% endblock %}

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'ucamwebauth',
     'cuedmembers',
+    'projectlight',
 
     'mentoring',
     'matching',
