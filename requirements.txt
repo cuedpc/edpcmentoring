@@ -2,5 +2,6 @@
 # other requirements.
 django<1.10
 django-annoying
+django-email-log
 django-extensions
 django-ucamwebauth
