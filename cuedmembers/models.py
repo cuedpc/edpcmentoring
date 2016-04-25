@@ -19,7 +19,7 @@ class ResearchGroup(models.Model):
     A research group in CUED.
 
     """
-    division = models.ForeignKey(Division)
+    division = models.ForeignKey(Division, related_name='research_groups')
     name = models.CharField(max_length=50)
 
     def __str__(self):
