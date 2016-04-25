@@ -6,10 +6,10 @@ class PreferencesAdmin(admin.ModelAdmin):
                     'is_seeking_mentee')
 
     def crsid(self, obj):
-        return obj.staff_member.user.username
+        return obj.user.username
 
     def full_name(self, obj):
-        return obj.staff_member.user.get_full_name()
+        return obj.user.get_full_name()
 
 admin.site.register(Preferences, PreferencesAdmin)
 
