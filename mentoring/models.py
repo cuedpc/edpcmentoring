@@ -22,7 +22,7 @@ class Relationship(models.Model):
         settings.AUTH_USER_MODEL, related_name='mentee_relationships',
         on_delete=models.CASCADE)
 
-    started_on = models.DateField()
+    started_on = models.DateField(auto_now_add=True)
     ended_on = models.DateField(blank=True, null=True)
     ended_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name='mentor_relationships_ended',
