@@ -103,7 +103,9 @@ DATABASES = {
 
 # Email
 EMAIL_BACKEND = 'email_log.backends.EmailBackend'
+EMAIL_SUBJECT_PREFIX = '[EDPC Mentoring] '
 EMAIL_LOG_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+DEFAULT_FROM_EMAIL = 'edpc-mentoring@example.com'
 
 # Login URLs
 LOGIN_URL = 'raven_login'
