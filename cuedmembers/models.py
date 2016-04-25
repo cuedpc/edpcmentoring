@@ -18,6 +18,9 @@ class Status(models.Model):
     The start_on and end_on dates are provided by the Department.
 
     """
+    class Meta:
+        verbose_name_plural = "Statuses"
+
     STAFF = 'S'
     POSTGRAD = 'P'
     VISITOR = 'V'
@@ -37,8 +40,9 @@ class Member(models.Model):
     There is a one-to-one mapping of Users to People however not every User is
     necessarily a Member.
 
-    The "Surname" and "Fnames" fields from the Department are mapped through to
-    the associated User. The "preferred name" is stored in this model.
+    The "Surname" and "Preferred name" fields from the Department are mapped
+    through to the associated User's last_name and first_name. The more formal
+    "First names" from the department are stored in this model.
 
     An "active" member is currently present at CUED.
 
@@ -79,7 +83,7 @@ class Member(models.Model):
 
     arrived_on = models.DateField()
 
-    perferred_name = models.CharField(
+    first_names = models.CharField(
         max_length=100, default='', blank=True)
     division = models.CharField(max_length=1, choices=DIVISIONS,
                                 blank=True, default='')

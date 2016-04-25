@@ -3,76 +3,76 @@
   "model": "cuedmembers.member",
   "pk": 1,
   "fields": {
-    "user": 2,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2009-10-22",
-    "perferred_name": "",
-    "division": "D",
-    "research_group": "Sustainable Development Group"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 2,
-  "fields": {
     "user": 3,
     "is_active": true,
     "last_inactive_on": null,
-    "arrived_on": "2008-08-18",
-    "perferred_name": "",
-    "division": "E",
-    "research_group": "Strategy and Policy"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 3,
-  "fields": {
-    "user": 4,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2013-01-02",
-    "perferred_name": "",
-    "division": "E",
-    "research_group": "Strategy and Policy"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 4,
-  "fields": {
-    "user": 6,
-    "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2011-09-27",
-    "perferred_name": "",
+    "arrived_on": "2012-10-19",
+    "first_names": "Mr. L. T.",
     "division": "",
     "research_group": ""
   }
 },
 {
   "model": "cuedmembers.member",
-  "pk": 5,
+  "pk": 2,
   "fields": {
-    "user": 9,
+    "user": 4,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2013-12-23",
+    "first_names": "Miss C. L. A. M.",
+    "division": "A",
+    "research_group": "Turbomachinery Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 3,
+  "fields": {
+    "user": 5,
     "is_active": true,
     "last_inactive_on": null,
-    "arrived_on": "2016-01-10",
-    "perferred_name": "",
-    "division": "D",
-    "research_group": "Structures Group"
+    "arrived_on": "2008-10-16",
+    "first_names": "Dr. D. D. D.",
+    "division": "F",
+    "research_group": "Computational and Biological Learning Laboratory"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 4,
+  "fields": {
+    "user": 7,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2010-02-23",
+    "first_names": "Dr. A. G.",
+    "division": "A",
+    "research_group": "Fluids Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 5,
+  "fields": {
+    "user": 8,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2010-05-31",
+    "first_names": "Ms. E. S. A. A.",
+    "division": "",
+    "research_group": ""
   }
 },
 {
   "model": "cuedmembers.member",
   "pk": 6,
   "fields": {
-    "user": 11,
+    "user": 9,
     "is_active": true,
     "last_inactive_on": null,
-    "arrived_on": "2009-03-26",
-    "perferred_name": "",
+    "arrived_on": "2008-07-07",
+    "first_names": "Mr. C. J. B. B.",
     "division": "",
     "research_group": ""
   }
@@ -81,440 +81,440 @@
   "model": "cuedmembers.member",
   "pk": 7,
   "fields": {
-    "user": 13,
+    "user": 10,
     "is_active": true,
     "last_inactive_on": null,
-    "arrived_on": "2013-01-03",
-    "perferred_name": "",
-    "division": "",
-    "research_group": ""
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 8,
-  "fields": {
-    "user": 14,
-    "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2013-04-13",
-    "perferred_name": "",
-    "division": "D",
-    "research_group": "Structures Group"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 9,
-  "fields": {
-    "user": 16,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2012-10-07",
-    "perferred_name": "",
-    "division": "E",
-    "research_group": "Strategy and Policy"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 10,
-  "fields": {
-    "user": 18,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2011-03-22",
-    "perferred_name": "",
-    "division": "B",
-    "research_group": "Electronics, Power and Energy Conversion Group"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 11,
-  "fields": {
-    "user": 19,
-    "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2015-11-25",
-    "perferred_name": "",
-    "division": "",
-    "research_group": ""
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 12,
-  "fields": {
-    "user": 21,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2011-09-10",
-    "perferred_name": "",
-    "division": "",
-    "research_group": ""
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 13,
-  "fields": {
-    "user": 22,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2009-11-14",
-    "perferred_name": "",
-    "division": "",
-    "research_group": ""
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 14,
-  "fields": {
-    "user": 26,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2010-02-23",
-    "perferred_name": "",
-    "division": "E",
-    "research_group": "Strategy and Policy"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 15,
-  "fields": {
-    "user": 27,
-    "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2010-01-29",
-    "perferred_name": "",
-    "division": "F",
-    "research_group": "Control Group"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 16,
-  "fields": {
-    "user": 28,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2010-02-13",
-    "perferred_name": "",
-    "division": "D",
-    "research_group": "Construction Engineering Group"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 17,
-  "fields": {
-    "user": 30,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2007-05-21",
-    "perferred_name": "",
-    "division": "F",
-    "research_group": "Computational and Biological Learning Laboratory"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 18,
-  "fields": {
-    "user": 32,
-    "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2008-07-19",
-    "perferred_name": "",
+    "arrived_on": "2010-09-16",
+    "first_names": "Dr. C. E. G.",
     "division": "C",
     "research_group": "Applied Mechanics"
   }
 },
 {
   "model": "cuedmembers.member",
-  "pk": 19,
+  "pk": 8,
   "fields": {
-    "user": 33,
+    "user": 11,
     "is_active": true,
     "last_inactive_on": null,
-    "arrived_on": "2014-12-28",
-    "perferred_name": "",
-    "division": "",
-    "research_group": ""
+    "arrived_on": "2008-09-08",
+    "first_names": "Mr. K. L. J.",
+    "division": "E",
+    "research_group": "Production Processes"
   }
 },
 {
   "model": "cuedmembers.member",
-  "pk": 20,
+  "pk": 9,
   "fields": {
-    "user": 35,
-    "is_active": false,
+    "user": 13,
+    "is_active": true,
     "last_inactive_on": null,
-    "arrived_on": "2009-12-01",
-    "perferred_name": "",
+    "arrived_on": "2011-01-05",
+    "first_names": "Mr. I.",
     "division": "A",
-    "research_group": "Turbomachinery Group"
+    "research_group": "Energy Group"
   }
 },
 {
   "model": "cuedmembers.member",
-  "pk": 21,
+  "pk": 10,
   "fields": {
-    "user": 36,
-    "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2005-11-20",
-    "perferred_name": "",
-    "division": "D",
-    "research_group": "Geotechnical and Environmental Group"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 22,
-  "fields": {
-    "user": 39,
+    "user": 14,
     "is_active": true,
     "last_inactive_on": null,
-    "arrived_on": "2015-08-29",
-    "perferred_name": "",
+    "arrived_on": "2013-04-05",
+    "first_names": "Mr. J. D.",
     "division": "F",
-    "research_group": "Machine Intelligence Laboratory"
+    "research_group": "Control Group"
   }
 },
 {
   "model": "cuedmembers.member",
-  "pk": 23,
+  "pk": 11,
   "fields": {
-    "user": 40,
-    "is_active": true,
+    "user": 15,
+    "is_active": false,
     "last_inactive_on": null,
-    "arrived_on": "2008-03-18",
-    "perferred_name": "",
-    "division": "A",
-    "research_group": "Turbomachinery Group"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 24,
-  "fields": {
-    "user": 41,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2015-05-04",
-    "perferred_name": "",
-    "division": "B",
-    "research_group": "Electronics, Power and Energy Conversion Group"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 25,
-  "fields": {
-    "user": 42,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2006-09-23",
-    "perferred_name": "",
-    "division": "B",
-    "research_group": "Solid State Electronics and Nanoscale Science Group"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 26,
-  "fields": {
-    "user": 45,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2010-04-25",
-    "perferred_name": "",
-    "division": "",
-    "research_group": ""
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 27,
-  "fields": {
-    "user": 46,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2015-06-03",
-    "perferred_name": "",
+    "arrived_on": "2012-01-11",
+    "first_names": "Ms. C. N.",
     "division": "F",
     "research_group": "Signal Processing and Communications Laboratory"
   }
 },
 {
   "model": "cuedmembers.member",
-  "pk": 28,
+  "pk": 12,
   "fields": {
-    "user": 47,
-    "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2015-07-09",
-    "perferred_name": "",
-    "division": "F",
-    "research_group": "Machine Intelligence Laboratory"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 29,
-  "fields": {
-    "user": 50,
+    "user": 17,
     "is_active": true,
     "last_inactive_on": null,
-    "arrived_on": "2011-04-01",
-    "perferred_name": "",
-    "division": "",
-    "research_group": ""
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 30,
-  "fields": {
-    "user": 55,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2009-10-13",
-    "perferred_name": "",
-    "division": "C",
-    "research_group": "Engineering Design"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 31,
-  "fields": {
-    "user": 56,
-    "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2006-11-25",
-    "perferred_name": "",
-    "division": "C",
-    "research_group": "Biomechanics"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 32,
-  "fields": {
-    "user": 57,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2012-05-08",
-    "perferred_name": "",
-    "division": "E",
-    "research_group": "Strategy and Policy"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 33,
-  "fields": {
-    "user": 60,
-    "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2007-01-10",
-    "perferred_name": "",
-    "division": "E",
-    "research_group": "Production Processes"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 34,
-  "fields": {
-    "user": 63,
-    "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2012-09-13",
-    "perferred_name": "",
-    "division": "E",
-    "research_group": "Strategy and Policy"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 35,
-  "fields": {
-    "user": 64,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2007-11-26",
-    "perferred_name": "",
-    "division": "A",
-    "research_group": "Fluids Group"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 36,
-  "fields": {
-    "user": 67,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2010-11-12",
-    "perferred_name": "",
-    "division": "D",
-    "research_group": "Sustainable Development Group"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 37,
-  "fields": {
-    "user": 69,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2010-04-16",
-    "perferred_name": "",
+    "arrived_on": "2009-11-09",
+    "first_names": "Dr. C.",
     "division": "A",
     "research_group": "Turbomachinery Group"
   }
 },
 {
   "model": "cuedmembers.member",
-  "pk": 38,
+  "pk": 13,
   "fields": {
-    "user": 70,
+    "user": 18,
     "is_active": false,
     "last_inactive_on": null,
-    "arrived_on": "2011-05-26",
-    "perferred_name": "",
-    "division": "E",
-    "research_group": "Production Processes"
+    "arrived_on": "2012-01-16",
+    "first_names": "Mr. R. D.",
+    "division": "D",
+    "research_group": "Geotechnical and Environmental Group"
   }
 },
 {
   "model": "cuedmembers.member",
-  "pk": 39,
+  "pk": 14,
   "fields": {
-    "user": 73,
+    "user": 20,
     "is_active": true,
     "last_inactive_on": null,
-    "arrived_on": "2011-05-04",
-    "perferred_name": "",
+    "arrived_on": "2011-11-13",
+    "first_names": "Mrs. W. E. R. D.",
+    "division": "C",
+    "research_group": "Materials Engineering"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 15,
+  "fields": {
+    "user": 23,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2009-05-19",
+    "first_names": "Dr. K.",
+    "division": "D",
+    "research_group": "Sustainable Development Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 16,
+  "fields": {
+    "user": 26,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2013-05-02",
+    "first_names": "Dr. M.",
+    "division": "D",
+    "research_group": "Sustainable Development Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 17,
+  "fields": {
+    "user": 28,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2012-08-31",
+    "first_names": "Dr. K. V. S.",
+    "division": "F",
+    "research_group": "Control Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 18,
+  "fields": {
+    "user": 29,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2012-09-16",
+    "first_names": "Mrs. M. A. Y.",
+    "division": "A",
+    "research_group": "Turbomachinery Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 19,
+  "fields": {
+    "user": 31,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2012-06-11",
+    "first_names": "Mr. E. H.",
+    "division": "F",
+    "research_group": "Machine Intelligence Laboratory"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 20,
+  "fields": {
+    "user": 32,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2008-03-19",
+    "first_names": "Dr. K.",
+    "division": "C",
+    "research_group": "Materials Engineering"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 21,
+  "fields": {
+    "user": 33,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2011-08-24",
+    "first_names": "Miss M. W. P. A.",
+    "division": "B",
+    "research_group": "Solid State Electronics and Nanoscale Science Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 22,
+  "fields": {
+    "user": 36,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2007-09-16",
+    "first_names": "Dr. N. J. D.",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 23,
+  "fields": {
+    "user": 37,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2013-11-21",
+    "first_names": "Ms. K. J.",
+    "division": "F",
+    "research_group": "Computational and Biological Learning Laboratory"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 24,
+  "fields": {
+    "user": 39,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2016-04-14",
+    "first_names": "Dr. M.",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 25,
+  "fields": {
+    "user": 40,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2012-11-11",
+    "first_names": "Mrs. K. G. T.",
+    "division": "E",
+    "research_group": "Strategy and Policy"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 26,
+  "fields": {
+    "user": 42,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2006-12-25",
+    "first_names": "Dr. T. D. E. A.",
+    "division": "D",
+    "research_group": "Sustainable Development Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 27,
+  "fields": {
+    "user": 43,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2010-06-09",
+    "first_names": "Ms. M.",
+    "division": "E",
+    "research_group": "Manufacturing Systems"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 28,
+  "fields": {
+    "user": 45,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2011-03-07",
+    "first_names": "Mr. D. G.",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 29,
+  "fields": {
+    "user": 46,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2008-01-08",
+    "first_names": "Dr. B.",
+    "division": "C",
+    "research_group": "Biomechanics"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 30,
+  "fields": {
+    "user": 47,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2010-04-05",
+    "first_names": "Mrs. J. D.",
+    "division": "D",
+    "research_group": "Sustainable Development Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 31,
+  "fields": {
+    "user": 48,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2006-12-07",
+    "first_names": "Dr. C. A.",
+    "division": "B",
+    "research_group": "Photonics Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 32,
+  "fields": {
+    "user": 52,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2011-12-24",
+    "first_names": "Miss D. E. A. L.",
+    "division": "D",
+    "research_group": "Geotechnical and Environmental Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 33,
+  "fields": {
+    "user": 53,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2012-12-16",
+    "first_names": "Mrs. A. G.",
+    "division": "D",
+    "research_group": "Geotechnical and Environmental Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 34,
+  "fields": {
+    "user": 55,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2011-11-27",
+    "first_names": "Mrs. S. K. J.",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 35,
+  "fields": {
+    "user": 60,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2005-08-19",
+    "first_names": "Mrs. M.",
+    "division": "A",
+    "research_group": "Turbomachinery Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 36,
+  "fields": {
+    "user": 61,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2007-02-16",
+    "first_names": "Mrs. J. B. T.",
+    "division": "E",
+    "research_group": "Strategy and Policy"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 37,
+  "fields": {
+    "user": 62,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2007-03-15",
+    "first_names": "Ms. L. B. J. H.",
+    "division": "",
+    "research_group": ""
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 38,
+  "fields": {
+    "user": 64,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2009-11-24",
+    "first_names": "Dr. L. R. B.",
     "division": "B",
     "research_group": "Electronics, Power and Energy Conversion Group"
   }
 },
 {
   "model": "cuedmembers.member",
-  "pk": 40,
+  "pk": 39,
   "fields": {
-    "user": 75,
+    "user": 69,
     "is_active": true,
     "last_inactive_on": null,
-    "arrived_on": "2009-05-08",
-    "perferred_name": "",
+    "arrived_on": "2012-11-18",
+    "first_names": "Miss H. J. G.",
+    "division": "F",
+    "research_group": "Signal Processing and Communications Laboratory"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 40,
+  "fields": {
+    "user": 73,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2015-12-11",
+    "first_names": "Mr. M. R. F.",
     "division": "",
     "research_group": ""
   }
@@ -523,11 +523,11 @@
   "model": "cuedmembers.member",
   "pk": 41,
   "fields": {
-    "user": 76,
-    "is_active": false,
+    "user": 75,
+    "is_active": true,
     "last_inactive_on": null,
-    "arrived_on": "2011-08-31",
-    "perferred_name": "",
+    "arrived_on": "2010-08-18",
+    "first_names": "Dr. H. N. B. V.",
     "division": "",
     "research_group": ""
   }
@@ -536,117 +536,117 @@
   "model": "cuedmembers.member",
   "pk": 42,
   "fields": {
-    "user": 81,
+    "user": 77,
     "is_active": true,
     "last_inactive_on": null,
-    "arrived_on": "2015-02-02",
-    "perferred_name": "",
-    "division": "D",
-    "research_group": "Construction Engineering Group"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 43,
-  "fields": {
-    "user": 84,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2012-03-19",
-    "perferred_name": "",
-    "division": "B",
-    "research_group": "Solid State Electronics and Nanoscale Science Group"
-  }
-},
-{
-  "model": "cuedmembers.member",
-  "pk": 44,
-  "fields": {
-    "user": 85,
-    "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2011-11-15",
-    "perferred_name": "",
+    "arrived_on": "2005-09-30",
+    "first_names": "Dr. C. T.",
     "division": "E",
     "research_group": "Manufacturing Systems"
   }
 },
 {
   "model": "cuedmembers.member",
-  "pk": 45,
+  "pk": 43,
   "fields": {
-    "user": 86,
+    "user": 79,
     "is_active": false,
     "last_inactive_on": null,
-    "arrived_on": "2009-12-10",
-    "perferred_name": "",
+    "arrived_on": "2009-08-12",
+    "first_names": "Ms. P. A. C.",
+    "division": "B",
+    "research_group": "Photonics Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 44,
+  "fields": {
+    "user": 80,
+    "is_active": true,
+    "last_inactive_on": null,
+    "arrived_on": "2008-09-02",
+    "first_names": "Dr. A.",
     "division": "",
     "research_group": ""
   }
 },
 {
   "model": "cuedmembers.member",
+  "pk": 45,
+  "fields": {
+    "user": 82,
+    "is_active": false,
+    "last_inactive_on": null,
+    "arrived_on": "2007-08-21",
+    "first_names": "Miss L. S. B. M.",
+    "division": "A",
+    "research_group": "Fluids Group"
+  }
+},
+{
+  "model": "cuedmembers.member",
   "pk": 46,
   "fields": {
-    "user": 89,
-    "is_active": true,
+    "user": 86,
+    "is_active": false,
     "last_inactive_on": null,
-    "arrived_on": "2010-05-05",
-    "perferred_name": "",
-    "division": "D",
-    "research_group": "Structures Group"
+    "arrived_on": "2014-02-04",
+    "first_names": "Dr. R. U. T. M.",
+    "division": "",
+    "research_group": ""
   }
 },
 {
   "model": "cuedmembers.member",
   "pk": 47,
   "fields": {
-    "user": 93,
-    "is_active": true,
+    "user": 87,
+    "is_active": false,
     "last_inactive_on": null,
-    "arrived_on": "2015-05-16",
-    "perferred_name": "",
-    "division": "F",
-    "research_group": "Signal Processing and Communications Laboratory"
+    "arrived_on": "2011-06-29",
+    "first_names": "Mr. F.",
+    "division": "E",
+    "research_group": "Manufacturing Systems"
   }
 },
 {
   "model": "cuedmembers.member",
   "pk": 48,
   "fields": {
-    "user": 96,
-    "is_active": true,
+    "user": 88,
+    "is_active": false,
     "last_inactive_on": null,
-    "arrived_on": "2007-01-18",
-    "perferred_name": "",
-    "division": "F",
-    "research_group": "Machine Intelligence Laboratory"
+    "arrived_on": "2012-10-14",
+    "first_names": "Mr. A.",
+    "division": "C",
+    "research_group": "Biomechanics"
   }
 },
 {
   "model": "cuedmembers.member",
   "pk": 49,
   "fields": {
-    "user": 97,
-    "is_active": false,
+    "user": 93,
+    "is_active": true,
     "last_inactive_on": null,
-    "arrived_on": "2013-04-20",
-    "perferred_name": "",
-    "division": "C",
-    "research_group": "Engineering Design"
+    "arrived_on": "2008-09-11",
+    "first_names": "Miss L. J.",
+    "division": "B",
+    "research_group": "Photonics Group"
   }
 },
 {
   "model": "cuedmembers.member",
   "pk": 50,
   "fields": {
-    "user": 98,
+    "user": 97,
     "is_active": true,
     "last_inactive_on": null,
-    "arrived_on": "2012-07-05",
-    "perferred_name": "",
-    "division": "F",
-    "research_group": "Machine Intelligence Laboratory"
+    "arrived_on": "2009-01-11",
+    "first_names": "Mrs. E.",
+    "division": "E",
+    "research_group": "Production Processes"
   }
 },
 {
@@ -654,9 +654,9 @@
   "pk": 1,
   "fields": {
     "member": 1,
-    "role": "P",
-    "start_on": "2004-12-13",
-    "end_on": "2011-11-27"
+    "role": "S",
+    "start_on": "2006-06-11",
+    "end_on": "2015-04-15"
   }
 },
 {
@@ -664,9 +664,9 @@
   "pk": 2,
   "fields": {
     "member": 2,
-    "role": "S",
-    "start_on": "2004-08-22",
-    "end_on": "2012-11-11"
+    "role": "P",
+    "start_on": "2004-12-12",
+    "end_on": "2019-07-12"
   }
 },
 {
@@ -674,9 +674,9 @@
   "pk": 3,
   "fields": {
     "member": 3,
-    "role": "S",
-    "start_on": "2012-01-31",
-    "end_on": "2019-06-07"
+    "role": "V",
+    "start_on": "2008-07-30",
+    "end_on": "2012-01-03"
   }
 },
 {
@@ -685,18 +685,18 @@
   "fields": {
     "member": 4,
     "role": "S",
-    "start_on": "2007-11-07",
-    "end_on": "2012-03-27"
+    "start_on": "2001-10-16",
+    "end_on": "2020-11-07"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 5,
   "fields": {
-    "member": 5,
-    "role": "V",
-    "start_on": "2013-07-18",
-    "end_on": "2024-08-01"
+    "member": 4,
+    "role": "P",
+    "start_on": "2007-11-17",
+    "end_on": "2012-12-08"
   }
 },
 {
@@ -704,9 +704,9 @@
   "pk": 6,
   "fields": {
     "member": 5,
-    "role": "S",
-    "start_on": "2008-02-29",
-    "end_on": "2020-01-08"
+    "role": "P",
+    "start_on": "2005-12-08",
+    "end_on": "2013-07-29"
   }
 },
 {
@@ -714,9 +714,9 @@
   "pk": 7,
   "fields": {
     "member": 6,
-    "role": "P",
-    "start_on": "1999-05-10",
-    "end_on": "2019-11-07"
+    "role": "S",
+    "start_on": "2002-06-29",
+    "end_on": "2014-02-07"
   }
 },
 {
@@ -724,9 +724,9 @@
   "pk": 8,
   "fields": {
     "member": 7,
-    "role": "P",
-    "start_on": "2006-04-02",
-    "end_on": "2020-10-14"
+    "role": "V",
+    "start_on": "2006-04-21",
+    "end_on": "2021-04-08"
   }
 },
 {
@@ -735,8 +735,8 @@
   "fields": {
     "member": 8,
     "role": "S",
-    "start_on": "2004-09-17",
-    "end_on": "2023-09-24"
+    "start_on": "2003-05-01",
+    "end_on": "2009-08-09"
   }
 },
 {
@@ -744,9 +744,9 @@
   "pk": 10,
   "fields": {
     "member": 9,
-    "role": "V",
-    "start_on": "2009-12-11",
-    "end_on": "2015-04-23"
+    "role": "S",
+    "start_on": "2010-10-28",
+    "end_on": "2013-03-10"
   }
 },
 {
@@ -754,9 +754,9 @@
   "pk": 11,
   "fields": {
     "member": 10,
-    "role": "V",
-    "start_on": "2002-12-09",
-    "end_on": "2017-01-30"
+    "role": "P",
+    "start_on": "2003-12-03",
+    "end_on": "2015-09-20"
   }
 },
 {
@@ -765,8 +765,8 @@
   "fields": {
     "member": 11,
     "role": "S",
-    "start_on": "2010-11-06",
-    "end_on": "2025-09-27"
+    "start_on": "2010-03-04",
+    "end_on": "2021-03-15"
   }
 },
 {
@@ -775,8 +775,8 @@
   "fields": {
     "member": 12,
     "role": "P",
-    "start_on": "2008-07-15",
-    "end_on": "2022-02-19"
+    "start_on": "1999-10-01",
+    "end_on": "2016-05-09"
   }
 },
 {
@@ -784,459 +784,409 @@
   "pk": 14,
   "fields": {
     "member": 13,
-    "role": "P",
-    "start_on": "2006-03-03",
-    "end_on": "2018-06-12"
+    "role": "S",
+    "start_on": "2010-06-28",
+    "end_on": "2021-07-12"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 15,
   "fields": {
-    "member": 13,
-    "role": "S",
-    "start_on": "2002-07-07",
-    "end_on": "2020-03-26"
+    "member": 14,
+    "role": "V",
+    "start_on": "2009-12-18",
+    "end_on": "2022-08-02"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 16,
   "fields": {
-    "member": 14,
-    "role": "V",
-    "start_on": "2000-08-01",
-    "end_on": "2020-04-03"
+    "member": 15,
+    "role": "P",
+    "start_on": "2002-03-03",
+    "end_on": "2012-10-06"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 17,
   "fields": {
-    "member": 15,
+    "member": 16,
     "role": "P",
-    "start_on": "2005-04-02",
-    "end_on": "2015-03-28"
+    "start_on": "2011-04-08",
+    "end_on": "2016-04-29"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 18,
   "fields": {
-    "member": 16,
-    "role": "V",
-    "start_on": "2000-01-19",
-    "end_on": "2015-09-23"
+    "member": 17,
+    "role": "P",
+    "start_on": "2011-02-01",
+    "end_on": "2015-08-03"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 19,
   "fields": {
-    "member": 17,
+    "member": 18,
     "role": "V",
-    "start_on": "2000-04-27",
-    "end_on": "2008-10-29"
+    "start_on": "2003-03-29",
+    "end_on": "2016-07-03"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 20,
   "fields": {
-    "member": 18,
-    "role": "S",
-    "start_on": "2006-07-20",
-    "end_on": "2019-06-14"
+    "member": 19,
+    "role": "P",
+    "start_on": "2004-09-18",
+    "end_on": "2018-01-10"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 21,
   "fields": {
-    "member": 18,
-    "role": "P",
-    "start_on": "2006-05-30",
-    "end_on": "2015-05-14"
+    "member": 20,
+    "role": "S",
+    "start_on": "2000-11-29",
+    "end_on": "2013-01-27"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 22,
   "fields": {
-    "member": 19,
+    "member": 21,
     "role": "P",
-    "start_on": "2012-10-31",
-    "end_on": "2018-08-08"
+    "start_on": "2001-04-12",
+    "end_on": "2016-09-04"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 23,
   "fields": {
-    "member": 20,
+    "member": 21,
     "role": "S",
-    "start_on": "2008-07-29",
-    "end_on": "2020-04-11"
+    "start_on": "2003-08-17",
+    "end_on": "2014-02-10"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 24,
   "fields": {
-    "member": 20,
-    "role": "P",
-    "start_on": "1999-05-10",
-    "end_on": "2013-11-03"
+    "member": 22,
+    "role": "S",
+    "start_on": "2003-06-23",
+    "end_on": "2013-02-06"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 25,
   "fields": {
-    "member": 21,
+    "member": 22,
     "role": "P",
-    "start_on": "1999-07-21",
-    "end_on": "2008-02-03"
+    "start_on": "2001-10-23",
+    "end_on": "2016-04-11"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 26,
   "fields": {
-    "member": 22,
+    "member": 23,
     "role": "P",
-    "start_on": "2004-11-01",
-    "end_on": "2017-11-24"
+    "start_on": "2003-06-24",
+    "end_on": "2022-05-17"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 27,
   "fields": {
-    "member": 23,
-    "role": "P",
-    "start_on": "1997-11-19",
-    "end_on": "2015-03-02"
+    "member": 24,
+    "role": "V",
+    "start_on": "2012-11-14",
+    "end_on": "2026-08-05"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 28,
   "fields": {
-    "member": 24,
+    "member": 25,
     "role": "S",
-    "start_on": "2011-09-20",
-    "end_on": "2025-11-08"
+    "start_on": "2006-03-18",
+    "end_on": "2017-04-04"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 29,
   "fields": {
-    "member": 25,
+    "member": 26,
     "role": "S",
-    "start_on": "1996-11-14",
-    "end_on": "2009-06-10"
+    "start_on": "1998-03-19",
+    "end_on": "2013-07-03"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 30,
   "fields": {
-    "member": 25,
-    "role": "V",
-    "start_on": "2005-04-24",
-    "end_on": "2009-08-07"
+    "member": 27,
+    "role": "S",
+    "start_on": "2006-06-23",
+    "end_on": "2017-01-09"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 31,
   "fields": {
-    "member": 26,
-    "role": "P",
-    "start_on": "2008-02-02",
-    "end_on": "2017-05-15"
+    "member": 28,
+    "role": "S",
+    "start_on": "2008-12-28",
+    "end_on": "2016-01-20"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 32,
   "fields": {
-    "member": 27,
-    "role": "V",
-    "start_on": "2011-12-21",
-    "end_on": "2019-05-03"
+    "member": 29,
+    "role": "P",
+    "start_on": "1999-12-09",
+    "end_on": "2010-12-01"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 33,
   "fields": {
-    "member": 28,
-    "role": "P",
-    "start_on": "2013-05-29",
-    "end_on": "2018-01-24"
+    "member": 30,
+    "role": "V",
+    "start_on": "2006-11-18",
+    "end_on": "2016-07-04"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 34,
   "fields": {
-    "member": 29,
+    "member": 31,
     "role": "S",
-    "start_on": "2010-09-10",
-    "end_on": "2021-05-21"
+    "start_on": "1998-01-01",
+    "end_on": "2017-02-12"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 35,
   "fields": {
-    "member": 30,
-    "role": "S",
-    "start_on": "2003-03-24",
-    "end_on": "2013-06-09"
+    "member": 32,
+    "role": "P",
+    "start_on": "2001-09-10",
+    "end_on": "2019-09-25"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 36,
   "fields": {
-    "member": 31,
+    "member": 33,
     "role": "P",
-    "start_on": "1997-11-21",
-    "end_on": "2014-02-15"
+    "start_on": "2010-02-22",
+    "end_on": "2016-07-07"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 37,
   "fields": {
-    "member": 31,
+    "member": 34,
     "role": "V",
-    "start_on": "2003-08-31",
-    "end_on": "2011-05-09"
+    "start_on": "2004-10-08",
+    "end_on": "2022-01-13"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 38,
   "fields": {
-    "member": 32,
+    "member": 35,
     "role": "P",
-    "start_on": "2002-02-28",
-    "end_on": "2017-01-08"
+    "start_on": "2000-09-17",
+    "end_on": "2006-12-07"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 39,
   "fields": {
-    "member": 33,
-    "role": "P",
-    "start_on": "1999-04-20",
-    "end_on": "2012-02-23"
+    "member": 36,
+    "role": "V",
+    "start_on": "2002-02-27",
+    "end_on": "2010-02-08"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 40,
   "fields": {
-    "member": 34,
-    "role": "P",
-    "start_on": "2004-05-30",
-    "end_on": "2016-07-13"
+    "member": 37,
+    "role": "S",
+    "start_on": "1996-04-22",
+    "end_on": "2011-09-18"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 41,
   "fields": {
-    "member": 35,
-    "role": "P",
-    "start_on": "1997-05-29",
-    "end_on": "2012-11-28"
+    "member": 38,
+    "role": "S",
+    "start_on": "2008-07-05",
+    "end_on": "2017-05-21"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 42,
   "fields": {
-    "member": 35,
-    "role": "S",
-    "start_on": "2001-06-13",
-    "end_on": "2014-12-16"
+    "member": 39,
+    "role": "P",
+    "start_on": "2002-03-20",
+    "end_on": "2019-11-10"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 43,
   "fields": {
-    "member": 36,
-    "role": "P",
-    "start_on": "2007-12-31",
-    "end_on": "2017-01-04"
+    "member": 40,
+    "role": "S",
+    "start_on": "2006-04-11",
+    "end_on": "2016-11-20"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 44,
   "fields": {
-    "member": 37,
-    "role": "S",
-    "start_on": "2009-04-11",
-    "end_on": "2014-01-20"
+    "member": 41,
+    "role": "P",
+    "start_on": "2010-04-24",
+    "end_on": "2016-08-15"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 45,
   "fields": {
-    "member": 38,
-    "role": "V",
-    "start_on": "2001-01-12",
-    "end_on": "2018-05-19"
+    "member": 42,
+    "role": "P",
+    "start_on": "2003-04-09",
+    "end_on": "2008-07-05"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 46,
   "fields": {
-    "member": 39,
+    "member": 43,
     "role": "S",
-    "start_on": "2003-08-23",
-    "end_on": "2020-12-22"
+    "start_on": "2009-05-18",
+    "end_on": "2012-01-27"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 47,
   "fields": {
-    "member": 40,
+    "member": 44,
     "role": "S",
-    "start_on": "2008-05-03",
-    "end_on": "2019-10-08"
+    "start_on": "1998-07-15",
+    "end_on": "2016-05-01"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 48,
   "fields": {
-    "member": 41,
-    "role": "S",
-    "start_on": "2005-02-06",
-    "end_on": "2014-07-30"
+    "member": 45,
+    "role": "P",
+    "start_on": "2002-03-17",
+    "end_on": "2010-02-16"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 49,
   "fields": {
-    "member": 42,
-    "role": "V",
-    "start_on": "2008-08-01",
-    "end_on": "2021-09-08"
+    "member": 46,
+    "role": "P",
+    "start_on": "2005-09-11",
+    "end_on": "2021-11-23"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 50,
   "fields": {
-    "member": 43,
-    "role": "S",
-    "start_on": "2007-03-09",
-    "end_on": "2021-08-26"
+    "member": 47,
+    "role": "V",
+    "start_on": "2006-01-25",
+    "end_on": "2021-12-16"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 51,
   "fields": {
-    "member": 43,
+    "member": 47,
     "role": "P",
-    "start_on": "2002-04-22",
-    "end_on": "2014-09-22"
+    "start_on": "2006-07-21",
+    "end_on": "2013-01-20"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 52,
   "fields": {
-    "member": 44,
+    "member": 48,
     "role": "V",
-    "start_on": "2005-02-05",
-    "end_on": "2019-12-11"
+    "start_on": "2011-09-06",
+    "end_on": "2016-01-12"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 53,
   "fields": {
-    "member": 45,
+    "member": 49,
     "role": "P",
-    "start_on": "2002-12-23",
-    "end_on": "2015-12-21"
+    "start_on": "2007-11-01",
+    "end_on": "2017-09-21"
   }
 },
 {
   "model": "cuedmembers.status",
   "pk": 54,
   "fields": {
-    "member": 46,
-    "role": "P",
-    "start_on": "1999-06-24",
-    "end_on": "2019-11-12"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 55,
-  "fields": {
-    "member": 47,
-    "role": "V",
-    "start_on": "2009-07-10",
-    "end_on": "2024-03-14"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 56,
-  "fields": {
-    "member": 47,
-    "role": "P",
-    "start_on": "2008-07-02",
-    "end_on": "2026-03-03"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 57,
-  "fields": {
-    "member": 48,
-    "role": "V",
-    "start_on": "2003-05-16",
-    "end_on": "2010-06-26"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 58,
-  "fields": {
-    "member": 49,
-    "role": "S",
-    "start_on": "2011-12-01",
-    "end_on": "2020-06-12"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 59,
-  "fields": {
     "member": 50,
-    "role": "P",
-    "start_on": "2002-09-04",
-    "end_on": "2016-05-28"
+    "role": "V",
+    "start_on": "1999-08-01",
+    "end_on": "2015-12-08"
   }
 }
 ]

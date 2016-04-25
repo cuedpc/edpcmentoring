@@ -9,10 +9,11 @@ Run via:
 import datetime
 import random
 
-from cuedmembers.models import Member, Status
 from django.contrib.auth.models import User
 from django.utils import timezone
 from faker import Faker
+
+from cuedmembers.models import Member, Status
 
 RESEARCH_GROUPS = {
     'A': ['Energy Group', 'Fluids Group', 'Turbomachinery Group'],
@@ -35,20 +36,20 @@ STATUSES = [Status.VISITOR, Status.POSTGRAD, Status.STAFF]
 
 def sample_person(fake):
     """Use the faker to sample a fake person. Returns a dictionary containing
-    first_name, last_name, division, preferred_name and research_group.
+    first_name, last_name, division, first_names and research_group.
 
     """
     # For the sake of database testing, gender is binary when it comes to
     # generating names and prefixes.
     if random.random() < 0.5:
-        make_first_name, make_prefix = fake.name_female, fake.prefix_female
+        make_first_name, make_prefix = fake.first_name_female, fake.prefix_female
     else:
-        make_first_name, make_prefix = fake.name_male, fake.prefix_male
+        make_first_name, make_prefix = fake.first_name_male, fake.prefix_male
 
-    first_names = [make_first_name() for _ in range(random.randint(1, 3))]
+    first_name_list = [make_first_name() for _ in range(random.randint(1, 4))]
     prefix = make_prefix()
-    preferred_name = random.choice(first_names)
-    first_name = prefix + ' ' + ' '.join(n[:1]+'.' for n in first_names)
+    first_name = random.choice(first_name_list)
+    first_names = prefix + ' ' + ' '.join(n[:1]+'.' for n in first_name_list)
     last_name = fake.last_name()
 
     if random.random() < 0.2:
@@ -59,7 +60,7 @@ def sample_person(fake):
 
     return dict(
         first_name=first_name, last_name=last_name, division=division,
-        preferred_name=preferred_name, research_group=research_group)
+        first_names=first_names, research_group=research_group)
 
 def sample_date_after(whence=None):
     whence = timezone.now() if whence is None else whence
@@ -92,7 +93,7 @@ def run():
             member, _ = Member.objects.get_or_create(
                 user=u, is_active=random.random() < 0.75,
                 arrived_on=sample_date_before())
-            member.preferred_name = m['preferred_name']
+            member.first_names = m['first_names']
             member.division = m['division']
             member.research_group = m['research_group']
             member.save()
@@ -108,6 +109,9 @@ def run():
                 Status.objects.create(
                     member=member, role=status, start_on=start_on,
                     end_on=end_on)
+
+            if not member.is_active or random.random() < 0.1:
+                member.last_inactive_on = sample_date_before()
 
     # Create superuser
     u = User.objects.get(username='test0001')
