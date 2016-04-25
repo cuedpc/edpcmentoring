@@ -1,5 +1,5 @@
+from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
 
 class RelationshipManager(models.Manager):
     def active(self):
@@ -16,16 +16,16 @@ class Relationship(models.Model):
 
     """
     mentor = models.ForeignKey(
-        User, related_name='mentor_relationships',
+        settings.AUTH_USER_MODEL, related_name='mentor_relationships',
         on_delete=models.CASCADE)
     mentee = models.ForeignKey(
-        User, related_name='mentee_relationships',
+        settings.AUTH_USER_MODEL, related_name='mentee_relationships',
         on_delete=models.CASCADE)
 
     started_on = models.DateField()
     ended_on = models.DateField(blank=True, null=True)
     ended_by = models.ForeignKey(
-        User, related_name='mentor_relationships_ended',
+        settings.AUTH_USER_MODEL, related_name='mentor_relationships_ended',
         blank=True, null=True)
 
     is_active = models.BooleanField(default=True)

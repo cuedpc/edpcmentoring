@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.db import models
 
 class MemberManager(models.Manager):
@@ -12,7 +12,7 @@ class MemberManager(models.Manager):
 
 class Member(models.Model):
     """
-    An extension of the standard Django "User" to indicate that a particular
+    An extension of the standard Django User to indicate that a particular
     user is a member of the Department.
 
     There is a one-to-one mapping of Users to People however not every User is
@@ -35,7 +35,8 @@ class Member(models.Model):
     should judge if a Member is currently a member of the Department.
 
     """
-    user = models.OneToOneField(User, related_name='cued_member')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                related_name='cued_member')
     division = models.CharField(max_length=1)
     is_active = models.BooleanField()
 

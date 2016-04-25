@@ -1,6 +1,6 @@
-from django.db import models
-from django.contrib.auth.models import User
 from annoying.fields import AutoOneToOneField
+from django.conf import settings
+from django.db import models
 from mentoring.models import Relationship
 
 class Preferences(models.Model):
@@ -12,7 +12,7 @@ class Preferences(models.Model):
         verbose_name_plural = 'Preferences'
 
     user = AutoOneToOneField(
-        User, on_delete=models.CASCADE,
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
         related_name='mentorship_preferences',
         primary_key=True)
     is_seeking_mentor = models.BooleanField(default=False)
@@ -30,11 +30,13 @@ class Invitation(models.Model):
     DECLINE = 'D'
     RESPONSES = ((ACCEPT, 'Accept'), (DECLINE, 'Decline'))
 
-    mentor = models.ForeignKey(User, related_name='mentor_invitations')
-    mentee = models.ForeignKey(User, related_name='mentee_invitations')
+    mentor = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               related_name='mentor_invitations')
+    mentee = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               related_name='mentee_invitations')
 
     created_by = models.ForeignKey(
-        User, related_name='created_invitations')
+        settings.AUTH_USER_MODEL, related_name='created_invitations')
     created_on = models.DateField()
 
     mentor_response = models.CharField(max_length=1, choices=RESPONSES)
