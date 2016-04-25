@@ -9,7 +9,7 @@ Run via:
 import datetime
 import random
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.utils import timezone
 from faker import Faker
 
@@ -68,7 +68,7 @@ def run():
     for crsid in cued_crsids.union(non_cued_crsids):
         m = sample_person(fake)
 
-        u, _ = User.objects.get_or_create(username=crsid)
+        u, _ = get_user_model().objects.get_or_create(username=crsid)
         u.email = '{}@example.com'.format(crsid)
         u.first_name = m['first_name']
         u.last_name = m['last_name']

@@ -3,35 +3,27 @@ from django.db import models
 
 from django.contrib.auth import get_user_model
 
-class ResearchGroupManager(models.Manager):
-    def divisions(self):
-        """Returns a list all all divisions."""
-        return [
-            v['division'] for v in
-            ResearchGroup.objects.values('division').distinct()
-        ]
+class Division(models.Model):
+    """
+    A division within CUED.
+
+    """
+    letter = models.CharField(max_length=1, primary_key=True)
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.letter
 
 class ResearchGroup(models.Model):
     """
     A research group in CUED.
 
     """
-    DIVISIONS = [
-        ('A', 'Energy, Fluids and Turbomachinery'),
-        ('B', 'Electrical Engineering'),
-        ('C', 'Mechanics, Materials and Design'),
-        ('D', 'Civil Engineering'),
-        ('E', 'Manufacturing and Management'),
-        ('F', 'Information Engineering'),
-    ]
-
-    division = models.CharField(max_length=1, choices=DIVISIONS)
-    description = models.CharField(max_length=50)
-
-    objects = ResearchGroupManager()
+    division = models.ForeignKey(Division)
+    name = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.description
+        return self.name
 
 class Status(models.Model):
     """
@@ -47,11 +39,11 @@ class Status(models.Model):
     STAFF = 'S'
     POSTGRAD = 'P'
     VISITOR = 'V'
-    ROLES = ((STAFF, 'Staff'), (POSTGRAD, 'Postgrad'), (VISITOR, 'Visitor'))
+    STATUSES = ((STAFF, 'Staff'), (POSTGRAD, 'Postgrad'), (VISITOR, 'Visitor'))
 
     member = models.ForeignKey(
         'Member', on_delete=models.CASCADE, related_name='statuses')
-    role = models.CharField(max_length=1, choices=ROLES)
+    status = models.CharField(max_length=1, choices=STATUSES)
     start_on = models.DateField()
     end_on = models.DateField()
 
