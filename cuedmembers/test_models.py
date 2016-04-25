@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from .models import Member
 
 class MemberTestCase(TestCase):
-    fixtures = ['test_users', 'test_members']
+    fixtures = ['cuedmembers/test_users', 'cuedmembers/test_members']
 
     def test_active_members(self):
         self.assertGreater(Member.objects.active().count(), 0)

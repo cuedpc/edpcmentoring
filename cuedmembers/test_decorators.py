@@ -8,7 +8,7 @@ from .middleware import MemberMiddleware
 from .models import Member
 
 class MemberRequiredTestCase(TestCase):
-    fixtures = ['test_users', 'test_members']
+    fixtures = ['cuedmembers/test_users', 'cuedmembers/test_members']
 
     def setUp(self):
         self.factory = RequestFactory()

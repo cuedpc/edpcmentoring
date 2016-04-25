@@ -4,7 +4,7 @@ from cuedmembers.models import Member
 from .models import Preferences
 
 class PreferencesTestCase(TestCase):
-    fixtures = ['test_users', 'test_members']
+    fixtures = ['cuedmembers/test_users', 'cuedmembers/test_members']
 
     def test_preferences(self):
         member = Member.objects.active().first()
