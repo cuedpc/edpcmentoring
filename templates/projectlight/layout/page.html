@@ -1,9 +1,9 @@
-{% extends "mentoring/base.html" %}
+{% extends "projectlight/base.html" %}
 {% load static from staticfiles %}
 
 {% block head %}
 {{ block.super }}
-{% include "mentoring/include/head.html" %}
+{% include "projectlight/include/head.html" %}
 {% endblock %}
 
 {% block body %}
@@ -18,7 +18,7 @@
 <div class="lt-ie9">
 <![endif]-->
 
-{% include "mentoring/include/global_header.html" %}
+{% include "projectlight/include/global_header.html" %}
 
 <div class="campl-row campl-page-header">
     <div class="campl-wrap clearfix">
@@ -69,15 +69,15 @@
 </div>
 {% endblock %}
 
-{% include "mentoring/include/local_footer.html" %}
-{% include "mentoring/include/global_footer.html" %}
+{% include "projectlight/include/local_footer.html" %}
+{% include "projectlight/include/global_footer.html" %}
 
 <!--[if lte IE 8]>
 </div>
 <![endif]-->
-<script type="text/javascript" src="{% static "mentoring/javascripts/libs/ios-orientationchange-fix.js" %}"></script>
-<script type="text/javascript" src="{% static "mentoring/javascripts/libs/jquery-min.js" %}"></script>
-<script type="text/javascript" src="{% static "mentoring/javascripts/libs/modernizr.js" %}"></script>
-<script type="text/javascript" src="{% static "mentoring/javascripts/custom.js" %}"></script>
+<script type="text/javascript" src="{% static "projectlight/javascripts/libs/ios-orientationchange-fix.js" %}"></script>
+<script type="text/javascript" src="{% static "projectlight/javascripts/libs/jquery-min.js" %}"></script>
+<script type="text/javascript" src="{% static "projectlight/javascripts/libs/modernizr.js" %}"></script>
+<script type="text/javascript" src="{% static "projectlight/javascripts/custom.js" %}"></script>
 </body>
 {% endblock %}
