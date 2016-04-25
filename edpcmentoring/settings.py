@@ -101,6 +101,10 @@ DATABASES = {
     }
 }
 
+# Email
+EMAIL_BACKEND = 'email_log.backends.EmailBackend'
+EMAIL_LOG_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+
 # Login URLs
 LOGIN_URL = 'raven_login'
 LOGIN_REDIRECT_URL = 'mentoring:index'
