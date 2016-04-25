@@ -1,14 +1,7 @@
 from django.conf import settings
 from django.db import models
 
-class MemberManager(models.Manager):
-    def active(self):
-        """A query-set of active users."""
-        return self.filter(is_active=True)
-
-    def inactive(self):
-        """A query-set of inactive users."""
-        return self.filter(is_active=False)
+from django.contrib.auth import get_user_model
 
 class Status(models.Model):
     """
@@ -31,6 +24,41 @@ class Status(models.Model):
     role = models.CharField(max_length=1, choices=ROLES)
     start_on = models.DateField()
     end_on = models.DateField()
+
+class MemberManager(models.Manager):
+    def get_or_create_by_crsid(self, crsid, first_name=None, last_name=None,
+                               email=None, **kwargs):
+        """
+        Retrieve or create a new member from a crsid. If a corresponding user
+        does not exist, it is created. The newly created user has
+        set_unusable_password() called on it and is added to the database.
+
+        The first_name, last_name and email parameters are set on the
+        corresponding user if non-None *even if the user already exists*.
+
+        """
+        u, _ = get_user_model().objects.get_or_create(username=crsid)
+        m, m_created = self.get_or_create(user=u, **kwargs)
+
+        # Update user
+        if first_name is not None:
+            u.first_name = first_name
+        if last_name is not None:
+            u.last_name = last_name
+        if email is not None:
+            u.email = email
+        u.set_unusable_password()
+        u.save()
+
+        return m, m_created
+
+    def active(self):
+        """A query-set of active users."""
+        return self.filter(is_active=True)
+
+    def inactive(self):
+        """A query-set of inactive users."""
+        return self.filter(is_active=False)
 
 class Member(models.Model):
     """
@@ -78,10 +106,10 @@ class Member(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 related_name='cued_member')
 
-    is_active = models.BooleanField()
+    is_active = models.BooleanField(default=True)
     last_inactive_on = models.DateField(blank=True, null=True)
 
-    arrived_on = models.DateField()
+    arrived_on = models.DateField(auto_now_add=True)
 
     first_names = models.CharField(
         max_length=100, default='', blank=True)
