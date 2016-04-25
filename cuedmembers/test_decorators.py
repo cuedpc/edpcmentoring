@@ -4,7 +4,6 @@ from django.test import TestCase, RequestFactory
 import mock
 
 from .decorators import member_required
-from .middleware import MemberMiddleware
 from .models import Member
 
 class MemberRequiredTestCase(TestCase):
@@ -59,8 +58,4 @@ class MemberRequiredTestCase(TestCase):
         """
         request = self.factory.get(path)
         request.user = user
-
-        # Simulate middleware.
-        MemberMiddleware().process_request(request)
-
         return request

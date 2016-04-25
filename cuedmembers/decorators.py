@@ -3,6 +3,8 @@ from functools import wraps
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 
+from .models import Member
+
 def member_required(f):
     """A decorator which wraps login_required additionally checking that the
     logged in user is an active member of CUED.
@@ -13,16 +15,22 @@ def member_required(f):
     This deocrator requires that the cuedmembers.CuedMemberMiddleware be active.
 
     """
-    # Wrap function with login_required
-    f = login_required(f)
-
     @wraps(f)
+    @login_required
     def wrapper(request, *args, **kwargs):
-        user = getattr(request, 'user')
-        cued_member = getattr(request, 'cued_member')
-        if user is not None and user.is_authenticated():
-            if cued_member is None or not cued_member.is_active:
-                raise PermissionDenied()
+        # Attribute will always be on request because this wrapper is decorated
+        # with login_required.
+        user = request.user
+        assert user.is_authenticated()
+
+        try:
+            cued_member = user.cued_member
+        except Member.DoesNotExist:
+            raise PermissionDenied()
+
+        if not cued_member.is_active:
+            raise PermissionDenied()
+
         return f(request, *args, **kwargs)
 
     return wrapper
