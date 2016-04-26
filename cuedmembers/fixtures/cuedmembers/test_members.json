@@ -6,8 +6,6 @@
     "user": 1,
     "research_group": 18,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mrs. K. D. B."
   }
 },
@@ -18,8 +16,6 @@
     "user": 5,
     "research_group": null,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. J. B."
   }
 },
@@ -30,8 +26,6 @@
     "user": 6,
     "research_group": 20,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. B."
   }
 },
@@ -42,8 +36,6 @@
     "user": 7,
     "research_group": 10,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mr. C. F."
   }
 },
@@ -54,8 +46,6 @@
     "user": 8,
     "research_group": 11,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. R."
   }
 },
@@ -66,8 +56,6 @@
     "user": 10,
     "research_group": 5,
     "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mr. C."
   }
 },
@@ -78,8 +66,6 @@
     "user": 12,
     "research_group": 8,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mrs. T."
   }
 },
@@ -90,8 +76,6 @@
     "user": 15,
     "research_group": null,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. T. A. P."
   }
 },
@@ -102,8 +86,6 @@
     "user": 18,
     "research_group": 6,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Miss H. K. J. M."
   }
 },
@@ -114,8 +96,6 @@
     "user": 21,
     "research_group": 8,
     "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Ms. C. E. E."
   }
 },
@@ -126,8 +106,6 @@
     "user": 22,
     "research_group": 21,
     "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. E."
   }
 },
@@ -138,8 +116,6 @@
     "user": 23,
     "research_group": null,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. L. T. O. M."
   }
 },
@@ -150,8 +126,6 @@
     "user": 24,
     "research_group": 2,
     "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Ms. A. C. D."
   }
 },
@@ -162,8 +136,6 @@
     "user": 25,
     "research_group": 20,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mr. T. J. G. L."
   }
 },
@@ -174,8 +146,6 @@
     "user": 27,
     "research_group": 19,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. H."
   }
 },
@@ -186,8 +156,6 @@
     "user": 28,
     "research_group": 3,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. T."
   }
 },
@@ -198,8 +166,6 @@
     "user": 29,
     "research_group": 4,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. B. C. D. G."
   }
 },
@@ -210,8 +176,6 @@
     "user": 31,
     "research_group": null,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Miss C. V. E."
   }
 },
@@ -222,8 +186,6 @@
     "user": 32,
     "research_group": null,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mr. L. A. Z. S."
   }
 },
@@ -234,8 +196,6 @@
     "user": 33,
     "research_group": 8,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mrs. L. V. M."
   }
 },
@@ -246,8 +206,6 @@
     "user": 38,
     "research_group": 5,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Ms. G. J."
   }
 },
@@ -258,8 +216,6 @@
     "user": 39,
     "research_group": null,
     "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mr. E."
   }
 },
@@ -270,8 +226,6 @@
     "user": 40,
     "research_group": 20,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. S. G."
   }
 },
@@ -282,8 +236,6 @@
     "user": 43,
     "research_group": 10,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Miss K. J. C. E."
   }
 },
@@ -294,8 +246,6 @@
     "user": 44,
     "research_group": 8,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Miss M. L."
   }
 },
@@ -306,8 +256,6 @@
     "user": 48,
     "research_group": null,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Ms. C."
   }
 },
@@ -318,8 +266,6 @@
     "user": 49,
     "research_group": 6,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. H. E. R. I."
   }
 },
@@ -330,8 +276,6 @@
     "user": 51,
     "research_group": 6,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Ms. C."
   }
 },
@@ -342,8 +286,6 @@
     "user": 52,
     "research_group": 20,
     "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. A. L. W."
   }
 },
@@ -354,8 +296,6 @@
     "user": 54,
     "research_group": 18,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. B. D. D. J."
   }
 },
@@ -366,8 +306,6 @@
     "user": 55,
     "research_group": 1,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mr. H. D. R. B."
   }
 },
@@ -378,8 +316,6 @@
     "user": 56,
     "research_group": 13,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Ms. T. M."
   }
 },
@@ -390,8 +326,6 @@
     "user": 57,
     "research_group": null,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mr. L."
   }
 },
@@ -402,8 +336,6 @@
     "user": 59,
     "research_group": 11,
     "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Ms. J. P. A. J."
   }
 },
@@ -414,8 +346,6 @@
     "user": 63,
     "research_group": 7,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mr. H. S. C."
   }
 },
@@ -426,8 +356,6 @@
     "user": 67,
     "research_group": 9,
     "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mr. W. K. A. L."
   }
 },
@@ -438,8 +366,6 @@
     "user": 71,
     "research_group": null,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. A. S."
   }
 },
@@ -450,8 +376,6 @@
     "user": 72,
     "research_group": 19,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. R. M."
   }
 },
@@ -462,8 +386,6 @@
     "user": 74,
     "research_group": 15,
     "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mr. T."
   }
 },
@@ -474,8 +396,6 @@
     "user": 75,
     "research_group": 20,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mr. D. D."
   }
 },
@@ -486,8 +406,6 @@
     "user": 77,
     "research_group": 11,
     "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. C. A. A."
   }
 },
@@ -498,8 +416,6 @@
     "user": 82,
     "research_group": 12,
     "is_active": false,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. S."
   }
 },
@@ -510,8 +426,6 @@
     "user": 84,
     "research_group": 6,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. E."
   }
 },
@@ -522,8 +436,6 @@
     "user": 86,
     "research_group": 9,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mrs. J. N."
   }
 },
@@ -534,8 +446,6 @@
     "user": 87,
     "research_group": 10,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Ms. R. C."
   }
 },
@@ -546,8 +456,6 @@
     "user": 88,
     "research_group": 3,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. M. R. B."
   }
 },
@@ -558,8 +466,6 @@
     "user": 89,
     "research_group": 9,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. H."
   }
 },
@@ -570,8 +476,6 @@
     "user": 94,
     "research_group": null,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Dr. P. K. E."
   }
 },
@@ -582,8 +486,6 @@
     "user": 95,
     "research_group": 6,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Ms. T."
   }
 },
@@ -594,559 +496,7 @@
     "user": 100,
     "research_group": 18,
     "is_active": true,
-    "last_inactive_on": null,
-    "arrived_on": "2016-04-25",
     "first_names": "Mr. B. W. C."
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 1,
-  "fields": {
-    "member": 1,
-    "status": "V",
-    "start_on": "2005-08-04",
-    "end_on": "2018-08-20"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 2,
-  "fields": {
-    "member": 2,
-    "status": "P",
-    "start_on": "2015-12-01",
-    "end_on": "2025-03-20"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 3,
-  "fields": {
-    "member": 3,
-    "status": "S",
-    "start_on": "2012-08-13",
-    "end_on": "2022-03-23"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 4,
-  "fields": {
-    "member": 4,
-    "status": "V",
-    "start_on": "2014-12-01",
-    "end_on": "2026-12-01"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 5,
-  "fields": {
-    "member": 5,
-    "status": "V",
-    "start_on": "2014-08-12",
-    "end_on": "2025-03-08"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 6,
-  "fields": {
-    "member": 6,
-    "status": "S",
-    "start_on": "2012-06-28",
-    "end_on": "2023-09-29"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 7,
-  "fields": {
-    "member": 7,
-    "status": "S",
-    "start_on": "2015-02-06",
-    "end_on": "2020-10-06"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 8,
-  "fields": {
-    "member": 8,
-    "status": "S",
-    "start_on": "2015-10-28",
-    "end_on": "2020-12-17"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 9,
-  "fields": {
-    "member": 9,
-    "status": "P",
-    "start_on": "2014-07-05",
-    "end_on": "2016-09-05"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 10,
-  "fields": {
-    "member": 9,
-    "status": "V",
-    "start_on": "2009-12-13",
-    "end_on": "2019-12-14"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 11,
-  "fields": {
-    "member": 10,
-    "status": "S",
-    "start_on": "2011-03-24",
-    "end_on": "2021-12-02"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 12,
-  "fields": {
-    "member": 11,
-    "status": "P",
-    "start_on": "2010-01-28",
-    "end_on": "2020-12-11"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 13,
-  "fields": {
-    "member": 12,
-    "status": "S",
-    "start_on": "2010-12-19",
-    "end_on": "2023-07-26"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 14,
-  "fields": {
-    "member": 13,
-    "status": "S",
-    "start_on": "2013-09-14",
-    "end_on": "2025-05-12"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 15,
-  "fields": {
-    "member": 14,
-    "status": "S",
-    "start_on": "2015-09-02",
-    "end_on": "2018-09-26"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 16,
-  "fields": {
-    "member": 15,
-    "status": "S",
-    "start_on": "2007-08-03",
-    "end_on": "2022-05-28"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 17,
-  "fields": {
-    "member": 16,
-    "status": "V",
-    "start_on": "2010-09-09",
-    "end_on": "2019-05-27"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 18,
-  "fields": {
-    "member": 17,
-    "status": "S",
-    "start_on": "2009-07-07",
-    "end_on": "2026-10-23"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 19,
-  "fields": {
-    "member": 18,
-    "status": "V",
-    "start_on": "2007-10-29",
-    "end_on": "2026-02-04"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 20,
-  "fields": {
-    "member": 19,
-    "status": "V",
-    "start_on": "2007-05-16",
-    "end_on": "2017-02-07"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 21,
-  "fields": {
-    "member": 20,
-    "status": "S",
-    "start_on": "2013-07-19",
-    "end_on": "2022-02-11"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 22,
-  "fields": {
-    "member": 21,
-    "status": "S",
-    "start_on": "2009-05-22",
-    "end_on": "2024-06-30"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 23,
-  "fields": {
-    "member": 22,
-    "status": "S",
-    "start_on": "2014-01-12",
-    "end_on": "2024-04-05"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 24,
-  "fields": {
-    "member": 23,
-    "status": "V",
-    "start_on": "2005-05-29",
-    "end_on": "2024-06-16"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 25,
-  "fields": {
-    "member": 24,
-    "status": "S",
-    "start_on": "2014-01-18",
-    "end_on": "2017-08-04"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 26,
-  "fields": {
-    "member": 24,
-    "status": "V",
-    "start_on": "2011-02-22",
-    "end_on": "2017-06-07"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 27,
-  "fields": {
-    "member": 25,
-    "status": "P",
-    "start_on": "2011-05-09",
-    "end_on": "2019-02-25"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 28,
-  "fields": {
-    "member": 26,
-    "status": "P",
-    "start_on": "2014-06-29",
-    "end_on": "2024-02-08"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 29,
-  "fields": {
-    "member": 27,
-    "status": "V",
-    "start_on": "2016-03-21",
-    "end_on": "2023-12-11"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 30,
-  "fields": {
-    "member": 28,
-    "status": "V",
-    "start_on": "2014-10-12",
-    "end_on": "2025-07-02"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 31,
-  "fields": {
-    "member": 29,
-    "status": "P",
-    "start_on": "2009-04-25",
-    "end_on": "2022-02-06"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 32,
-  "fields": {
-    "member": 29,
-    "status": "S",
-    "start_on": "2009-04-15",
-    "end_on": "2027-03-20"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 33,
-  "fields": {
-    "member": 30,
-    "status": "V",
-    "start_on": "2009-08-21",
-    "end_on": "2027-02-18"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 34,
-  "fields": {
-    "member": 31,
-    "status": "S",
-    "start_on": "2011-06-07",
-    "end_on": "2018-01-12"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 35,
-  "fields": {
-    "member": 32,
-    "status": "P",
-    "start_on": "2014-11-06",
-    "end_on": "2023-09-29"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 36,
-  "fields": {
-    "member": 33,
-    "status": "P",
-    "start_on": "2009-10-28",
-    "end_on": "2022-08-07"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 37,
-  "fields": {
-    "member": 34,
-    "status": "S",
-    "start_on": "2011-08-02",
-    "end_on": "2017-01-03"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 38,
-  "fields": {
-    "member": 35,
-    "status": "S",
-    "start_on": "2011-07-08",
-    "end_on": "2018-12-02"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 39,
-  "fields": {
-    "member": 36,
-    "status": "V",
-    "start_on": "2010-09-24",
-    "end_on": "2017-08-08"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 40,
-  "fields": {
-    "member": 37,
-    "status": "V",
-    "start_on": "2015-04-02",
-    "end_on": "2019-02-16"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 41,
-  "fields": {
-    "member": 38,
-    "status": "S",
-    "start_on": "2009-06-07",
-    "end_on": "2018-12-27"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 42,
-  "fields": {
-    "member": 39,
-    "status": "V",
-    "start_on": "2010-11-21",
-    "end_on": "2021-05-26"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 43,
-  "fields": {
-    "member": 40,
-    "status": "V",
-    "start_on": "2014-06-05",
-    "end_on": "2017-01-29"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 44,
-  "fields": {
-    "member": 41,
-    "status": "S",
-    "start_on": "2010-02-17",
-    "end_on": "2025-11-08"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 45,
-  "fields": {
-    "member": 42,
-    "status": "S",
-    "start_on": "2015-08-10",
-    "end_on": "2022-02-05"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 46,
-  "fields": {
-    "member": 42,
-    "status": "P",
-    "start_on": "2009-08-27",
-    "end_on": "2016-05-20"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 47,
-  "fields": {
-    "member": 43,
-    "status": "S",
-    "start_on": "2012-08-21",
-    "end_on": "2025-11-28"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 48,
-  "fields": {
-    "member": 44,
-    "status": "S",
-    "start_on": "2015-10-27",
-    "end_on": "2016-05-26"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 49,
-  "fields": {
-    "member": 44,
-    "status": "P",
-    "start_on": "2009-12-20",
-    "end_on": "2023-02-18"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 50,
-  "fields": {
-    "member": 45,
-    "status": "S",
-    "start_on": "2012-12-13",
-    "end_on": "2016-06-08"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 51,
-  "fields": {
-    "member": 46,
-    "status": "V",
-    "start_on": "2015-02-22",
-    "end_on": "2017-04-01"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 52,
-  "fields": {
-    "member": 47,
-    "status": "V",
-    "start_on": "2006-05-25",
-    "end_on": "2019-01-23"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 53,
-  "fields": {
-    "member": 48,
-    "status": "P",
-    "start_on": "2014-03-02",
-    "end_on": "2020-09-08"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 54,
-  "fields": {
-    "member": 49,
-    "status": "P",
-    "start_on": "2012-08-28",
-    "end_on": "2022-02-05"
-  }
-},
-{
-  "model": "cuedmembers.status",
-  "pk": 55,
-  "fields": {
-    "member": 50,
-    "status": "V",
-    "start_on": "2005-10-21",
-    "end_on": "2027-03-07"
   }
 }
 ]
