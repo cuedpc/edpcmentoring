@@ -25,28 +25,6 @@ class ResearchGroup(models.Model):
     def __str__(self):
         return self.name
 
-class Status(models.Model):
-    """
-    A member of CUED may have multiple statuses. Each status has a separate
-    start and end date.
-
-    The start_on and end_on dates are provided by the Department.
-
-    """
-    class Meta:
-        verbose_name_plural = "Statuses"
-
-    STAFF = 'S'
-    POSTGRAD = 'P'
-    VISITOR = 'V'
-    STATUSES = ((STAFF, 'Staff'), (POSTGRAD, 'Postgrad'), (VISITOR, 'Visitor'))
-
-    member = models.ForeignKey(
-        'Member', on_delete=models.CASCADE, related_name='statuses')
-    status = models.CharField(max_length=1, choices=STATUSES)
-    start_on = models.DateField()
-    end_on = models.DateField()
-
 class MemberManager(models.Manager):
     def get_or_create_by_crsid(self, crsid, first_name=None, last_name=None,
                                email=None, **kwargs):
@@ -100,16 +78,8 @@ class Member(models.Model):
     http://www-itsd.eng.cam.ac.uk/datadownloads/support/div_people.html for some
     discussion of what the fields mean.
 
-    The arrived_on date is provided by the Department but should not be used to
-    determine "active" status.
-
-    The last_inactive_on date is the date which the Member last stopped being an
-    active Member. An active Member will usually have a last_inactive_on date of
-    NULL but if someone leaves the Department and returns they may become active
-    despite having a last_inactive_on date.
-
-    The upshot of all this is that is_active is the primary means by which one
-    should judge if a Member is currently a member of the Department.
+    Note that is_active is the primary means by which one should judge if a
+    Member is currently a member of the Department.
 
     This model does not include role/course, host/supervisor, room number or
     phone number. The "arrived" flag is folded into the is_active field.
@@ -117,16 +87,12 @@ class Member(models.Model):
     """
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 related_name='cued_member')
+    first_names = models.CharField(max_length=100, default='', blank=True)
+
     research_group = models.ForeignKey(ResearchGroup, null=True,
                                        related_name='members')
 
     is_active = models.BooleanField(default=True)
-    last_inactive_on = models.DateField(blank=True, null=True)
-
-    arrived_on = models.DateField(auto_now_add=True)
-
-    first_names = models.CharField(
-        max_length=100, default='', blank=True)
 
     objects = MemberManager()
 

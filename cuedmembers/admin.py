@@ -1,12 +1,12 @@
 from django.contrib import admin
 
-from .models import Member, Status, ResearchGroup, Division
+from .models import Member, ResearchGroup, Division
 
 class MemberAdmin(admin.ModelAdmin):
     list_display = ('crsid', 'full_name', 'division', 'research_group',
-                    'is_active', 'arrived_on')
+                    'is_active')
 
-    list_filter = ('is_active', 'arrived_on')
+    list_filter = ('is_active',)
 
     def get_queryset(self, request):
         return Member.objects.order_by('user__username')
@@ -29,22 +29,6 @@ class MemberAdmin(admin.ModelAdmin):
     research_group.admin_order_field = 'research_group__name'
 
 admin.site.register(Member, MemberAdmin)
-
-class StatusAdmin(admin.ModelAdmin):
-    list_display = ('crsid', 'full_name', 'status', 'start_on', 'end_on')
-    list_filter = ('status', 'start_on', 'end_on')
-
-    def get_queryset(self, request):
-        return Status.objects.order_by('member__user__username')
-
-    def crsid(self, obj):
-        return obj.member.user.username
-    crsid.admin_order_field = 'member__user__username'
-
-    def full_name(self, obj):
-        return obj.member.user.get_full_name()
-
-admin.site.register(Status, StatusAdmin)
 
 class ResearchGroupAdmin(admin.ModelAdmin):
     list_display = ('name', 'division')
