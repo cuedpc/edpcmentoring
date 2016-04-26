@@ -10,7 +10,7 @@ The CSV should have a similar format to that documented at:
 import csv
 import sys
 
-from cuedmembers.tests import fake_member_csv_rows
+from cuedmembers.tests import fake
 
 # Headings in departmental CSV file.
 HEADINGS = [
@@ -23,4 +23,4 @@ def run():
     w = csv.DictWriter(sys.stdout, fieldnames=HEADINGS)
     w.writeheader()
     for crsid in ['test{:04d}'.format(x) for x in range(1, 100)]:
-        w.writerows(fake_member_csv_rows(crsid))
+        w.writerows(fake.member_csv_rows(crsid))

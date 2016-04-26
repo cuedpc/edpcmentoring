@@ -4,7 +4,7 @@ import random
 from django.utils import timezone
 from faker import Faker
 
-from .models import ResearchGroup
+from ..models import ResearchGroup
 
 STATUSES = ['staff', 'pgrad', 'visitor']
 
@@ -18,7 +18,7 @@ def _sample_date_before(whence=None):
     delta = datetime.timedelta(days=random.randint(-4000, 0))
     return whence + delta
 
-def fake_member_csv_rows(crsid):
+def member_csv_rows(crsid):
     """
     Generate a sequence of rows corresponding to rows in the Department CSV data
     dumps documented at:
@@ -87,4 +87,5 @@ def fake_member_csv_rows(crsid):
         rows.append(row)
 
     return rows
+
 

@@ -3,8 +3,8 @@ from django.core.exceptions import PermissionDenied
 from django.test import TestCase, RequestFactory
 import mock
 
-from .decorators import member_required
-from .models import Member
+from ..decorators import member_required
+from ..models import Member
 
 class MemberRequiredTestCase(TestCase):
     fixtures = ['cuedmembers/test_users', 'cuedmembers/test_members']

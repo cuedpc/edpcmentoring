@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
-from .models import Member
+from ..models import Member
 
 class MemberTestCase(TestCase):
     fixtures = ['cuedmembers/test_users', 'cuedmembers/test_members']
