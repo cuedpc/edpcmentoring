@@ -39,11 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_extensions',
-
+    'debug_toolbar',
     'ucamwebauth',
+    'email_log',
+
     'cuedmembers',
     'projectlight',
-    'email_log',
 
     'mentoring',
     'matching',
@@ -146,7 +147,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = ['static']
+STATICFILES_DIRS = []
 
 # Raven configuration
 UCAMWEBAUTH_LOGIN_URL = 'https://demo.raven.cam.ac.uk/auth/authenticate.html'
