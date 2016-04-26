@@ -4,7 +4,7 @@ from cuedmembers.models import Member
 from .models import Relationship
 
 class RelationshipActiveInactiveTestCase(TestCase):
-    fixtures = ['cuedmembers/test_users', 'cuedmembers/test_members']
+    fixtures = ['cuedmembers/test_users_and_members']
 
     def setUp(self):
         # Pull two active members from the database

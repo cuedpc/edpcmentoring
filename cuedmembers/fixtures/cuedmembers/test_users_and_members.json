@@ -490,7 +490,7 @@
   "pk": 28,
   "fields": {
     "password": "!uVh5QYHC6PX9McJgBmZYvGp50KqB3VyHaGdJ8OfP",
-    "last_login": null,
+    "last_login": "2016-04-26T15:03:45.528Z",
     "is_superuser": true,
     "username": "test0001",
     "first_name": "Terrell",
@@ -1797,6 +1797,506 @@
     "date_joined": "2016-04-25T19:43:23.339Z",
     "groups": [],
     "user_permissions": []
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "first_names": "Mrs. K. D. B.",
+    "research_group": 18,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 2,
+  "fields": {
+    "user": 5,
+    "first_names": "Dr. J. B.",
+    "research_group": null,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 3,
+  "fields": {
+    "user": 6,
+    "first_names": "Dr. B.",
+    "research_group": 20,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 4,
+  "fields": {
+    "user": 7,
+    "first_names": "Mr. C. F.",
+    "research_group": 10,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 5,
+  "fields": {
+    "user": 8,
+    "first_names": "Dr. R.",
+    "research_group": 11,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 6,
+  "fields": {
+    "user": 10,
+    "first_names": "Mr. C.",
+    "research_group": 5,
+    "is_active": false
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 7,
+  "fields": {
+    "user": 12,
+    "first_names": "Mrs. T.",
+    "research_group": 8,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 8,
+  "fields": {
+    "user": 15,
+    "first_names": "Dr. T. A. P.",
+    "research_group": null,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 9,
+  "fields": {
+    "user": 18,
+    "first_names": "Miss H. K. J. M.",
+    "research_group": 6,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 10,
+  "fields": {
+    "user": 21,
+    "first_names": "Ms. C. E. E.",
+    "research_group": 8,
+    "is_active": false
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 11,
+  "fields": {
+    "user": 22,
+    "first_names": "Dr. E.",
+    "research_group": 21,
+    "is_active": false
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 12,
+  "fields": {
+    "user": 23,
+    "first_names": "Dr. L. T. O. M.",
+    "research_group": null,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 13,
+  "fields": {
+    "user": 24,
+    "first_names": "Ms. A. C. D.",
+    "research_group": 2,
+    "is_active": false
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 14,
+  "fields": {
+    "user": 25,
+    "first_names": "Mr. T. J. G. L.",
+    "research_group": 20,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 15,
+  "fields": {
+    "user": 27,
+    "first_names": "Dr. H.",
+    "research_group": 19,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 16,
+  "fields": {
+    "user": 28,
+    "first_names": "Dr. T.",
+    "research_group": 3,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 17,
+  "fields": {
+    "user": 29,
+    "first_names": "Dr. B. C. D. G.",
+    "research_group": 4,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 18,
+  "fields": {
+    "user": 31,
+    "first_names": "Miss C. V. E.",
+    "research_group": null,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 19,
+  "fields": {
+    "user": 32,
+    "first_names": "Mr. L. A. Z. S.",
+    "research_group": null,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 20,
+  "fields": {
+    "user": 33,
+    "first_names": "Mrs. L. V. M.",
+    "research_group": 8,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 21,
+  "fields": {
+    "user": 38,
+    "first_names": "Ms. G. J.",
+    "research_group": 5,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 22,
+  "fields": {
+    "user": 39,
+    "first_names": "Mr. E.",
+    "research_group": null,
+    "is_active": false
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 23,
+  "fields": {
+    "user": 40,
+    "first_names": "Dr. S. G.",
+    "research_group": 20,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 24,
+  "fields": {
+    "user": 43,
+    "first_names": "Miss K. J. C. E.",
+    "research_group": 10,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 25,
+  "fields": {
+    "user": 44,
+    "first_names": "Miss M. L.",
+    "research_group": 8,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 26,
+  "fields": {
+    "user": 48,
+    "first_names": "Ms. C.",
+    "research_group": null,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 27,
+  "fields": {
+    "user": 49,
+    "first_names": "Dr. H. E. R. I.",
+    "research_group": 6,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 28,
+  "fields": {
+    "user": 51,
+    "first_names": "Ms. C.",
+    "research_group": 6,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 29,
+  "fields": {
+    "user": 52,
+    "first_names": "Dr. A. L. W.",
+    "research_group": 20,
+    "is_active": false
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 30,
+  "fields": {
+    "user": 54,
+    "first_names": "Dr. B. D. D. J.",
+    "research_group": 18,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 31,
+  "fields": {
+    "user": 55,
+    "first_names": "Mr. H. D. R. B.",
+    "research_group": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 32,
+  "fields": {
+    "user": 56,
+    "first_names": "Ms. T. M.",
+    "research_group": 13,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 33,
+  "fields": {
+    "user": 57,
+    "first_names": "Mr. L.",
+    "research_group": null,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 34,
+  "fields": {
+    "user": 59,
+    "first_names": "Ms. J. P. A. J.",
+    "research_group": 11,
+    "is_active": false
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 35,
+  "fields": {
+    "user": 63,
+    "first_names": "Mr. H. S. C.",
+    "research_group": 7,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 36,
+  "fields": {
+    "user": 67,
+    "first_names": "Mr. W. K. A. L.",
+    "research_group": 9,
+    "is_active": false
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 37,
+  "fields": {
+    "user": 71,
+    "first_names": "Dr. A. S.",
+    "research_group": null,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 38,
+  "fields": {
+    "user": 72,
+    "first_names": "Dr. R. M.",
+    "research_group": 19,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 39,
+  "fields": {
+    "user": 74,
+    "first_names": "Mr. T.",
+    "research_group": 15,
+    "is_active": false
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 40,
+  "fields": {
+    "user": 75,
+    "first_names": "Mr. D. D.",
+    "research_group": 20,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 41,
+  "fields": {
+    "user": 77,
+    "first_names": "Dr. C. A. A.",
+    "research_group": 11,
+    "is_active": false
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 42,
+  "fields": {
+    "user": 82,
+    "first_names": "Dr. S.",
+    "research_group": 12,
+    "is_active": false
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 43,
+  "fields": {
+    "user": 84,
+    "first_names": "Dr. E.",
+    "research_group": 6,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 44,
+  "fields": {
+    "user": 86,
+    "first_names": "Mrs. J. N.",
+    "research_group": 9,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 45,
+  "fields": {
+    "user": 87,
+    "first_names": "Ms. R. C.",
+    "research_group": 10,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 46,
+  "fields": {
+    "user": 88,
+    "first_names": "Dr. M. R. B.",
+    "research_group": 3,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 47,
+  "fields": {
+    "user": 89,
+    "first_names": "Dr. H.",
+    "research_group": 9,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 48,
+  "fields": {
+    "user": 94,
+    "first_names": "Dr. P. K. E.",
+    "research_group": null,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 49,
+  "fields": {
+    "user": 95,
+    "first_names": "Ms. T.",
+    "research_group": 6,
+    "is_active": true
+  }
+},
+{
+  "model": "cuedmembers.member",
+  "pk": 50,
+  "fields": {
+    "user": 100,
+    "first_names": "Mr. B. W. C.",
+    "research_group": 18,
+    "is_active": true
   }
 }
 ]

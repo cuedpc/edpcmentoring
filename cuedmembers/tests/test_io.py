@@ -8,7 +8,7 @@ from ..io import write_members_to_csv, read_members_from_csv
 from ..models import Member
 
 class WriteMembersToCSVTestCase(TestCase):
-    fixtures = ['cuedmembers/test_users', 'cuedmembers/test_members']
+    fixtures = ['cuedmembers/test_users_and_members']
 
     def test_write_members_has_everyone(self):
         # Get a list of all *active* members
@@ -31,7 +31,7 @@ class WriteMembersToCSVTestCase(TestCase):
         self.assertEqual(len(crsids.difference(crsids_read)), 0)
 
 class ReadMembersFromCSVTestCase(TestCase):
-    fixtures = ['cuedmembers/test_users', 'cuedmembers/test_members']
+    fixtures = ['cuedmembers/test_users_and_members']
 
     def setUp(self):
         self.assertGreater(Member.objects.count(), 0)

@@ -7,7 +7,7 @@ from ..decorators import member_required
 from ..models import Member
 
 class MemberRequiredTestCase(TestCase):
-    fixtures = ['cuedmembers/test_users', 'cuedmembers/test_members']
+    fixtures = ['cuedmembers/test_users_and_members']
 
     def setUp(self):
         self.factory = RequestFactory()
