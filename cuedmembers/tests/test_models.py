@@ -36,8 +36,8 @@ class MemberTestCase(TestCase):
 
         # Auto-creating a member should succeed even if the information is of
         # little use.
-        m, _ = Member.objects.get_or_create_by_crsid(
-            crsid=u.username, first_name='XXXX', is_active=True)
+        m, _ = Member.objects.update_or_create_by_crsid(
+            u.username, dict(first_name='XXXX', is_active=True))
         self.assertEqual(m.user.username, u.username)
         self.assertEqual(m.user.first_name, 'XXXX')
 
@@ -54,9 +54,10 @@ class MemberTestCase(TestCase):
             User.objects.get(username=crsid)
 
         # Create a new member
-        m, _ = Member.objects.get_or_create_by_crsid(
-            crsid=crsid, first_name='Joe', last_name='Bloggs',
-            first_names='Mr. J.', email='{}@example.com'.format(crsid)
+        m, _ = Member.objects.update_or_create_by_crsid(
+            crsid,
+            dict(first_name='Joe', last_name='Bloggs',
+                 first_names='Mr. J.', email='{}@example.com'.format(crsid))
         )
 
         # Check user password is unavailable

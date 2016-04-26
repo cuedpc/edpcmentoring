@@ -4,6 +4,8 @@ I/O from and to the CUED members database.
 """
 import csv
 
+from .models import Member, ResearchGroup
+
 # Field names in departmental CSV file.
 _CSV_FIELD_NAMES = [
     'crsid', 'status', 'surname', 'fnames', 'pref_name', 'room', 'phone',
@@ -42,3 +44,55 @@ def write_members_to_csv(csvfile, queryset):
             'div_id': div_id,
             'rg_name': member.research_group.name if has_rg else None,
         })
+
+def read_members_from_csv(csvfile, email_domain='cam.ac.uk'):
+    """
+    Read members into the database from a CSV file.
+
+    Members not present in the CSV file but present in the database are marked
+    as inactive. Members present in the CSV file but not in the database are
+    created.
+
+    csvfile can be any object supporting a file-object-like read() method.
+
+    Will raise ResearchGroup.DoesNotExist if the CSV row has a non-empty
+    research group name and division which does not correspond to one which
+    exists in the database.
+
+    """
+    # Add rows from CSV file to database
+    reader = csv.DictReader(csvfile)
+    new_active_crsids = set()
+    for row in reader:
+        new_active_crsids.add(row['crsid'])
+        rg_name = row.get('rg_name', '')
+        if rg_name != '':
+            research_group = ResearchGroup.objects.get(
+                name=rg_name,
+                division__letter=row['div_id']
+            )
+        else:
+            research_group = None
+
+        Member.objects.update_or_create_by_crsid(
+            row['crsid'], {
+                'last_name': row.get('surname'),
+                'first_name': row.get('pref_name'),
+                'first_names': row.get('fnames'),
+                'email': '{}@{}'.format(row['crsid'], email_domain),
+                'research_group': research_group,
+                'is_active': True,
+            }
+        )
+
+    # Retrieve all active Member crsids from the database
+    old_active_crs_ids = set(
+        obj.user.username
+        for obj in Member.objects.active().select_related('user')
+    )
+
+    # Mark departed members as inactive
+    for crsid in old_active_crs_ids - new_active_crsids:
+        m = Member.objects.get(user__username=crsid)
+        m.is_active = False
+        m.save()

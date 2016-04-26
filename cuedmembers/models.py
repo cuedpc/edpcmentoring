@@ -26,29 +26,32 @@ class ResearchGroup(models.Model):
         return self.name
 
 class MemberManager(models.Manager):
-    def get_or_create_by_crsid(self, crsid, first_name=None, last_name=None,
-                               email=None, **kwargs):
+    def update_or_create_by_crsid(self, crsid, defaults=None):
         """
         Retrieve or create a new member from a crsid. If a corresponding user
         does not exist, it is created. The newly created user has
         set_unusable_password() called on it and is added to the database.
 
-        The first_name, last_name and email parameters are set on the
-        corresponding user if non-None *even if the user already exists*.
+        The first_name, last_name and email entries in defaults are set on the
+        corresponding user and any other values are set on the member.
+
+        See the update_or_create() documentation for discussion of the defaults
+        parameter.
 
         """
-        u, _ = get_user_model().objects.get_or_create(username=crsid)
-        m, m_created = self.get_or_create(user=u, **kwargs)
+        defaults = defaults if defaults is not None else {}
 
-        # Update user
-        if first_name is not None:
-            u.first_name = first_name
-        if last_name is not None:
-            u.last_name = last_name
-        if email is not None:
-            u.email = email
+        user_keys = set(('first_name', 'last_name', 'email'))
+        u_defaults = dict(
+            (k, v) for k, v in defaults.items() if k in user_keys)
+        m_defaults = dict(
+            (k, v) for k, v in defaults.items() if k not in user_keys)
+        u, _ = get_user_model().objects.update_or_create(
+            username=crsid, defaults=u_defaults)
         u.set_unusable_password()
         u.save()
+
+        m, m_created = self.update_or_create(user=u, defaults=m_defaults)
 
         return m, m_created
 
