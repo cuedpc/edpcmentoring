@@ -15,6 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
+
+# Ensure that the admin site login redirect uses Raven.
+# From http://djangosnippets.org/snippets/2127/.
+admin.autodiscover()
+admin.site.login = login_required(admin.site.login)
 
 app_name = 'mentoring'
 urlpatterns = [
