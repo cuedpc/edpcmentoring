@@ -4,6 +4,8 @@ I/O from and to the CUED members database.
 """
 import csv
 
+from django.db import transaction
+
 from .models import Member, ResearchGroup
 
 # Field names in departmental CSV file.
@@ -45,6 +47,7 @@ def write_members_to_csv(csvfile, queryset):
             'rg_name': member.research_group.name if has_rg else None,
         })
 
+@transaction.atomic
 def read_members_from_csv(csvfile, email_domain='cam.ac.uk'):
     """
     Read members into the database from a CSV file.
