@@ -1,27 +1,13 @@
 {% extends "frontend/layout/page.html" %}
 {% load crispy_forms_tags %}
+{% load frontend_tags %}
 
 {% block maincontent %}
 
 <h1>Your mentors</h1>
 
 {% if mentors %}
-<table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
-    <thead>
-        <tr>
-            <th>CRSid</th>
-            <th width="100%">Name</th>
-        </tr>
-    </thead>
-    <tbody>
-{% for m in mentors %}
-    <tr>
-        <td>{{ m.user.username }}</td>
-        <td>{{ m.user.get_full_name }}</td>
-    </tr>
-{% endfor %}
-    </tbody>
-</table>
+    {% member_table mentors %}
 {% else %}
     <p>You do not currently have any mentors.</p>
 {% endif %}
@@ -29,24 +15,9 @@
 <h1>Your mentees</h1>
 
 {% if mentees %}
-<table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
-    <thead>
-        <tr>
-            <th>CRSid</th>
-            <th width="100%">Name</th>
-        </tr>
-    </thead>
-    <tbody>
-{% for m in mentees %}
-    <tr>
-        <td>{{ m.user.username }}</td>
-        <td>{{ m.user.get_full_name }}</td>
-    </tr>
-{% endfor %}
-    </tbody>
-</table>
+    {% member_table mentees %}
 {% else %}
-    <p>You do not currently have any mentees.</p>
+    <p>You do not currently have any mentors.</p>
 {% endif %}
 
 <h1>Mentorship preferences</h1>
