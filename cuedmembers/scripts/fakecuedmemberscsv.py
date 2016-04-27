@@ -7,6 +7,8 @@ The CSV should have a similar format to that documented at:
     http://www-itsd.eng.cam.ac.uk/datadownloads/support/div_people.html
 
 """
+from __future__ import absolute_import
+
 import csv
 import sys
 
