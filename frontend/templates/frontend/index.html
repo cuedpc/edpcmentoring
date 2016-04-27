@@ -6,18 +6,60 @@
 
 <h1>Your mentors</h1>
 
-{% if mentors %}
+{% if mentors.count %}
     {% member_table mentors %}
+
+    <p>
+        <a href="#" class="campl-primary-cta">
+            Record a meeting with a mentor
+        </a>
+    </p>
+    <p>
+        <a href="#" class="campl-secondary-cta">
+            Stop being someone's mentee
+        </a>
+    </p>
+    <p>
+        <a href="#" class="campl-secondary-cta">
+            Invite someone new to be your mentor
+        </a>
+    </p>
 {% else %}
     <p>You do not currently have any mentors.</p>
+    <p>
+        <a href="#" class="campl-primary-cta">
+            Invite someone to be your mentor
+        </a>
+    </p>
 {% endif %}
 
 <h1>Your mentees</h1>
 
-{% if mentees %}
+{% if mentees.count %}
     {% member_table mentees %}
+
+    <p>
+        <a href="#" class="campl-primary-cta">
+            Record a meeting with a mentee
+        </a>
+    </p>
+    <p>
+        <a href="#" class="campl-secondary-cta">
+            Stop being someone's mentor
+        </a>
+    </p>
+    <p>
+        <a href="#" class="campl-secondary-cta">
+            Invite someone new to be your mentee
+        </a>
+    </p>
 {% else %}
     <p>You do not currently have any mentors.</p>
+    <p>
+        <a href="#" class="campl-primary-cta">
+            Invite someone to be your mentee
+        </a>
+    </p>
 {% endif %}
 
 <h1>Mentorship preferences</h1>

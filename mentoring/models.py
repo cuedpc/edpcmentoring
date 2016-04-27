@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.db import models
 
 class RelationshipManager(models.Manager):
@@ -15,6 +16,24 @@ class RelationshipManager(models.Manager):
 
     def with_mentee(self, user):
         return self.active().filter(mentee=user)
+
+    def mentees_for_user(self, user):
+        """A queryset returning all users who are the passed user's mentees.
+        Only active relationships are considered.
+
+        """
+        return get_user_model().objects.filter(
+            mentee_relationships__mentor=user,
+            mentee_relationships__is_active=True)
+
+    def mentors_for_user(self, user):
+        """A queryset returning all users who are the passed user's mentors.
+        Only active relationships are considered.
+
+        """
+        return get_user_model().objects.filter(
+            mentor_relationships__mentee=user,
+            mentor_relationships__is_active=True)
 
 class Relationship(models.Model):
     """
