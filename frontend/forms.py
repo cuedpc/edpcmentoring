@@ -1,4 +1,10 @@
+"""
+HTML forms used by the mentoring frontend.
+
+"""
+
 from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Field
 from django import forms
 
 from .layout import Submit
@@ -29,6 +35,11 @@ class MentoringPreferencesForm(forms.Form):
     @property
     def helper(self):
         helper = FormHelper(self)
+
+        # Make textarea widgets a little wider
+        helper.filter_by_widget(forms.Textarea).wrap(
+            Field, css_class='campl-input-xlarge')
+
         helper.add_input(
             Submit('submit', 'Save preferences')
         )
