@@ -3,11 +3,11 @@ from django.db import models
 
 class RelationshipManager(models.Manager):
     def active(self):
-        """A query-set of active relationships."""
+        """A queryset of active relationships."""
         return self.filter(is_active=True)
 
     def inactive(self):
-        """A query-set of inactive relationships."""
+        """A queryset of inactive relationships."""
         return self.filter(is_active=False)
 
     def with_mentor(self, user):
