@@ -1,5 +1,15 @@
+from contextlib import closing
 import csv
-from io import StringIO
+
+# Python 2 does indeed have io.StringIO but it only accepts unicode input which
+# is incompatible with the csv module (yay, unicode!). Work around this by
+# trying to import the old-style StringIO module from Python 2 and, if this
+# fails, try the new-style io.StringIO.
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
+
 import random
 
 from django.test import TestCase
@@ -18,12 +28,12 @@ class WriteMembersToCSVTestCase(TestCase):
         crsids = set(obj.user.username for obj in qs)
 
         # Write CSV to a string
-        with StringIO() as fobj:
+        with closing(StringIO()) as fobj:
             write_members_to_csv(fobj, qs)
             csv_contents = fobj.getvalue()
 
         # Read in CSV
-        with StringIO(csv_contents) as fobj:
+        with closing(StringIO(csv_contents)) as fobj:
             reader = csv.DictReader(fobj)
             crsids_read = set(r.get('crsid') for r in reader)
 
@@ -37,12 +47,12 @@ class ReadMembersFromCSVTestCase(TestCase):
         self.assertGreater(Member.objects.count(), 0)
 
         # Write all current members as CSV to a string
-        with StringIO() as fobj:
+        with closing(StringIO()) as fobj:
             write_members_to_csv(fobj, Member.objects.all())
             csv_contents = fobj.getvalue()
 
         # Parse CSV into row dictionaries and fieldnames
-        with StringIO(csv_contents) as fobj:
+        with closing(StringIO(csv_contents)) as fobj:
             reader = csv.DictReader(fobj)
             self.field_names = reader.fieldnames
             self.rows = list(reader)
@@ -119,7 +129,7 @@ def csv_file_from_rows(field_names, rows):
     csv.DictWriter.
 
     """
-    with StringIO() as fobj:
+    with closing(StringIO()) as fobj:
         writer = csv.DictWriter(fobj, fieldnames=field_names)
         writer.writeheader()
         writer.writerows(rows)
