@@ -1,6 +1,6 @@
 language: python
 python:
   - "3.4"
-install: "pip install -r requirements.txt -r test-requirements.txt"
-script: "python manage.py test"
+install: "pip install tox"
+script: "tox -e python"
 
