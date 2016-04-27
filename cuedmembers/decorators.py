@@ -12,8 +12,6 @@ def member_required(f):
     If the user is logged in but not a member of CUED, or is an inactive member,
     a PermissionDenied exception is raised.
 
-    This deocrator requires that the cuedmembers.CuedMemberMiddleware be active.
-
     """
     @wraps(f)
     @login_required
