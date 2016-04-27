@@ -1,0 +1,86 @@
+[
+{
+  "model": "mentoring.relationship",
+  "pk": 1,
+  "fields": {
+    "mentor": 1,
+    "mentee": 4,
+    "started_on": "2016-04-27",
+    "ended_on": null,
+    "ended_by": null,
+    "is_active": true
+  }
+},
+{
+  "model": "mentoring.relationship",
+  "pk": 2,
+  "fields": {
+    "mentor": 1,
+    "mentee": 5,
+    "started_on": "2016-04-27",
+    "ended_on": null,
+    "ended_by": null,
+    "is_active": true
+  }
+},
+{
+  "model": "mentoring.relationship",
+  "pk": 3,
+  "fields": {
+    "mentor": 1,
+    "mentee": 6,
+    "started_on": "2016-04-27",
+    "ended_on": null,
+    "ended_by": null,
+    "is_active": false
+  }
+},
+{
+  "model": "mentoring.relationship",
+  "pk": 4,
+  "fields": {
+    "mentor": 10,
+    "mentee": 1,
+    "started_on": "2016-04-27",
+    "ended_on": null,
+    "ended_by": null,
+    "is_active": true
+  }
+},
+{
+  "model": "mentoring.relationship",
+  "pk": 5,
+  "fields": {
+    "mentor": 11,
+    "mentee": 1,
+    "started_on": "2016-04-27",
+    "ended_on": null,
+    "ended_by": null,
+    "is_active": false
+  }
+},
+{
+  "model": "mentoring.relationship",
+  "pk": 6,
+  "fields": {
+    "mentor": 12,
+    "mentee": 1,
+    "started_on": "2016-04-27",
+    "ended_on": null,
+    "ended_by": null,
+    "is_active": true
+  }
+},
+{
+  "model": "mentoring.relationship",
+  "pk": 7,
+  "fields": {
+    "mentor": 13,
+    "mentee": 1,
+    "started_on": "2016-04-27",
+    "ended_on": null,
+    "ended_by": null,
+    "is_active": true
+  }
+}
+]
