@@ -2,7 +2,7 @@ import sys
 
 from django.core.management.base import BaseCommand
 
-from ...io import read_members_from_csv
+from ...csv import read_members_from_csv
 
 class Command(BaseCommand):
     help = 'Dump active CUED members in CSV format'
