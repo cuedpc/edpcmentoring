@@ -2,6 +2,9 @@
 I/O from and to the CUED members database.
 
 """
+# Required to import the csv module correctly on Py 2.
+from __future__ import absolute_import
+
 import csv
 
 from django.db import transaction

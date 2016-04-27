@@ -14,7 +14,7 @@ import random
 
 from django.test import TestCase
 
-from ..io import write_members_to_csv, read_members_from_csv
+from ..csv import write_members_to_csv, read_members_from_csv
 from ..models import Member
 
 class WriteMembersToCSVTestCase(TestCase):
