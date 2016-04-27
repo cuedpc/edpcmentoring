@@ -76,10 +76,15 @@ class ReadMembersFromCSVTestCase(TestCase):
 
         """
         self.assertEqual(Member.objects.count(), 0)
+
+        # We insert the first row and make sure to never insert it again to
+        # ensure that there is always at least one inactive user by the end.
+        self.assert_read_members(self.rows[:1])
+
         iteration_count = 10
         for _ in range(iteration_count):
-            row_count = random.randint(len(self.rows)>>1, len(self.rows))
-            row_subset = random.sample(self.rows, row_count)
+            row_count = random.randint(len(self.rows)>>1, len(self.rows)-1)
+            row_subset = random.sample(self.rows[1:], row_count)
             self.assert_read_members(row_subset)
         self.assertGreater(Member.objects.inactive().count(), 0)
 
@@ -120,7 +125,6 @@ class ReadMembersFromCSVTestCase(TestCase):
         qs = Member.objects.active().select_related('user')
         expected_crsids = set(r.get('crsid') for r in rows)
         got_crsids = set(m.user.username for m in qs)
-
         self.assertEqual(len(expected_crsids ^ got_crsids), 0)
 
 def csv_file_from_rows(field_names, rows):
