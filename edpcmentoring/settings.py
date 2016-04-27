@@ -112,6 +112,7 @@ LOGIN_REDIRECT_URL = 'mentoring:index'
 
 # Forms
 CRISPY_FAIL_SILENTLY = not DEBUG
+CRISPY_TEMPLATE_PACK = 'bootstrap'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
