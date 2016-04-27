@@ -35,6 +35,9 @@ class Relationship(models.Model):
     Records a mentorship relation.
 
     """
+    class Meta(object):
+        unique_together = (('mentor', 'mentee'),)
+
     mentor = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name='mentor_relationships',
         on_delete=models.CASCADE)
