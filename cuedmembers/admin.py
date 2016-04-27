@@ -2,6 +2,20 @@ from django.contrib import admin
 
 from .models import Member, ResearchGroup, Division
 
+class ImmutableModelMixin(object):
+    """A mixin class for a ModelAdmin which should never allow adding or
+    deleting objects. Use this for models which are immutable and managed
+    entirely by migrations.
+
+    """
+    def has_add_permission(self, request):
+        # pylint: disable=unused-argument
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        # pylint: disable=unused-argument
+        return False
+
 class MemberAdmin(admin.ModelAdmin):
     list_display = ('crsid', 'full_name', 'division', 'research_group',
                     'is_active')
@@ -30,7 +44,7 @@ class MemberAdmin(admin.ModelAdmin):
 
 admin.site.register(Member, MemberAdmin)
 
-class ResearchGroupAdmin(admin.ModelAdmin):
+class ResearchGroupAdmin(ImmutableModelMixin, admin.ModelAdmin):
     list_display = ('name', 'division')
 
     def get_queryset(self, request):
@@ -38,7 +52,7 @@ class ResearchGroupAdmin(admin.ModelAdmin):
 
 admin.site.register(ResearchGroup, ResearchGroupAdmin)
 
-class DivisionAdmin(admin.ModelAdmin):
+class DivisionAdmin(ImmutableModelMixin, admin.ModelAdmin):
     list_display = ('letter', 'name')
 
     def get_queryset(self, request):
