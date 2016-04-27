@@ -8,13 +8,15 @@
         </tr>
     </thead>
     <tbody>
-    {% for m in members %}
+    {% for u in users %}
+        {% with u.cued_member as m %}
         <tr>
-            <td>{{ m.user.username }}</td>
-            <td>{{ m.user.get_full_name }}</td>
+            <td>{{ u.username }}</td>
+            <td>{{ u.get_full_name }}</td>
             <td>{{ m.research_group.division.letter }}</td>
             <td>{{ m.research_group.name }}</td>
         </tr>
+        {% endwith %}
     {% endfor %}
     </tbody>
 </table>

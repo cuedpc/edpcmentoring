@@ -5,16 +5,14 @@ from matching.models import Preferences
 from mentoring.models import Relationship
 
 from .forms import MentoringPreferencesForm
+from .queries import select_member_details
 
 @member_required
 def index(request):
-    mentor_relationships = Relationship.objects.with_mentor(
-        request.user).select_related('mentee__cued_member')
-    mentees = [r.mentee.cued_member for r in mentor_relationships]
-
-    mentee_relationships = Relationship.objects.with_mentee(
-        request.user).select_related('mentor__cued_member')
-    mentors = [r.mentor.cued_member for r in mentee_relationships]
+    mentees = select_member_details(
+        Relationship.objects.mentees_for_user(request.user))
+    mentors = select_member_details(
+        Relationship.objects.mentors_for_user(request.user))
 
     preferences, _ = Preferences.objects.get_or_create(user=request.user)
     preferences_form = MentoringPreferencesForm({
