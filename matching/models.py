@@ -8,7 +8,7 @@ class Preferences(models.Model):
     Records the mentorship opinions of a User.
 
     """
-    class Meta:
+    class Meta(object):
         verbose_name_plural = 'Preferences'
 
     user = AutoOneToOneField(
