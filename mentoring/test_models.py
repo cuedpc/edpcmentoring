@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from cuedmembers.models import Member
@@ -35,3 +36,12 @@ class RelationshipActiveInactiveTestCase(TestCase):
         self.assertEqual(len(relationships), 1)
         self.assertEqual(relationships[0].id, self.inactive_relationship.id)
 
+class RelationshipTestCase(TestCase):
+    fixtures = ['cuedmembers/test_users_and_members']
+
+    def test_cannot_have_identical_mentor_and_mentee(self):
+        m = Member.objects.all()[0]
+        u = m.user
+        r = Relationship(mentor=u, mentee=u)
+        with self.assertRaises(ValidationError):
+            r.full_clean()

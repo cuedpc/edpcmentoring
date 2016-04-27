@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -10,12 +11,6 @@ class RelationshipManager(models.Manager):
     def inactive(self):
         """A queryset of inactive relationships."""
         return self.filter(is_active=False)
-
-    def with_mentor(self, user):
-        return self.active().filter(mentor=user)
-
-    def with_mentee(self, user):
-        return self.active().filter(mentee=user)
 
     def mentees_for_user(self, user):
         """A queryset returning all users who are the passed user's mentees.
@@ -59,6 +54,13 @@ class Relationship(models.Model):
 
     def __str__(self):
         return '{} mentoring {}'.format(self.mentor, self.mentee)
+
+    def clean(self):
+        super(Relationship, self).clean()
+        if self.mentor.id == self.mentee.id:
+            raise ValidationError('Cannot have the same user, %(user)s, as '
+                                  'both mentor and mentee',
+                                  params={'user':str(self.mentor)})
 
 class Meeting(models.Model):
     """
