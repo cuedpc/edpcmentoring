@@ -10,6 +10,12 @@ class RelationshipManager(models.Manager):
         """A query-set of inactive relationships."""
         return self.filter(is_active=False)
 
+    def with_mentor(self, user):
+        return self.active().filter(mentor=user)
+
+    def with_mentee(self, user):
+        return self.active().filter(mentee=user)
+
 class Relationship(models.Model):
     """
     Records a mentorship relation.
