@@ -1,5 +1,10 @@
 {% extends "frontend/layout/page.html" %}
 
+{# Remove nav. This is to avoid an information leak where current Raven but
+   ex-cued members may be identified by the presence of their name in the
+   nagivation bar. #}
+{% block nav %}{% endblock nav %}
+
 {% block maincontent %}
     <h1>You do not have access to this page</h1>
 
