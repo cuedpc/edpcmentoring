@@ -1,4 +1,5 @@
 {% extends "frontend/layout/page.html" %}
+{% load crispy_forms_tags %}
 
 {% block maincontent %}
 
@@ -47,5 +48,9 @@
 {% else %}
     <p>You do not currently have any mentees.</p>
 {% endif %}
+
+<h1>Mentorship preferences</h1>
+
+{% crispy preferences_form preferences_form.helper %}
 
 {% endblock %}
