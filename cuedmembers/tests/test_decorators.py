@@ -11,45 +11,40 @@ class MemberRequiredTestCase(TestCase):
 
     def setUp(self):
         self.factory = RequestFactory()
+        self.mock_view = mock.Mock()
+        self.mock_view.__name__ = 'mock_view' # Reqd. for Py <3
+        self.wrapped_mock_view = member_required(self.mock_view)
 
     def test_anonmous_user(self):
-        func = mock.Mock()
-        wrapped_func = member_required(func)
         request = self.make_get_request(AnonymousUser())
-        response = wrapped_func(request)
+        response = self.wrapped_mock_view(request)
 
         # The wrapped function should never be called
-        self.assertFalse(func.called)
+        self.assertFalse(self.mock_view.called)
 
         # The response should be a redirect
         self.assertEqual(response.status_code, 302)
 
     def test_non_member(self):
-        func = mock.Mock()
-        wrapped_func = member_required(func)
         request = self.make_get_request(
             User.objects.filter(cued_member__isnull=True).first()
         )
         with self.assertRaises(PermissionDenied):
-            wrapped_func(request)
+            self.wrapped_mock_view(request)
 
     def test_inactive_member(self):
-        func = mock.Mock()
-        wrapped_func = member_required(func)
         request = self.make_get_request(
             Member.objects.inactive().first().user)
         with self.assertRaises(PermissionDenied):
-            wrapped_func(request)
+            self.wrapped_mock_view(request)
 
     def test_active_member(self):
-        func = mock.Mock()
-        wrapped_func = member_required(func)
         request = self.make_get_request(
             Member.objects.active().first().user)
-        wrapped_func(request)
+        self.wrapped_mock_view(request)
 
         # The wrapped function should be called
-        self.assertTrue(func.called)
+        self.assertTrue(self.mock_view.called)
 
     def make_get_request(self, user, path='/'):
         """
