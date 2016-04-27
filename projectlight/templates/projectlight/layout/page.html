@@ -22,7 +22,9 @@
 <div class="lt-ie9">
 <![endif]-->
 
+{% block globalheader %}
 {% include "projectlight/include/global_header.html" %}
+{% endblock globalheader %}
 
 <div class="campl-row campl-page-header">
     <div class="campl-wrap clearfix">
@@ -62,7 +64,9 @@
     </div>
 </div>
 
+{% block globalfooter %}
 {% include "projectlight/include/global_footer.html" %}
+{% endblock globalfooter %}
 
 <!--[if lte IE 8]>
 </div>
