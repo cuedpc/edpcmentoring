@@ -2,6 +2,7 @@
 # other requirements.
 django<1.10
 django-annoying
+django-crispy-forms
 django-debug-toolbar
 django-email-log
 django-extensions

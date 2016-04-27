@@ -38,16 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django_extensions',
+    'crispy_forms',
     'debug_toolbar',
-    'ucamwebauth',
+    'django_extensions',
     'email_log',
+    'ucamwebauth',
 
     'cuedmembers',
-    'projectlight',
-
-    'mentoring',
     'matching',
+    'mentoring',
+    'projectlight',
     'training',
 
     'frontend',
@@ -109,6 +109,9 @@ DEFAULT_FROM_EMAIL = 'edpc-mentoring@example.com'
 # Login URLs
 LOGIN_URL = 'raven_login'
 LOGIN_REDIRECT_URL = 'mentoring:index'
+
+# Forms
+CRISPY_FAIL_SILENTLY = not DEBUG
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
