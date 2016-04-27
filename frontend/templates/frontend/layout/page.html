@@ -1,5 +1,9 @@
 {% extends "projectlight/layout/page.html" %}
 
+{# Remove glbal header and footer #}
+{% block globalheader %}{% endblock globalheader %}
+{% block globalfooter %}{% endblock globalfooter %}
+
 {# Default title if non other is supplied #}
 {% block title %}EDPC Mentoring Scheme{% endblock %}
 
