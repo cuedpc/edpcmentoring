@@ -1,4 +1,4 @@
-# Requirements for running in production. See {test,dev}-requirements.txt for
+# Requirements for running in production. See dev-requirements.txt for
 # other requirements.
 django<1.10
 django-annoying
@@ -6,3 +6,6 @@ django-debug-toolbar
 django-email-log
 django-extensions
 django-ucamwebauth
+
+# Testing
+mock

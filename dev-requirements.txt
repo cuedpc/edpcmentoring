@@ -1,4 +1,6 @@
 # Requirements to make developers' lives easier.
-pylint
+
+fake-factory
 ipython
-Werkzeug
+pylint
+werkzeug
