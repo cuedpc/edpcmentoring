@@ -10,9 +10,9 @@ from .queries import select_member_details
 @member_required
 def index(request):
     mentees = select_member_details(
-        Relationship.objects.mentees_for_user(request.user))
+        Relationship.objects.mentees_for_user(request.user)).order_by('username')
     mentors = select_member_details(
-        Relationship.objects.mentors_for_user(request.user))
+        Relationship.objects.mentors_for_user(request.user)).order_by('username')
 
     preferences, _ = Preferences.objects.get_or_create(user=request.user)
     preferences_form = MentoringPreferencesForm({
