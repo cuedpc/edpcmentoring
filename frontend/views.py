@@ -1,6 +1,7 @@
 import logging
 
 from django.core.urlresolvers import reverse
+from django.contrib import messages
 from django.views.generic.edit import FormView, UpdateView
 from django.shortcuts import render
 from django.utils import timezone
@@ -47,6 +48,11 @@ class MentoringPreferencesView(UpdateView):
     def get_success_url(self):
         return reverse('index')
 
+    def form_valid(self, form):
+        messages.add_message(
+            self.request, messages.INFO, 'Your preferences have been saved.')
+        return super(MentoringPreferencesView, self).form_valid(form)
+
 class ReportMentorMeetingView(FormView):
     form_class = ReportMentorMeetingForm
     template_name = 'frontend/mentor_meeting_form.html'
@@ -72,6 +78,8 @@ class ReportMentorMeetingView(FormView):
     def form_valid(self, form):
         """Save the meeting to the DB and redirect."""
         form.save()
+        messages.add_message(
+            self.request, messages.INFO, 'Your meeting has been recorded.')
         return super(ReportMentorMeetingView, self).form_valid(form)
 
     def get_initial(self):
