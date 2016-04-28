@@ -1,7 +1,7 @@
 import logging
 
 from django.core.urlresolvers import reverse
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, UpdateView
 from django.shortcuts import render
 from django.utils import timezone
 from django.utils.decorators import method_decorator
@@ -10,7 +10,7 @@ from cuedmembers.decorators import member_required
 from matching.models import Preferences
 from mentoring.models import Relationship
 
-from .forms import MentoringPreferencesForm, ReportMentorMeetingForm
+from .forms import ReportMentorMeetingForm, MentoringPreferencesForm
 from .queries import select_member_details
 
 logger = logging.getLogger(__name__)
@@ -22,18 +22,30 @@ def index(request):
     mentors = select_member_details(
         Relationship.objects.mentors_for_user(request.user)).order_by('username')
 
-    preferences, _ = Preferences.objects.get_or_create(user=request.user)
-    preferences_form = MentoringPreferencesForm({
-        'is_seeking_mentor': preferences.is_seeking_mentor,
-        'mentor_requirements': preferences.mentor_requirements,
-        'is_seeking_mentee': preferences.is_seeking_mentee,
-        'mentee_requirements': preferences.mentee_requirements,
-    })
+    preferences = request.user.mentorship_preferences
 
     return render(request, 'frontend/index.html', {
         'mentees': mentees, 'mentors': mentors,
-        'preferences_form': preferences_form,
+        'preferences': preferences,
     })
+
+class MentoringPreferencesView(UpdateView):
+    form_class = MentoringPreferencesForm
+    template_name = 'frontend/mentoring_preferences_form.html'
+
+    @method_decorator(member_required)
+    def dispatch(self, request, *args, **kwargs):
+        # Guaranteed by member_required
+        assert request.user.cued_member is not None
+        return super(MentoringPreferencesView, self).dispatch(
+            request, *args, **kwargs
+        )
+
+    def get_object(self, queryset=None):
+        return self.request.user.mentorship_preferences
+
+    def get_success_url(self):
+        return reverse('index')
 
 class ReportMentorMeetingView(FormView):
     form_class = ReportMentorMeetingForm

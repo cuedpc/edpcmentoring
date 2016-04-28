@@ -1,0 +1,11 @@
+{% extends "frontend/layout/page.html" %}
+{% load crispy_forms_tags %}
+{% load frontend_tags %}
+
+{% block maincontent %}
+
+<h1>Change mentoring preferencs</h1>
+
+{% crispy form form.helper %}
+{% endblock %}
+

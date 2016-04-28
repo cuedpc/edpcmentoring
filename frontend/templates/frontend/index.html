@@ -4,6 +4,38 @@
 
 {% block maincontent %}
 
+<h1>Preferences</h1>
+
+<p>
+You <strong>
+{% if preferences.is_seeking_mentor %}are{% else %}are not{% endif %}
+</strong>
+seeking a mentor.
+You <strong>
+{% if preferences.is_seeking_mentee %}are{% else %}are not{% endif %}
+</strong> willing to take on a new mentee.</p>
+
+{% if preferences.mentor_requirements %}
+<p>You have specified the following special requirements for your
+mentor:</p>
+<blockquote>{{ preferences.mentor_requirements }}</blockquote>
+{% endif %}
+
+{% if preferences.mentee_requirements %}
+<p>You have specified the following special requirements for your
+mentee:</p>
+<blockquote>{{ preferences.mentee_requirements }}</blockquote>
+{% endif %}
+
+<p>
+<a href="{% url "edit_mentoring_preferences" %}" class="campl-primary-cta">
+    Change these preferences
+</a>
+<a href="#" class="campl-icon-link">
+    <span class="campl-icon campl-help-icon"></span>
+    What do these preferences mean?
+</a></p>
+
 <h1>Your mentors</h1>
 
 {% if mentors %}
@@ -61,9 +93,5 @@
         </a>
     </p>
 {% endif %}
-
-<h1>Mentorship preferences</h1>
-
-{% crispy preferences_form preferences_form.helper %}
 
 {% endblock %}

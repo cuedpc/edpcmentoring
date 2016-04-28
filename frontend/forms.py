@@ -10,6 +10,7 @@ from django import forms
 from django.db import transaction
 from django.core.exceptions import ValidationError
 
+from matching.models import Preferences
 from mentoring.models import Relationship, Meeting
 
 from .layout import Submit
@@ -42,31 +43,26 @@ class FrontendFormMixin(forms.Form):
         )
         return helper
 
-class MentoringPreferencesForm(FrontendFormMixin, forms.Form):
+class MentoringPreferencesForm(FrontendFormMixin, forms.ModelForm):
     class Meta(object):
         submit_text = 'Save preferences'
-
-    is_seeking_mentor = forms.BooleanField(
-        label='I am seeking a mentor', required=False)
-
-    mentor_requirements = forms.CharField(
-        label='Special requirements for mentor',
-        help_text=(
-            'Add any comments you wish the person choosing a mentor for you to '
-            'read.'),
-        required=False,
-        widget=forms.Textarea(attrs={'rows': 3}))
-
-    is_seeking_mentee = forms.BooleanField(
-        label='I am seeking a mentee', required=False)
-
-    mentee_requirements = forms.CharField(
-        label='Special requirements for mentee',
-        help_text=(
-            'Add any comments you wish the person choosing a mentee for you to '
-            'read.'),
-        required=False,
-        widget=forms.Textarea(attrs={'rows': 3}))
+        model = Preferences
+        fields = ['is_seeking_mentor', 'mentor_requirements',
+                  'is_seeking_mentee', 'mentee_requirements']
+        labels = {
+            'is_seeking_mentor': 'I am seeking a mentor',
+            'is_seeking_mentee': 'I am willing to have a new mentee',
+            'mentor_requirements': 'Special requirements for mentor',
+            'mentee_requirements': 'Special requirements for mentee',
+        }
+        help_texts = {
+            'mentor_requirements': (
+                'Add any comments you wish the person choosing a mentor for '
+                'you to read.'),
+            'mentee_requirements': (
+                'Add any comments you wish the person choosing a mentee for '
+                'you to read.'),
+        }
 
     def get_helper(self):
         helper = super(MentoringPreferencesForm, self).get_helper()
