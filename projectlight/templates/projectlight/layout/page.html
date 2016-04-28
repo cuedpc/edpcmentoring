@@ -52,6 +52,22 @@
     <div class="campl-row campl-content">
         <div class="campl-wrap clearfix">
             <div class="campl-content-container">
+{% block messages %}
+{% if messages %}
+{% for m in messages %}
+                <div class="campl-notifications-panel campl-information-panel campl-notifications-container clearfix">
+                    <div class="campl-column3">
+                        <p class="campl-notifications-icon campl-information-icon">Information:</p>
+                    </div>
+                    <div class="campl-column6">
+                        <p>{{ m.message }}</p>
+                    </div>
+                    <div class="campl-column3">
+                    </div>
+                </div>
+{% endfor %}
+{% endif %}
+{% endblock messages %}
                 {% block maincontent %}{% endblock maincontent %}
             </div>
         </div>
