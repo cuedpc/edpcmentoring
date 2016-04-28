@@ -1,0 +1,6 @@
+# Requirements for building the documentation
+sphinx
+sphinx_rtd_theme
+
+# Also pull in the main project requirements
+-r ../requirements.txt

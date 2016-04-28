@@ -3,5 +3,4 @@
 fake-factory
 ipython
 pylint
-sphinx
 werkzeug
