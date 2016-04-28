@@ -79,7 +79,7 @@ class MentoringPreferencesForm(FrontendFormMixin, forms.Form):
 
 class ReportMentorMeetingForm(FrontendFormMixin, forms.Form):
     class Meta(object):
-        submit_text = 'Report'
+        submit_text = 'Record meeting'
 
     # The mentor field is ignored but is included here to reassure the user that
     # they are indeed doing the right thing.
