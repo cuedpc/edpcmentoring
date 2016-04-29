@@ -26,7 +26,7 @@ class HTML5DateInput(forms.DateInput):
     """A version of DateInput which uses the HTML5 date input type."""
     input_type = 'date'
 
-class FrontendFormMixin(forms.Form):
+class FrontendFormMixin(object):
     class Meta(object):
         submit_text = 'Submit'
 
@@ -43,7 +43,7 @@ class FrontendFormMixin(forms.Form):
         )
         return helper
 
-class MentoringPreferencesForm(FrontendFormMixin, forms.ModelForm):
+class MentoringPreferencesForm(forms.ModelForm, FrontendFormMixin):
     class Meta(object):
         submit_text = 'Save preferences'
         model = Preferences
@@ -73,7 +73,7 @@ class MentoringPreferencesForm(FrontendFormMixin, forms.ModelForm):
 
         return helper
 
-class ReportMentorMeetingForm(FrontendFormMixin, forms.Form):
+class ReportMentorMeetingForm(forms.Form, FrontendFormMixin):
     class Meta(object):
         submit_text = 'Record meeting'
 
