@@ -10,8 +10,11 @@
 {# Application specific navigation #}
 {% block nav %}
     <li><a href="{% url 'index' %}">Home</a></li>
+    {% if perms.matching.matchmake %}
+    <li><a href="{% url "matchmake" %}">Match mentors and mentees</a></li>
+    {% endif %}
     {% if user.is_staff %}
-        <li><a href="{% url 'admin:index' %}">Admin interface</a></li>
+    <li><a href="{% url 'admin:index' %}">Admin interface</a></li>
     {% endif %}
     {% if user.cued_member %}
     <li><a href="#">
