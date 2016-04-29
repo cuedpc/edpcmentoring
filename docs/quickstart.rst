@@ -40,23 +40,34 @@ Install the requirements:
 
     The ``requirements.txt`` file lists the Python packages required for
     deployment. The ``dev-requirements.txt`` file lists the Python packages used
-    only by developers. For example, the "sphinx" package, which is used to
-    generate this documentation, is in the ``dev-requirements.txt`` file since
-    it is not required when deploying the database.
+    only by developers. For example, the "ipython" package, which is used to
+    improve the ``shell_plus`` command, is in the ``dev-requirements.txt`` file
+    since it is not required when deploying the database.
+
+Django has the concept of multiple `settings
+<https://docs.djangoproject.com/en/stable/topics/settings/>`_. We need to tell
+it to use setting suitable for local development:
+
+.. code:: console
+
+    $ export DJANGO_SETTINGS_MODULE="edpcmentoring.settings_development"
+
+**This step needs to be repeated for each new terminal you open.** It can be
+automated but that's beyond the scope of this quick guide.
 
 Perform the initial database migration and populate the database with
 some fake data:
 
 .. code:: console
 
-    $ ./manage.py migrate
-    $ ./manage.py runscript loadtestfixtures
+    $ ./edpcmentoring/manage.py migrate
+    $ ./edpcmentoring/manage.py runscript loadtestfixtures
 
 Start a local development server:
 
 .. code:: console
 
-    $ ./manage.py runserver_plus
+    $ ./edpcmentoring/manage.py runserver_plus
 
 Open http://127.0.0.1:8000 in your web browser. The admin interface is at
 http://127.0.0.1:8000/admin.
