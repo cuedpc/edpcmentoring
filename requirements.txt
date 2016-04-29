@@ -16,3 +16,4 @@ whitenoise
 cffi
 cryptography
 dj-database-url==0.4.0
+psycopg2
