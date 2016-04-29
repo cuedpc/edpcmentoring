@@ -34,7 +34,7 @@ if not on_rtd: # only import and set the theme if we're building docs locally
 
 # Add the project top-level directory to the import path so that we may find
 # Django applications.
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath(os.path.join('..', 'edpcmentoring')))
 
 # Since we document some classes which make use of Django constructs, we need to
 # make sure Django is configured.
