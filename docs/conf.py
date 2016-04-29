@@ -38,7 +38,8 @@ sys.path.insert(0, os.path.abspath(os.path.join('..', 'edpcmentoring')))
 
 # Since we document some classes which make use of Django constructs, we need to
 # make sure Django is configured.
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "edpcmentoring.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE",
+                      "edpcmentoring.settings_development")
 django.setup()
 
 # -- General configuration ------------------------------------------------
