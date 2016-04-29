@@ -11,3 +11,7 @@ django-ucamwebauth
 # Testing
 mock
 whitenoise
+
+# Required for the heroku buildpack to install libffi
+cffi
+cryptography
