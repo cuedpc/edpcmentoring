@@ -25,6 +25,11 @@ class Invitation(models.Model):
     An invitation to form a mentoring relationship.
 
     """
+    class Meta(object):
+        permissions = (
+            ('matchmake', 'Can matchmake mentors and mentees'),
+        )
+
     # The possible responses to an invitation.
     ACCEPT = 'A'
     DECLINE = 'D'
