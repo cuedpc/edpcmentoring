@@ -10,3 +10,4 @@ django-ucamwebauth
 
 # Testing
 mock
+whitenoise
