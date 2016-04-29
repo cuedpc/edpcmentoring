@@ -8,7 +8,6 @@ from django.utils import timezone
 from django.utils.decorators import method_decorator
 from cuedmembers.decorators import member_required
 
-from matching.models import Preferences
 from mentoring.models import Relationship
 
 from .forms import ReportMentorMeetingForm, MentoringPreferencesForm
