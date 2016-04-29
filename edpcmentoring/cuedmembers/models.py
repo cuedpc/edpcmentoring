@@ -9,7 +9,7 @@ class Division(models.Model):
 
     """
     letter = models.CharField(max_length=1, primary_key=True)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=256)
 
     def __str__(self):
         return self.letter
@@ -20,7 +20,7 @@ class ResearchGroup(models.Model):
 
     """
     division = models.ForeignKey(Division, related_name='research_groups')
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=256)
 
     def __str__(self):
         return self.name
