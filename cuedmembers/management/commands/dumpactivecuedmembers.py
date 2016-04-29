@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from cuedmembers.io import write_members_to_csv
+from cuedmembers.csv import write_members_to_csv
 from cuedmembers.models import Member
 
 class Command(BaseCommand):
