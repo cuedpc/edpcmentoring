@@ -44,17 +44,6 @@ Install the requirements:
     improve the ``shell_plus`` command, is in the ``dev-requirements.txt`` file
     since it is not required when deploying the database.
 
-Django has the concept of multiple `settings
-<https://docs.djangoproject.com/en/stable/topics/settings/>`_. We need to tell
-it to use setting suitable for local development:
-
-.. code:: console
-
-    $ export DJANGO_SETTINGS_MODULE="edpcmentoring.settings_development"
-
-**This step needs to be repeated for each new terminal you open.** It can be
-automated but that's beyond the scope of this quick guide.
-
 Perform the initial database migration and populate the database with
 some fake data:
 
