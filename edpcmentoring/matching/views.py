@@ -15,7 +15,8 @@ class MatchmakeView(PermissionRequiredMixin, TemplateView):
                    mentorship_preferences__is_seeking_mentor=True).\
             select_related('cued_member',
                            'cued_member__research_group',
-                           'cued_member__research_group__division')
+                           'cued_member__research_group__division').\
+            order_by('username')
         return {
             'seekers': seekers,
         }
