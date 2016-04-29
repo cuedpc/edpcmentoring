@@ -7,6 +7,7 @@ or testing go in the appropriate settings_* modules.
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -92,12 +93,21 @@ AUTHENTICATION_BACKENDS = [
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+# This is the default file-backed database for testing. Below we also test for
+# the presence of a "DATABASE_URL" environment variable. If present, we use it
+# in preference to the hardcoded version.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+if 'DATABASE_URL' in os.environ:
+    # Update database configuration with $DATABASE_URL.
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
+
 
 # Various security settings
 SECURE_CONTENT_TYPE_NOSNIFF = True
