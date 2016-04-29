@@ -5,9 +5,19 @@ from django.contrib.auth import get_user_model
 
 class Division(models.Model):
     """
-    A division within CUED.
+    A division within CUED. The primary key for a division is actually its
+    letter, A-F.
+
+    .. attribute:: letter
+
+        The Divisional ID letter, A-F.
+
+    .. attribute:: name
+
+        A human-readable name for the Division.
 
     """
+
     letter = models.CharField(max_length=1, primary_key=True)
     name = models.CharField(max_length=256)
 
@@ -18,6 +28,14 @@ class ResearchGroup(models.Model):
     """
     A research group in CUED.
 
+    .. attribute:: division
+
+        The :py:class:`.Division` which this research group is a part of.
+
+    .. attribute:: name
+
+        A human-readable name for the Research Group.
+
     """
     division = models.ForeignKey(Division, related_name='research_groups')
     name = models.CharField(max_length=256)
@@ -26,6 +44,11 @@ class ResearchGroup(models.Model):
         return self.name
 
 class MemberManager(models.Manager):
+    """
+    A specialised Manager for :py:class:`.Member` instances.
+
+    """
+
     def update_or_create_by_crsid(self, crsid, defaults=None):
         """
         Retrieve or create a new member from a crsid. If a corresponding user
@@ -68,12 +91,19 @@ class Member(models.Model):
     An extension of the standard Django User to indicate that a particular
     user is a member of the Department.
 
-    There is a one-to-one mapping of Users to People however not every User is
+    There is a one-to-one mapping of Users to Members however not every User is
     necessarily a Member.
 
+    .. note::
+
+        While there is nothing stopping you adding a foreign-key to a Member in
+        models, its better to add a foreign-key to a User. That way you app's
+        models are decoupled from relying on the CUED membership database and
+        may be of wider user.
+
     The "Surname" and "Preferred name" fields from the Department are mapped
-    through to the associated User's last_name and first_name. The more formal
-    "First names" from the department are stored in this model.
+    through to the associated User's ``last_name`` and ``first_name``. The
+    "First names" provided by the Department are stored in this model.
 
     An "active" member is currently present at CUED.
 
@@ -86,6 +116,28 @@ class Member(models.Model):
 
     This model does not include role/course, host/supervisor, room number or
     phone number. The "arrived" flag is folded into the is_active field.
+
+    .. attribute:: user
+
+        The :py:class:`django.contrib.auth.models.User` associated with this
+        Member.
+
+    .. attribute:: first_names
+
+        A string containing the first names for the member supplied by the
+        Department. Although it is tempting to use a space as a separator for
+        these, that way danger lies!
+
+    .. attribute:: research_group
+
+        The :py:class:`.ResearchGroup` which this member is a part of.
+
+    .. attribute:: is_active
+
+        Members are not usually deleted from the database. Instead they become
+        "active" or "inactive". This is to allow for the same person to be
+        considered *as* the same person if they leave CUED and then subsequently
+        return.
 
     """
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
@@ -103,6 +155,8 @@ class Member(models.Model):
     def crsid(self):
         """This member's CRSid. The CRSid is the username of the associated
         user.
+
+        This property merely returns the ``username`` of the associated User.
 
         """
         return self.user.username

@@ -1,3 +1,25 @@
+"""
+The ``importcuedmembers`` management command is used to synchronise the
+membership database with an authoritative source.
+
+The Department provide CSV dumps of CUED membership. See
+http://www-itsd.eng.cam.ac.uk/datadownloads/support/div_people.html
+for more details. This command allows the ingestion of a CSV file in the format
+outlined at that page into the database.
+
+Members listed in the CSV file are created if they don't exist. Their personal
+details, such as first name, surname, etc. are updated from the CSV. A
+previously active member who does not appear in the CSV file is marked inactive.
+Similarly, a previously inactive member who appears in the CSV file is marked
+active.
+
+By default, an email address of ``<crsid>@cam.ac.uk`` is used for each member.
+This can be configured through the ``--email-domain`` argument.
+
+This command can take either a path to a CSV file on the local system or a http
+or https URL to a CSV file located on a remote server.
+
+"""
 # pylint: disable=wrong-import-order,import-error
 
 from future.standard_library import install_aliases
