@@ -112,11 +112,11 @@ if 'DATABASE_URL' in os.environ:
 # Various security settings
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
-CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = 'DENY'
 
-# This setting breaks Raven login
+# These settings require that we are *definitely* being served over HTTP+TLS.
+#CSRF_COOKIE_SECURE = True
 #SESSION_COOKIE_SECURE = True
 
 # Email
