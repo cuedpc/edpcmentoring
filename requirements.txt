@@ -6,6 +6,8 @@ django-crispy-forms
 django-debug-toolbar
 django-email-log
 django-extensions
+django-filter
+django-tables2
 django-ucamwebauth
 django<1.10
 future
