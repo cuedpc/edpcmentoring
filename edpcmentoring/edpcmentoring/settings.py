@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'debug_toolbar',
     'django_extensions',
+    'django_filters',
+    'django_tables2',
     'email_log',
     'ucamwebauth',
 

@@ -1,0 +1,6 @@
+/* Custom CSS for EDPC mentoring scheme frontend. */
+
+/* Don't colour links in table headings. (They are used to sort columns.) */
+th a, th a:visited, th a:hover { color: inherit; }
+/* HACK: make hovered links take on a little of the table heading colour. */
+th a:hover { opacity: 0.8; }

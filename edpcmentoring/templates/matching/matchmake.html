@@ -1,17 +1,13 @@
 {% extends "frontend/layout/page.html" %}
-{% load frontend_tags %}
+{% load render_table from django_tables2 %}
 
 {% block maincontent %}
 
 <h1>People seeking mentors</h1>
 
-{% if seekers %}
 <p>The following CUED members have indicated that they are currently seeking a
 mentor.</p>
-{% member_table seekers %}
-{% else %}
-<p><strong>There are no CUED members currently seeking mentors.</strong></p>
-{% endif %}
+{% render_table table %}
 
 {% endblock %}
 

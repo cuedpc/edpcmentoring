@@ -1,4 +1,11 @@
 {% extends "projectlight/layout/page.html" %}
+{% load static from staticfiles %}
+
+{# Add custom stylesheet to head #}
+{% block extrahead %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static "frontend/css/screen.css" %}" />
+{% endblock extrahead %}
 
 {# Remove glbal header and footer #}
 {% block globalheader %}{% endblock globalheader %}

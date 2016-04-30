@@ -1,6 +1,16 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.models import User
 from django.views.generic.base import TemplateView
+import django_tables2 as tables
+
+class MatchmakeTable(tables.Table):
+    class Meta(object):
+        model = User
+        attrs = {
+            'class': ('campl-table-bordered campl-table-striped campl-table '
+                      'campl-vertical-stacking-table'),
+        }
 
 class MatchmakeView(PermissionRequiredMixin, TemplateView):
     http_method_names = ['get', 'head', 'options']
@@ -17,6 +27,7 @@ class MatchmakeView(PermissionRequiredMixin, TemplateView):
                            'cued_member__research_group',
                            'cued_member__research_group__division').\
             order_by('username')
-        return {
-            'seekers': seekers,
-        }
+
+        table = MatchmakeTable(seekers)
+        tables.RequestConfig(self.request).configure(table)
+        return {'table': table}
