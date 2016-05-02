@@ -1,13 +1,21 @@
 {% extends "frontend/layout/page.html" %}
 {% load render_table from django_tables2 %}
+{% load crispy_forms_tags %}
 
 {% block maincontent %}
 
-<h1>People seeking mentors</h1>
-
-<p>The following CUED members have indicated that they are currently seeking a
-mentor.</p>
-{% render_table table %}
+<div class="clearfix">
+    <div class="campl-column3">
+        <h1>Filter results</h1>
+        <div class="campl-content-container campl-right-padding">
+            {% crispy filter.form filter.form.helper %}
+        </div>
+    </div>
+    <div class="campl-column9">
+        <h1>People seeking mentors</h1>
+        {% render_table table %}
+    </div>
+</div>
 
 {% endblock %}
 

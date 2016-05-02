@@ -4,3 +4,7 @@
 th a, th a:visited, th a:hover { color: inherit; }
 /* HACK: make hovered links take on a little of the table heading colour. */
 th a:hover { opacity: 0.8; }
+
+th.orderable:after { float: right; content: "\25b4\25be"; }
+th.orderable.asc:after { content: "\25b4"; }
+th.orderable.desc:after { content: "\25be"; }
