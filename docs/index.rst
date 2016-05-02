@@ -5,4 +5,5 @@ EDPC Mentoing Scheme Database
     :maxdepth: 2
 
     quickstart
+    mentoring
     cuedmembers

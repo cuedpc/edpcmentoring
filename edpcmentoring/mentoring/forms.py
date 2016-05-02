@@ -33,10 +33,11 @@ class HTML5DateInput(forms.DateInput):
 class ReportMentorMeetingForm(forms.Form):
     """
     A form which allows a user to record a meeting where they were a mentor.
+    Much like a :py:class:`ModelForm` this object provides a single
+    :py:meth:`.save` method which can be used to save the cleaned data to the
+    database.
 
-    Additional keyword arguments:
-
-    :param django.contrib.auth.models.User mentor: A required argument which
+    :param django.contrib.auth.models.User mentor: A **required** argument which
         specifies the user who is the mentor.
 
     """
