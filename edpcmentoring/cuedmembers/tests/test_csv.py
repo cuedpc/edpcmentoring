@@ -14,6 +14,7 @@ import random
 
 from django.test import TestCase
 
+from .. import get_member_group
 from ..csv import write_members_to_csv, read_members_from_csv
 from ..models import Member
 
@@ -126,6 +127,12 @@ class ReadMembersFromCSVTestCase(TestCase):
         expected_crsids = set(r.get('crsid') for r in rows)
         got_crsids = set(m.user.username for m in qs)
         self.assertEqual(len(expected_crsids ^ got_crsids), 0)
+
+        # Check that the members of the CUED members group correspond to the
+        # expected crsids.
+        group_crsids = set(u.username for u in get_member_group().user_set.all())
+        self.assertEqual(len(expected_crsids ^ group_crsids), 0)
+
 
 def csv_file_from_rows(field_names, rows):
     """Return a file object which, when read from, will give a CSV file with the

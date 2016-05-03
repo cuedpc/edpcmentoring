@@ -7,8 +7,10 @@ from __future__ import absolute_import
 
 import csv
 
+from django.contrib.auth import get_user_model
 from django.db import transaction
 
+from . import get_member_group
 from .models import Member, ResearchGroup
 
 # Field names in departmental CSV file.
@@ -102,3 +104,10 @@ def read_members_from_csv(csvfile, email_domain='cam.ac.uk'):
         m = Member.objects.get(user__username=crsid)
         m.is_active = False
         m.save()
+
+    # Add active members to group, remove inactive ones
+    member_group = get_member_group()
+    user = get_user_model()
+    member_group.user_set.add(*user.objects.filter(cued_member__is_active=True))
+    member_group.user_set.remove(*user.objects.filter(
+        cued_member__is_active=False))

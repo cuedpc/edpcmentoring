@@ -1,2 +1,1 @@
 .. automodule:: cuedmembers
-    :members:
