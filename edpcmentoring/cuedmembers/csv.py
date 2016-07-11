@@ -16,8 +16,8 @@ from .models import Member, ResearchGroup
 # Field names in departmental CSV file.
 _CSV_FIELD_NAMES = [
     'crsid', 'status', 'surname', 'fnames', 'pref_name', 'room', 'phone',
-    'arrived', 'start_date', 'end_date', 'div_id', 'role_course',
-    'host_supervisor', 'rg_name'
+    'arrived', 'start_date', 'end_date', 'division', 'role_course',
+    'host_supervisor', 'research_group'
 ]
 
 def write_members_to_csv(csvfile, queryset):
@@ -42,14 +42,14 @@ def write_members_to_csv(csvfile, queryset):
 
     for member in related_queryset:
         has_rg = member.research_group is not None
-        div_id = member.research_group.division.letter if has_rg else None
+        division = member.research_group.division.letter if has_rg else None
         writer.writerow({
             'crsid': member.user.username,
             'surname': member.user.last_name,
             'fnames': member.first_names,
             'pref_name': member.user.first_name,
-            'div_id': div_id,
-            'rg_name': member.research_group.name if has_rg else None,
+            'division': division,
+            'research_group': member.research_group.name if has_rg else None,
         })
 
 @transaction.atomic
@@ -73,11 +73,11 @@ def read_members_from_csv(csvfile, email_domain='cam.ac.uk'):
     new_active_crsids = set()
     for row in reader:
         new_active_crsids.add(row['crsid'])
-        rg_name = row.get('rg_name', '')
-        if rg_name != '':
+        research_group = row.get('research_group', '')
+        if research_group != '':
             research_group = ResearchGroup.objects.get(
-                name=rg_name,
-                division__letter=row['div_id']
+                name=research_group,
+                division__letter=row['division']
             )
         else:
             research_group = None

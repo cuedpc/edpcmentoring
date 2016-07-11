@@ -67,8 +67,8 @@ def member_csv_rows(crsid):
     # Simulate a small number of people having no research group
     if random.random() > 0.1:
         research_group = random.choice(ResearchGroup.objects.all())
-        base_row['div_id'] = research_group.division.letter
-        base_row['rg_name'] = research_group.name
+        base_row['division'] = research_group.division.letter
+        base_row['research_group'] = research_group.name
 
     # A small number of people have multiple statuses
     status_count = 1 if (random.random() > 0.2) else 2

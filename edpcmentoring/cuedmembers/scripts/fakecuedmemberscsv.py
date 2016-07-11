@@ -17,8 +17,8 @@ from cuedmembers.tests import fake
 # Headings in departmental CSV file.
 HEADINGS = [
     'crsid', 'status', 'surname', 'fnames', 'pref_name', 'room', 'phone',
-    'arrived', 'start_date', 'end_date', 'div_id', 'role_course',
-    'host_supervisor', 'rg_name'
+    'arrived', 'start_date', 'end_date', 'division', 'role_course',
+    'host_supervisor', 'research_group'
 ]
 
 def run():
