@@ -11,7 +11,7 @@ from django.contrib.auth import get_user_model
 from django.db import transaction
 
 from . import get_member_group
-from .models import Member, ResearchGroup
+from .models import Member, ResearchGroup, Division
 
 # Field names in departmental CSV file.
 _CSV_FIELD_NAMES = [
@@ -75,10 +75,9 @@ def read_members_from_csv(csvfile, email_domain='cam.ac.uk'):
         new_active_crsids.add(row['crsid'])
         research_group = row.get('research_group', '')
         if research_group != '':
-            research_group = ResearchGroup.objects.get(
-                name=research_group,
-                division__letter=row['division']
-            )
+            division = Division.objects.get(letter=row['division'])
+            research_group, _ = ResearchGroup.objects.get_or_create(
+                name=research_group, division=division)
         else:
             research_group = None
 
