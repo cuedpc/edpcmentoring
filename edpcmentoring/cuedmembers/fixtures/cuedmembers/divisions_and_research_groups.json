@@ -1,44 +1,268 @@
 [
-{
-  "model": "cuedmembers.division",
-  "pk": "A",
-  "fields": {
-    "name": "Energy, Fluids and Turbomachinery"
-  }
-},
-{
-  "model": "cuedmembers.division",
-  "pk": "B",
-  "fields": {
-    "name": "Electrical Engineering"
-  }
-},
-{
-  "model": "cuedmembers.division",
-  "pk": "C",
-  "fields": {
-    "name": "Mechanics, Materials and Design"
-  }
-},
-{
-  "model": "cuedmembers.division",
-  "pk": "D",
-  "fields": {
-    "name": "Civil Engineering"
-  }
-},
-{
-  "model": "cuedmembers.division",
-  "pk": "E",
-  "fields": {
-    "name": "Manufacturing and Management"
-  }
-},
-{
-  "model": "cuedmembers.division",
-  "pk": "F",
-  "fields": {
-    "name": "Information Engineering"
-  }
-}
+    {
+        "model": "cuedmembers.division",
+        "pk": "A",
+        "fields": {
+            "name": "Energy, Fluids and Turbomachinery"
+        }
+    },
+    {
+        "model": "cuedmembers.division",
+        "pk": "B",
+        "fields": {
+            "name": "Electrical Engineering"
+        }
+    },
+    {
+        "model": "cuedmembers.division",
+        "pk": "C",
+        "fields": {
+            "name": "Mechanics, Materials and Design"
+        }
+    },
+    {
+        "model": "cuedmembers.division",
+        "pk": "D",
+        "fields": {
+            "name": "Civil Engineering"
+        }
+    },
+    {
+        "model": "cuedmembers.division",
+        "pk": "E",
+        "fields": {
+            "name": "Manufacturing and Management"
+        }
+    },
+    {
+        "model": "cuedmembers.division",
+        "pk": "F",
+        "fields": {
+            "name": "Information Engineering"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 1,
+        "fields": {
+            "division": "B",
+            "name": "Solid State Electronics and Nanoscale Science"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 2,
+        "fields": {
+            "division": "F",
+            "name": "Computational and Biological Learning"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 3,
+        "fields": {
+            "division": "C",
+            "name": "Applied Mechanics"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 4,
+        "fields": {
+            "division": "E",
+            "name": "Manufacturing Systems"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 5,
+        "fields": {
+            "division": "E",
+            "name": "Production Processes"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 6,
+        "fields": {
+            "division": "F",
+            "name": "Machine Intelligence"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 7,
+        "fields": {
+            "division": "B",
+            "name": "Electronics, Power and Energy Conversion"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 8,
+        "fields": {
+            "division": "F",
+            "name": "Signal Processing and Communications"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 9,
+        "fields": {
+            "division": "D",
+            "name": "Structures"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 10,
+        "fields": {
+            "division": "A",
+            "name": "Energy"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 11,
+        "fields": {
+            "division": "D",
+            "name": "Sustainable Development"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 12,
+        "fields": {
+            "division": "E",
+            "name": "Technology Management"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 13,
+        "fields": {
+            "division": "C",
+            "name": "Engineering Design"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 14,
+        "fields": {
+            "division": "D",
+            "name": "Geotechnical and Environmental"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 15,
+        "fields": {
+            "division": "B",
+            "name": "Photonics"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 16,
+        "fields": {
+            "division": "A",
+            "name": "Turbomachinery"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 17,
+        "fields": {
+            "division": "A",
+            "name": "Fluid Mechanics"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 18,
+        "fields": {
+            "division": "F",
+            "name": "Control"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 19,
+        "fields": {
+            "division": "E",
+            "name": "Strategy and Policy"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 20,
+        "fields": {
+            "division": "D",
+            "name": "Construction Engineering"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 21,
+        "fields": {
+            "division": "C",
+            "name": "Materials Engineering"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 22,
+        "fields": {
+            "division": "C",
+            "name": "Biomechanics"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 23,
+        "fields": {
+            "division": "E",
+            "name": "International Manufacturing"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 24,
+        "fields": {
+            "division": "E",
+            "name": "Distributed Information and Automation Laboratory"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 25,
+        "fields": {
+            "division": "E",
+            "name": "IfM ECS Ltd"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 26,
+        "fields": {
+            "division": "D",
+            "name": "Applied Mechanics"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 27,
+        "fields": {
+            "division": "C",
+            "name": "International Manufacturing"
+        }
+    },
+    {
+        "model": "cuedmembers.researchgroup",
+        "pk": 28,
+        "fields": {
+            "division": "E",
+            "name": "Strategy and Performance"
+        }
+    }
 ]
