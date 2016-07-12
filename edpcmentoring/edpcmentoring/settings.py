@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'projectlight',
     'training',
 
+    'autonag',
     'frontend',
 ]
 
