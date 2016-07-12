@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.contrib.auth.models import Permission, User
 from django.core.exceptions import ValidationError
 from django.test import TestCase
+from mentoring.models import Relationship
 from cuedmembers.models import Member
 
 from .models import Preferences, Invitation
@@ -91,14 +92,6 @@ class InvitationTestCase(TestCase):
         self.assertIs(invite.mentor_response, '')
         self.assertIs(invite.mentee_response, Invitation.ACCEPT)
 
-    def test_deactivated_invite_records_time(self):
-        invite = Invitation(mentor=self.users[0], mentee=self.users[1],
-                            created_by=self.users[1])
-        invite.is_active = False
-        self.assertIsNone(invite.deactivated_on)
-        invite.full_clean()
-        self.assertIsNotNone(invite.deactivated_on)
-
     def test_is_accepted_1(self):
         invite = Invitation(mentor=self.users[0], mentee=self.users[1],
                             created_by=self.users[1])
@@ -114,3 +107,54 @@ class InvitationTestCase(TestCase):
         assert not invite.is_accepted()
         invite.mentee_response = Invitation.ACCEPT
         assert invite.is_accepted()
+
+    def test_creates_relationship(self):
+        invite = Invitation(mentor=self.users[0], mentee=self.users[1],
+                            created_by=self.users[0])
+        invite.mentee_response = Invitation.ACCEPT
+        invite.full_clean()
+
+        n_relationships = Relationship.objects.filter(
+            mentor=invite.mentor, mentee=invite.mentee).count()
+        self.assertEqual(n_relationships, 0)
+        self.assertTrue(invite.is_active())
+        invite.save()
+        n_relationships = Relationship.objects.filter(
+            mentor=invite.mentor, mentee=invite.mentee).count()
+        self.assertEqual(n_relationships, 1)
+        self.assertFalse(invite.is_active())
+
+    def test_needs_acceptance_to_create(self):
+        invite = Invitation(mentor=self.users[0], mentee=self.users[1],
+                            created_by=self.users[0])
+        invite.full_clean()
+
+        n_relationships = Relationship.objects.filter(
+            mentor=invite.mentor, mentee=invite.mentee).count()
+        self.assertEqual(n_relationships, 0)
+        self.assertTrue(invite.is_active())
+        invite.save()
+        n_relationships = Relationship.objects.filter(
+            mentor=invite.mentor, mentee=invite.mentee).count()
+        self.assertEqual(n_relationships, 0)
+        self.assertTrue(invite.is_active())
+
+    def test_deactivate(self):
+        invite = Invitation(mentor=self.users[0], mentee=self.users[1],
+                            created_by=self.users[0])
+        invite.full_clean()
+        self.assertTrue(invite.is_active())
+        invite.deactivate()
+        self.assertFalse(invite.is_active())
+
+    def test_deactivate_does_not_create_relationship(self):
+        invite = Invitation(mentor=self.users[0], mentee=self.users[1],
+                            created_by=self.users[0])
+        invite.full_clean()
+        self.assertTrue(invite.is_active())
+        invite.deactivate()
+        invite.save()
+        self.assertFalse(invite.is_active())
+        n_relationships = Relationship.objects.filter(
+            mentor=invite.mentor, mentee=invite.mentee).count()
+        self.assertEqual(n_relationships, 0)

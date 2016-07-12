@@ -2,6 +2,8 @@ from annoying.fields import AutoOneToOneField
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from django.utils.timezone import now
 from mentoring.models import Relationship
 
@@ -76,9 +78,6 @@ class Invitation(models.Model):
     mentee_response = models.CharField(max_length=1, choices=RESPONSES,
                                        blank=True)
 
-    #: Is this invite "active"
-    is_active = models.BooleanField(default=True)
-
     #: If inactive, when did this invite become so
     deactivated_on = models.DateField(blank=True, null=True)
 
@@ -86,6 +85,16 @@ class Invitation(models.Model):
     created_relationship = models.ForeignKey(
         Relationship, blank=True, null=True,
         related_name='started_by_invitations')
+
+    def deactivate(self):
+        """
+        Deactivate this invite without creating a relationship.
+
+        Does nothing if the invite is already deactivated.
+
+        """
+        if self.deactivated_on is None:
+            self.deactivated_on = now()
 
     def clean(self):
         """
@@ -111,10 +120,6 @@ class Invitation(models.Model):
         if creator_is_mentee:
             self.mentee_response = Invitation.ACCEPT
 
-        # If the invite is not active and there's no deactivation date, use now
-        if not self.is_active and self.deactivated_on is None:
-            self.deactivated_on = now()
-
         # defer to base class
         return super(Invitation, self).clean()
 
@@ -126,3 +131,34 @@ class Invitation(models.Model):
         mentor_accepted = self.mentor_response == Invitation.ACCEPT
         mentee_accepted = self.mentee_response == Invitation.ACCEPT
         return mentor_accepted and mentee_accepted
+
+    def is_active(self):
+        """Returns `True` iff the invite is active (i.e. the "deactivated_on"
+        date is blank).
+
+        """
+        return self.deactivated_on is None
+
+@receiver(pre_save, sender=Invitation, dispatch_uid='invitation_relationships')
+def invitation_create_relationships(instance, **_):
+    """
+    A pre-save hook for Invitation instances which creates a mentoring
+    relationship if:
+
+    * The invitation is accepted
+    * The invitation is active
+    * There is no current relationship
+
+    """
+    # Invites must be active and accepted
+    if not instance.is_active() or not instance.is_accepted():
+        return
+
+    # Invites must not have an existing relationship
+    if instance.created_relationship is not None:
+        return
+
+    # OK, create the relationship and de-activate the invite
+    instance.created_relationship = Relationship.objects.create(
+        mentor=instance.mentor, mentee=instance.mentee)
+    instance.deactivated_on = now()
