@@ -24,6 +24,15 @@ class Preferences(models.Model):
     mentor_requirements = models.TextField(blank=True)
     mentee_requirements = models.TextField(blank=True)
 
+class InvitationManager(models.Manager):
+    """
+    Model manager for :py:class:`.Invitation` model.
+
+    """
+    def active(self):
+        """Return a query set giving only the active invitations."""
+        return self.filter(deactivated_on__isnull=True)
+
 class Invitation(models.Model):
     """
     An invitation to form a mentoring relationship.
@@ -54,6 +63,8 @@ class Invitation(models.Model):
     """
     ACCEPT = 'A'
     DECLINE = 'D'
+
+    objects = InvitationManager()
 
     #: The possible responses to an invitation.
     RESPONSES = ((ACCEPT, 'Accept'), (DECLINE, 'Decline'))
