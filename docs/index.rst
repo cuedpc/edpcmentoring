@@ -6,4 +6,5 @@ EDPC Mentoing Scheme Database
 
     quickstart
     mentoring
+    matchmaking
     cuedmembers
