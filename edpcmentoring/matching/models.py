@@ -117,3 +117,12 @@ class Invitation(models.Model):
 
         # defer to base class
         return super(Invitation, self).clean()
+
+    def is_accepted(self):
+        """Returns `True` iff both the mentee and mentor have accepted the
+        invite.
+
+        """
+        mentor_accepted = self.mentor_response == Invitation.ACCEPT
+        mentee_accepted = self.mentee_response == Invitation.ACCEPT
+        return mentor_accepted and mentee_accepted

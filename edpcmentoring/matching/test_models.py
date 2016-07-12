@@ -98,3 +98,19 @@ class InvitationTestCase(TestCase):
         self.assertIsNone(invite.deactivated_on)
         invite.full_clean()
         self.assertIsNotNone(invite.deactivated_on)
+
+    def test_is_accepted_1(self):
+        invite = Invitation(mentor=self.users[0], mentee=self.users[1],
+                            created_by=self.users[1])
+        invite.full_clean()
+        assert not invite.is_accepted()
+        invite.mentor_response = Invitation.ACCEPT
+        assert invite.is_accepted()
+
+    def test_is_accepted_2(self):
+        invite = Invitation(mentor=self.users[0], mentee=self.users[1],
+                            created_by=self.users[0])
+        invite.full_clean()
+        assert not invite.is_accepted()
+        invite.mentee_response = Invitation.ACCEPT
+        assert invite.is_accepted()
