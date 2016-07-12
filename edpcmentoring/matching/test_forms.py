@@ -1,5 +1,3 @@
-import logging
-
 from django.contrib.auth.models import Permission, User
 from django.test import TestCase
 
