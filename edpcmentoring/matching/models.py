@@ -98,5 +98,12 @@ class Invitation(models.Model):
         if not creator_is_matchmaker and not creator_is_mentor_or_mentee:
             raise ValidationError('Creator must be one of the mentor or mentee')
 
+        # If the creator is one of mentor or mentee, they are assumed to have
+        # accepted the invite
+        if creator_is_mentor:
+            self.mentor_response = Invitation.ACCEPT
+        if creator_is_mentee:
+            self.mentee_response = Invitation.ACCEPT
+
         # defer to base class
         return super(Invitation, self).clean()
