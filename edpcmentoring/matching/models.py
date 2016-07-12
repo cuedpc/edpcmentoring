@@ -1,6 +1,6 @@
 from annoying.fields import AutoOneToOneField
 from django.conf import settings
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, PermissionDenied
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
@@ -85,6 +85,24 @@ class Invitation(models.Model):
     created_relationship = models.ForeignKey(
         Relationship, blank=True, null=True,
         related_name='started_by_invitations')
+
+    def respond(self, user, accepted):
+        """
+        Set the response of the specified user. If the user is neither the
+        mentor or mentee then a PermissionDenied exception is raised.
+
+        """
+        response = Invitation.ACCEPT if accepted else Invitation.DECLINE
+        if user.id == self.mentor.id:
+            self.mentor_response = response
+        elif user.id == self.mentee.id:
+            self.mentee_response = response
+        else:
+            raise PermissionDenied('User is neither mentor or mentee')
+
+        # Either mentor or mentee declining deactivates the invite
+        if not accepted:
+            self.deactivate()
 
     def deactivate(self):
         """

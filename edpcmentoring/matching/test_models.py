@@ -158,3 +158,43 @@ class InvitationTestCase(TestCase):
         n_relationships = Relationship.objects.filter(
             mentor=invite.mentor, mentee=invite.mentee).count()
         self.assertEqual(n_relationships, 0)
+
+    def test_mentee_respond_decline(self):
+        invite = Invitation(mentor=self.users[0], mentee=self.users[1],
+                            created_by=self.users[0])
+        self.assertTrue(invite.is_active())
+        invite.full_clean()
+        invite.respond(invite.mentee, False)
+        invite.save()
+        self.assertFalse(invite.is_active())
+        self.assertFalse(invite.is_accepted())
+
+    def test_mentor_respond_decline(self):
+        invite = Invitation(mentor=self.users[0], mentee=self.users[1],
+                            created_by=self.users[1])
+        self.assertTrue(invite.is_active())
+        invite.full_clean()
+        invite.respond(invite.mentor, False)
+        invite.save()
+        self.assertFalse(invite.is_active())
+        self.assertFalse(invite.is_accepted())
+
+    def test_mentee_respond_accept(self):
+        invite = Invitation(mentor=self.users[0], mentee=self.users[1],
+                            created_by=self.users[0])
+        self.assertTrue(invite.is_active())
+        invite.full_clean()
+        invite.respond(invite.mentee, True)
+        invite.save()
+        self.assertFalse(invite.is_active())
+        self.assertTrue(invite.is_accepted())
+
+    def test_mentor_respond_accept(self):
+        invite = Invitation(mentor=self.users[0], mentee=self.users[1],
+                            created_by=self.users[1])
+        self.assertTrue(invite.is_active())
+        invite.full_clean()
+        invite.respond(invite.mentor, True)
+        invite.save()
+        self.assertFalse(invite.is_active())
+        self.assertTrue(invite.is_accepted())
