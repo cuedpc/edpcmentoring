@@ -38,45 +38,50 @@ class Invitation(models.Model):
 
     An "active" invite is one which is not expired and is still awaiting a
     response from the mentor or mentee. An invitation which is declined by
-    either mentor or mentee is marked as inactive even if the other party has
-    not responded. The :py:attr:`.deactivated_on` date records when this invite
-    became inactive either through being declined by one party or accepted by
-    both.
+    either mentor or mentee should be marked as inactive even if the other party
+    has not responded.
+
+    The :py:attr:`.deactivated_on` date records when this invite became inactive
+    either through being declined by one party, accepted by both or manually
+    deactivated.
 
     Should the invite result in a new relationship, this is recorded in the
     :py:attr:`.created_relationship` field.
 
-    .. attribute:: mentor
-
-        The user who is to be the mentor.
-
-    .. attribute:: mentee
-
-        The user who is to be the mentee.
-
     """
-    # The possible responses to an invitation.
     ACCEPT = 'A'
     DECLINE = 'D'
+
+    #: The possible responses to an invitation.
     RESPONSES = ((ACCEPT, 'Accept'), (DECLINE, 'Decline'))
 
+    #: The proposed mentor for this relationship
     mentor = models.ForeignKey(settings.AUTH_USER_MODEL,
                                related_name='mentor_invitations')
+    #: The proposed mentee for this relationship
     mentee = models.ForeignKey(settings.AUTH_USER_MODEL,
                                related_name='mentee_invitations')
 
+    #: The User who created this invitation
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name='created_invitations')
+    #: The date this invitation was created
     created_on = models.DateField(auto_now_add=True)
 
+    #: The response from the mentor to the invite
     mentor_response = models.CharField(max_length=1, choices=RESPONSES,
                                        blank=True)
+    #: The response from the mentee to the invite
     mentee_response = models.CharField(max_length=1, choices=RESPONSES,
                                        blank=True)
 
+    #: Is this invite "active"
     is_active = models.BooleanField(default=True)
+
+    #: If inactive, when did this invite become so
     deactivated_on = models.DateField(blank=True, null=True)
 
+    #: If this invite lead to a mentoring relationship, it is recorded here
     created_relationship = models.ForeignKey(
         Relationship, blank=True, null=True,
         related_name='started_by_invitations')
