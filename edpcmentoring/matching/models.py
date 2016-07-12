@@ -2,6 +2,7 @@ from annoying.fields import AutoOneToOneField
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.timezone import now
 from mentoring.models import Relationship
 
 class Preferences(models.Model):
@@ -109,6 +110,10 @@ class Invitation(models.Model):
             self.mentor_response = Invitation.ACCEPT
         if creator_is_mentee:
             self.mentee_response = Invitation.ACCEPT
+
+        # If the invite is not active and there's no deactivation date, use now
+        if not self.is_active and self.deactivated_on is None:
+            self.deactivated_on = now()
 
         # defer to base class
         return super(Invitation, self).clean()

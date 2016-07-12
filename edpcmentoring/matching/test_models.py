@@ -90,3 +90,11 @@ class InvitationTestCase(TestCase):
         invite.full_clean()
         self.assertIs(invite.mentor_response, '')
         self.assertIs(invite.mentee_response, Invitation.ACCEPT)
+
+    def test_deactivated_invite_records_time(self):
+        invite = Invitation(mentor=self.users[0], mentee=self.users[1],
+                            created_by=self.users[1])
+        invite.is_active = False
+        self.assertIsNone(invite.deactivated_on)
+        invite.full_clean()
+        self.assertIsNotNone(invite.deactivated_on)
