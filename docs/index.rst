@@ -8,3 +8,4 @@ EDPC Mentoing Scheme Database
     mentoring
     matchmaking
     cuedmembers
+    autonag
