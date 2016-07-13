@@ -1,0 +1,6 @@
+[run]
+source=edpcmentoring
+omit=
+	*/tests/*
+	*/migrations/*
+
