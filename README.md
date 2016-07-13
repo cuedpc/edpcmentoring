@@ -7,6 +7,10 @@ Status](https://readthedocs.org/projects/edpcmentoring/badge/?version=latest)](h
 An experimental webapp for administering the [EDPC](http://edpc.eng.cam.ac.uk/)
 mentoring scheme.
 
+This application is in no way feature complete at the moment. We are just
+entering design and implementation phase for core functionality. This is tracked
+in the [MVP](https://github.com/cuedpc/edpcmentoring/milestone/1) milestone.
+
 ## New developers
 
 See the [Getting
