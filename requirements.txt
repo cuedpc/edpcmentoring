@@ -24,3 +24,4 @@ psycopg2
 # Required for the heroku buildpack to install libffi
 cffi
 cryptography
+pinax-notifications
