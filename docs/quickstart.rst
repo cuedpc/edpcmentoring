@@ -71,3 +71,50 @@ Notes on the test database
    are *active*.
 -  Users ``test0100`` to ``test0199`` exist in the database but are not
    CUED members.
+
+Development
+-----------
+
+This section contains some important information if you're thinking of
+developing a feature for the database.
+
+Tests
+'''''
+
+The test suite for the mentoring database is run via the ``tox`` test-runner. If
+you're intending to develop a feature for the database, it is important that you
+write tests. By default, ``tox`` will run tests using whichever Python version
+correspond to the installed ``python`` and ``python3`` binaries.
+
+Install ``tox`` via pip:
+
+.. code:: console
+
+    $ pip install --user tox
+
+You can now run the tests via the ``tox`` command:
+
+.. code:: console
+
+    $ tox
+
+Any positional arguments are passed to the underlying invocation of ``manage.py
+test`` and so you can specify a particular application to test by giving it's
+directory. For example:
+
+.. code:: console
+
+    $ tox edpcmentoring/cuedmembers
+
+Code coverage
+'''''''''''''
+
+The tests are run under the ``coverage`` code-coverage utility and files which
+do not have 100% test coverage are printed out after the tests are run.
+Additionally, a HTML report is generated in ``htmlcov/`` which is useful for
+determining which lines are untested.
+
+Although 100% code coverage is probably infeasible in general, we aim for as
+close as possible in the database. Pull requests which increase test code
+coverage are welcome.
+
