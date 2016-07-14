@@ -1,18 +1,10 @@
 from contextlib import closing
 import csv
 
-# Python 2 does indeed have io.StringIO but it only accepts unicode input which
-# is incompatible with the csv module (yay, unicode!). Work around this by
-# trying to import the old-style StringIO module from Python 2 and, if this
-# fails, try the new-style io.StringIO.
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
-
 import random
 
 from django.test import TestCase
+from django.utils.six import StringIO
 
 from .. import get_member_group
 from ..csv import write_members_to_csv, read_members_from_csv

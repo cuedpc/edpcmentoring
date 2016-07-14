@@ -25,14 +25,11 @@ or https URL to a CSV file located on a remote server.
 from future.standard_library import install_aliases
 install_aliases()
 
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from io import StringIO
 import sys
 from urllib.parse import urlparse
 
 from django.core.management.base import BaseCommand
+from django.utils.six import StringIO
 import requests
 
 from ...csv import read_members_from_csv
