@@ -1,3 +1,4 @@
+import csv
 import os
 import shutil
 import tempfile
@@ -51,6 +52,27 @@ class ImportCUEDMembersTestCase(TemporaryDirectoryTestCase):
         u1 = Member.objects.filter(user__username='test0001').first().user
         self.assertEqual(u1.email, 'test0001@mailinator.com')
 
+class DumpCUEDMembersTestCase(TemporaryDirectoryTestCase):
+    fixtures = ['cuedmembers/test_users_and_members']
+
+    def test_basic_dump(self):
+        outpath = os.path.join(self.tmpdir, 'output.csv')
+        with open(outpath, 'w') as f:
+            call_command('dumpactivecuedmembers', stdout=f)
+
+        with open(outpath) as f:
+            r = csv.reader(f)
+            rows = list(r)
+
+        # strip heading
+        rows = rows[1:]
+
+        self.assertEqual(len(rows), Member.objects.active().count())
+        for row in rows:
+            username = row[0]
+            m = Member.objects.filter(user__username=username).first()
+            self.assertIsNotNone(m)
+            self.assertTrue(m.is_active)
 
 # Two CSV files with different sets of users
 
