@@ -146,13 +146,13 @@ installcmd="whoami; . %s/env/bin/activate; pip install -r %s/requirements_mws3.t
 if is_dev:
    installcmd="%s -r %s/dev-requirements.txt" % (installcmd,filedir_path)
 subprocess_cmd(installcmd);
-print "done"
+print "done\n"
 
 #create the database schema
 print "Creating database tables"
 schemacmd=". %s/env/bin/activate; %s/edpcmentoring/manage.py migrate" % (filedir_path,filedir_path)
 subprocess_cmd(schemacmd)
-print done
+print "done\n"
 
 if is_dev:
    # load the test data
