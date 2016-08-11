@@ -140,7 +140,7 @@ print "done\n"
 
 #install libraries
 print "Installing Python libraries  "
-installcmd="whoami; . %s/env/bin/activate; pip install -r %s/requirements_mws3.txt " % (filedir_path,filedir_path)
+installcmd="%s/env/bin/activate; pip install -r %s/requirements_mws3.txt " % (filedir_path,filedir_path)
 if is_dev:
    installcmd="%s -r %s/dev-requirements.txt" % (installcmd,filedir_path)
 subprocess_cmd(installcmd);
