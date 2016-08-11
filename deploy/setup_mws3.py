@@ -127,7 +127,7 @@ print "done\n"
 
 # Copy the wsgi.mws3 file from the edpcmentoring directory to the docroot
 print "Copying mws3 specific wsgi.py file:   "
-copycmd="%s/edpcmentoring/edpcmentoring/wsgi.py.mws3 %s/../../docroot/wsgi.py" % (filedir_path, filedir_path)
+copycmd="cp %s/edpcmentoring/edpcmentoring/wsgi.py.mws3 %s/../../docroot/wsgi.py" % (filedir_path, filedir_path)
 subprocess_cmd(copycmd);
 print "done\n";
 
