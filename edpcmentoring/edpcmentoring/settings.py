@@ -106,12 +106,12 @@ AUTHENTICATION_BACKENDS = [
 # This is the default file-backed database for testing. Below we also test for
 # the presence of a "DATABASE_URL" environment variable. If present, we use it
 # in preference to the hardcoded version.
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 if 'DATABASE_URL' in os.environ:
     # Update database configuration with $DATABASE_URL.
