@@ -84,6 +84,7 @@ finally:
     f.write( "# This file has been generated using %s \n" % sys.argv[0] )
     f.write( "SECRET_KEY='%s'" % secret_key )
     config = """
+DEBUG = True
 DATABASES = {
         'default' : {
             'ENGINE': 'django.db.backends.mysql',
