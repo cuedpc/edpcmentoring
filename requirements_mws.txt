@@ -1,0 +1,18 @@
+# Requirements for running in production. See dev-requirements.txt for
+# other requirements.
+dj-database-url==0.4.0
+django-annoying
+django-crispy-forms
+django-debug-toolbar
+django-email-log
+django-extensions
+django-filter
+django-tables2
+django-ucamwebauth
+django<1.10
+future
+requests
+whitenoise
+
+# Testing
+mock
