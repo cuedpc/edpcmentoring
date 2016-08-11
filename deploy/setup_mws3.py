@@ -16,7 +16,7 @@ import MySQLdb as mdb
 import sys
 import os
 
-filedir_path = os.path.dirname(os.path.realpath(__file__))
+filedir_path = "%s/.." % os.path.dirname(os.path.realpath(__file__))
 
 # NOTE: A user could provide mangled strings to execute commands as the root mysql user
 #   - but they have the root password anyway!!
