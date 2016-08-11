@@ -80,10 +80,15 @@ finally:
 
     #return the config strings
 
-    f = open("%s/edpcmentoring/edpcmentoring/settings_local.py" % filedir_path, 'w')
-    f.write( "# This file has been generated using %s \n" % sys.argv[0] )
-    f.write( "SECRET_KEY='%s'" % secret_key )
+    f = open("%s/edpcmentoring/edpcmentoring/settings_mws3.py" % filedir_path, 'w')
     config = """
+# This file has been generated using %s
+try:
+    from settings import *
+except ImportError as e:
+    pass
+
+SECRET_KEY='%s'
 DEBUG = True
 DATABASES = {
         'default' : {
@@ -94,7 +99,7 @@ DATABASES = {
             'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
             'PORT': '3306',
         }
-}""" % (dbname, username, password)
+}""" % (sys.argv[0], secret_key, dbname, username, password)
 
     f.write( config )
 
