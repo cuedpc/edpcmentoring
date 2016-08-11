@@ -16,3 +16,5 @@ whitenoise
 
 # Testing
 mock
+
+pinax-notifications
