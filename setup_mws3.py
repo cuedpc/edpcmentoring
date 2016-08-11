@@ -110,7 +110,7 @@ DATABASES = {
 #
 # Next create the .htaccess file and place in the docroot
 print "Generating the .htaccess file:  "
-f = open('../docroot/.htaccess','w')
+f = open("%s/../../docroot/.htaccess" % filepath_dir,'w')
 myhtaccess="""
 AddHandler wsgi-script .py
 Options FollowSymlinks ExecCGI MultiViews Indexes
