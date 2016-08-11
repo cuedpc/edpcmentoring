@@ -20,7 +20,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # allows the development settings to inherit from these without
 # DJANGO_SECRET_KEY having to be set. If run in production with SECRET_KEY set
 # to None, Django will fail to start.
-
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
