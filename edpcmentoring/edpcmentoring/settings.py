@@ -25,7 +25,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # allows the development settings to inherit from these without
 # DJANGO_SECRET_KEY having to be set. If run in production with SECRET_KEY set
 # to None, Django will fail to start.
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+
+try:
+   SECRET_KEY
+except NameError:
+   SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -106,12 +110,15 @@ AUTHENTICATION_BACKENDS = [
 # This is the default file-backed database for testing. Below we also test for
 # the presence of a "DATABASE_URL" environment variable. If present, we use it
 # in preference to the hardcoded version.
-DATABASES = {
+try:
+  DATABASES
+except NameError:
+  DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+          'ENGINE': 'django.db.backends.sqlite3',
+          'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+      }
+  }
 
 if 'DATABASE_URL' in os.environ:
     # Update database configuration with $DATABASE_URL.
