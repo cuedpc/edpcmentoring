@@ -46,7 +46,7 @@ finally:
 
 
 
-print "The following settings can be edited later in the settings_local.py file:"
+print "The following settings can be edited later in the settings_mws3.py file:"
 dbname=""
 while (len(dbname) < 1 or len(dbname) > 9 ):
     dbname = raw_input("Please provide a name for your database: (max length: 9)")
