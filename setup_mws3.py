@@ -83,10 +83,7 @@ finally:
     f = open("%s/edpcmentoring/edpcmentoring/settings_mws3.py" % filedir_path, 'w')
     config = """
 # This file has been generated using %s
-try:
-    from settings import *
-except ImportError as e:
-    pass
+from edpcmentoring.settings import *
 
 SECRET_KEY='%s'
 DEBUG = True
@@ -128,22 +125,17 @@ f.write(myhtaccess);
 f.close()
 print "done\n"
 
-
-from subprocess import call
-
 # Copy the wsgi.mws3 file from the edpcmentoring directory to the docroot
 print "Copying mws3 specific wsgi.py file:   "
-src="%s/edpcmentoring/edpcmentoring/wsgi.py.mws3" % (filedir_path)
-tgt="%s/../../docroot/wsgi.py" % (filedir_path)
-print "cp %s %s " % (src,tgt)
-call(["cp", src, tgt])
+copycmd="%s/edpcmentoring/edpcmentoring/wsgi.py.mws3 %s/../../docroot/wsgi.py" % (filedir_path, filepath_dir)
+subprocess_cmd(copycmd);
 print "done\n";
 
 # install virtualenv into env dir
 print "Generating the Python environment \n"
 print "Virtual environment  "
 virtcmd="virtualenv --system-site-packages -p/usr/bin/python2.7 %s/env" % filedir_path
-call([virtcmd],shell=True)
+subprocess_cmd(virtcmd)
 print "done\n"
 
 #install libraries
@@ -156,14 +148,14 @@ print "done\n"
 
 #create the database schema
 print "Creating database tables"
-schemacmd=". %s/env/bin/activate; %s/edpcmentoring/manage.py migrate" % (filedir_path,filedir_path)
+schemacmd=". %s/env/bin/activate; %s/edpcmentoring/manage.py migrate  --settings=edpcmentoring.settings_mws3" % (filedir_path,filedir_path)
 subprocess_cmd(schemacmd)
 print "done\n"
 
 if is_dev:
    # load the test data
    print "Load database with test data"
-   datacmd=". %s/env/bin/activate; %s/edpcmentoring/manage.py runscript loadtestfixtures " % (filedir_path,filedir_path)
+   datacmd=". %s/env/bin/activate; %s/edpcmentoring/manage.py runscript loadtestfixtures  --settings=edpcmentoring.settings_mws3 " % (filedir_path,filedir_path)
    subprocess_cmd(datacmd)
    print "done"
 
