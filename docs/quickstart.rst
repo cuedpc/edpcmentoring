@@ -61,6 +61,36 @@ Start a local development server:
 Open http://127.0.0.1:8000 in your web browser. The admin interface is at
 http://127.0.0.1:8000/admin.
 
+Installing on UIS MWS3 (https://panel.mws3.csx.cam.ac.uk/)
+----------------------------------------------------------
+
+You will need:
+
+- To register and create an MWS3 server (see link above)
+- The root passwword for mysql server (available once you MWS3 has been setup)
+    
+ssh onto you MWS3 server (putty, linu/unix console)
+
+.. code:: console
+    $ cd /var/www/default/admindir
+    $ git clone https://github.com/cuedpc/edpcmentoring.git
+    $ python edpcmentoring/setup_mws.py
+    
+You will be asked for 
+
+- The server's Mysql root password.
+- A short name which will be prefixed by 'pc_' and used as the database name
+- A password the django applicatomn will use to connect to the Mysql server
+- A unique passphrase, secret key for your application
+- Whether you wish to load the sample test data into the application
+
+Once complete you should be able to visit the mws3's host name and if loade the test data login as test000X.
+
+.. note::
+
+    The local config is held in edpcmentoring/edpcmentoring/edpcmentoring/settings_local.py, and DEBUG is set to True - not advised for production systems. 
+
+
 Notes on the test database
 --------------------------
 
