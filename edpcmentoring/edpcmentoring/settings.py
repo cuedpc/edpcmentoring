@@ -6,11 +6,6 @@ or testing go in the appropriate settings_* modules.
 
 """
 
-try:
-    from settings_local import *
-except ImportError as e:
-    pass
-
 import os
 import dj_database_url
 
@@ -26,16 +21,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # DJANGO_SECRET_KEY having to be set. If run in production with SECRET_KEY set
 # to None, Django will fail to start.
 
-try:
-   SECRET_KEY
-except NameError:
-   SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-try:
-   DEBUG
-except NameError:
-   DEBUG = False
+DEBUG = False
 
 
 # Allow all host headers
@@ -114,15 +103,12 @@ AUTHENTICATION_BACKENDS = [
 # This is the default file-backed database for testing. Below we also test for
 # the presence of a "DATABASE_URL" environment variable. If present, we use it
 # in preference to the hardcoded version.
-try:
-  DATABASES
-except NameError:
-  DATABASES = {
+DATABASES = {
     'default': {
           'ENGINE': 'django.db.backends.sqlite3',
           'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-      }
-  }
+    }
+}
 
 if 'DATABASE_URL' in os.environ:
     # Update database configuration with $DATABASE_URL.
