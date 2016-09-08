@@ -120,7 +120,6 @@ FILTERS_HELP_TEXT_FILTER = False
 # Various security settings
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
-CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = 'DENY'
 
 # These settings require that we are *definitely* being served over HTTP+TLS.
