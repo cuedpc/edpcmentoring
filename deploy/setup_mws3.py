@@ -85,6 +85,10 @@ finally:
 # This file has been generated using %s
 from edpcmentoring.settings import *
 
+MIDDLEWARE_CLASSES += (
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+)
+
 SECRET_KEY='%s'
 DEBUG = True
 DATABASES = {
