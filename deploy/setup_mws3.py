@@ -63,7 +63,7 @@ username="%s_web" % dbname
 
 
 try:
-    con = mdb.connect('localhost', 'root', rootpass, 'test');
+    con = mdb.connect('localhost', 'root', rootpass, '');
     cur = con.cursor()
 
     cur.execute("create database %s " % dbname)
