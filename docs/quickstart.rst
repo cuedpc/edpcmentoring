@@ -75,7 +75,7 @@ ssh onto your MWS3 server (via putty, or a linux/unix console), then:
 
     $ cd /var/www/default/admindir
     $ git clone https://github.com/cuedpc/edpcmentoring.git
-    $ python edpcmentoring/deploy/setup_mws.py
+    $ python edpcmentoring/deploy/setup_mws3.py
     
 You will be asked for 
 
