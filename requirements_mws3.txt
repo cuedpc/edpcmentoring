@@ -13,6 +13,10 @@ django<1.10
 future
 requests
 whitenoise
+djangorestframework
+markdown
+django-angular
+
 
 # Testing
 mock

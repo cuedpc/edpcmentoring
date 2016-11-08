@@ -13,13 +13,16 @@ django<1.10
 future
 requests
 whitenoise
+djangorestframework
+markdown
+django-angular
 
 # Testing
-mock
+#mock
 
 # Heroku
-gunicorn
-psycopg2
+#gunicorn
+#psycopg2
 
 # Required for the heroku buildpack to install libffi
 cffi

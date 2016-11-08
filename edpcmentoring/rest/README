@@ -1,0 +1,5 @@
+
+
+installed angular following: http://django-angular.readthedocs.io/en/latest/installation.html which included editing the settings.py file and running manage.py collectstatic
+
+
