@@ -6,12 +6,11 @@ from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from mentoring.models import Relationship, Meeting
 from matching.models import Preferences, Invitation
-from rest.models import Profile
 
 from rest_framework import viewsets
 from django.views.decorators.csrf import ensure_csrf_cookie
 #from edpcmentoring.rest.serializers import UserSerializer, GroupSerializer
-from serializers import UserSerializer, GroupSerializer, RelationshipSerializer, MeetingSerializer, PreferencesSerializer, InvitationSerializer #, ProfileSerializer
+from serializers import UserSerializer, GroupSerializer, RelationshipSerializer, MeetingSerializer, PreferencesSerializer, InvitationSerializer 
 
 
 class UserViewSet(viewsets.ModelViewSet):
