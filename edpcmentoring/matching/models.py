@@ -6,6 +6,7 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.timezone import now
 from mentoring.models import Relationship
+#from rest.models import Profile 
 
 class Preferences(models.Model):
     """
@@ -19,6 +20,10 @@ class Preferences(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
         related_name='mentorship_preferences',
         primary_key=True)
+#    profile = AutoOneToOneField(
+#        Profile, on_delete=models.CASCADE,
+#        related_name='preferences_profile',
+#        primary_key=True)
     is_seeking_mentor = models.BooleanField(default=False)
     is_seeking_mentee = models.BooleanField(default=False)
     mentor_requirements = models.TextField(blank=True)

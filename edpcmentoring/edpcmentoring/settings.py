@@ -47,12 +47,15 @@ INSTALLED_APPS = [
     'email_log',
     'ucamwebauth',
     'pinax.notifications',
+    'rest_framework',
+    'djng',
 
     'cuedmembers',
     'matching',
     'mentoring',
     'projectlight',
     'training',
+    'rest',
 
     'autonag',
     'frontend',

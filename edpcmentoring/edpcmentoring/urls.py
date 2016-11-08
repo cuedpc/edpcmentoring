@@ -25,6 +25,7 @@ admin.site.login = login_required(admin.site.login)
 app_name = 'mentoring'
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api/', include('rest.urls')),
     url(r'', include('ucamwebauth.urls')),
     url(r'^matching/', include('matching.urls')),
     url(r'^notifications/', include('pinax.notifications.urls')),

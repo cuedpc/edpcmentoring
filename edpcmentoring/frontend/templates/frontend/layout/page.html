@@ -5,6 +5,10 @@
 {% block extrahead %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static "frontend/css/screen.css" %}" />
+<link rel="stylesheet" href="{% static "bower_components/ng-dialog/css/ngDialog.css" %}" />
+<link rel="stylesheet" href="{% static "bower_components/ng-dialog/css/ngDialog-theme-default.css" %}" />
+<script src="{% static "bower_components/angular/angular.min.js" %}" ></script>
+<script src="{% static "bower_components/ng-dialog/js/ngDialog.min.js" %}" ></script>
 {% endblock extrahead %}
 
 {# Remove glbal header and footer #}
@@ -111,3 +115,7 @@
         </div>
     </div>
 {% endblock localfooter %}
+{% block js %}
+<script type="text/javascript" src="{% static "frontend/js/app.js" %}"></script>
+<script type="text/javascript" src="{% static "frontend/js/tooltips.js" %}" ></script>
+{% endblock js %}

@@ -2,98 +2,254 @@
 {% load crispy_forms_tags %}
 {% load frontend_tags %}
 
+
+
+
 {% block maincontent %}
+<div ng-app="EDPCApp">
 
+<div ng-controller="PreferencesFormCtrl" ng-init="edit_mentor_pref=false" ng-cloak>
 <h1>Preferences</h1>
+<p>You 
+<strong ng-click="toggleMentorRequirements()" rel="tooltip" data-tooltip-text="Click to toggle">{$ (me["mentorship_preferences"]["is_seeking_mentor"])? "are" : "are not" $}</strong> seeking a mentor,
+<span ng-show="me['mentorship_preferences']['is_seeking_mentor']" > 
+	<span ng-show="me['mentorship_preferences']['mentor_requirements']" > and have specified the following special requirements for your mentor:
+		<blockquote contenteditable ng-model="me.mentorship_preferences.mentor_requirements" ng-show="me['mentorship_preferences']['is_seeking_mentor'] && me['mentorship_preferences']['mentor_requirements']" >{$  me['mentorship_preferences']['mentor_requirements'] $}</blockquote>
+	</span>
+	<span ng-hide="me['mentorship_preferences']['mentor_requirements']">and have no special requirements for your mentor
+	</span>
+</span>
+</p>
 
 <p>
-You <strong>
-{% if preferences.is_seeking_mentor %}are{% else %}are not{% endif %}
-</strong>
-seeking a mentor.
-You <strong>
-{% if preferences.is_seeking_mentee %}are{% else %}are not{% endif %}
-</strong> willing to take on a new mentee.</p>
-
-{% if preferences.mentor_requirements %}
-<p>You have specified the following special requirements for your
-mentor:</p>
-<blockquote>{{ preferences.mentor_requirements }}</blockquote>
-{% endif %}
-
-{% if preferences.mentee_requirements %}
-<p>You have specified the following special requirements for your
-mentee:</p>
-<blockquote>{{ preferences.mentee_requirements }}</blockquote>
-{% endif %}
+You
+<strong  ng-click="toggleMenteeRequirements()" rel="tooltip" data-tooltip-text="Click to toggle">{$ (me["mentorship_preferences"]["is_seeking_mentee"])? "are" : "are not" $}</strong>
+willing to take on a new mentee,
+<span ng-show="me['mentorship_preferences']['is_seeking_mentee']" > 
+	<span ng-show="me['mentorship_preferences']['mentee_requirements']" > and have specified the following special requirements for your mentor:
+		<blockquote contenteditable ng-model="me.mentorship_preferences.mentee_requirements" ng-show="me['mentorship_preferences']['is_seeking_mentee'] && me['mentorship_preferences']['mentee_requirements']" >{$  me['mentorship_preferences']['mentee_requirements'] $}</blockquote>
+	</span>
+	<span ng-hide="me['mentorship_preferences']['mentee_requirements']" ng-click="me['mentorship_preferences']['mentee_requirements']='Enter requirements'">and have no special requirements for your mentor
+	</span>
+</span>
+</p>
 
 <p>
-    <a href="{% url "edit_mentoring_preferences" %}" class="campl-primary-cta">
-        Change these preferences
-    </a>
-    <br>
     <a href="#" class="campl-icon-link">
         <span class="campl-icon campl-help-icon"></span>
         What do these preferences mean?
     </a>
 </p>
+<!-- </div> pref control -->
 
+
+<!-- <div ng-controller="MentorsFormCtrl"> -->
 <h1>Your mentors</h1>
 
-{% if mentors %}
-    {% member_table mentors %}
+<div ng-show="mymentors.length>0">
 
+<script type="text/ng-template" id="mentor-meeting">
+	<div class="ngdialog-message">
+		<h2>Record a meeting with a {$ meeting_mentor.name $}</h2>
+		<div class="campl-content-container">
+		<form name="mentorMeetingForm">
+<!--			<div  id="div_id_mentor_meeeting_mentor" class="campl-control-group">
+				<label for="id_mentor_meeting_mentor" class="control-label">Mentor:</label>
+				<div class="campl-controls">
+					pre-selected {$ meeting_mentor.relationship $} 
+					<select ng-model="meeting_mentor.relationship" id="id_mentor_meeting_mentor" ng-options="'/api/relationships/'+m.id+'/' as m.mentor.first_name+' '+m.mentor.last_name for m in me.mentee_relationships" required>
+						<option value="" >--Select Mentor--</option>
+					</select>
+				</div>
+			</div>
+-->			<div  id="div_id_mentor_meeeting_date" class="campl-control-group">
+				 <label for="id_mentor_meeting_date" class="control-label">Meeting date:</label>
+				<div class="campl-controls">
+					<input ng-model="meeting_mentor.held_on" class="html5dateinput" type="date" id="id_mentor_meeeting_date" name="mentor_meeeting_date" required/>
+				</div>
+			</div>
+			<div  id="div_id_mentor_meeeting_duration" class="campl-control-group">
+				 <label for="id_mentor_meeting_duration" class="control-label">Duration (minutes):</label>
+				<div class="campl-controls">
+					<input ng-model="meeting_mentor.approximate_duration" id="id_mentor_meeeting_duration" type="text" name="mentor_meeeting_duration" required/>
+				</div>
+			</div>
+
+<!--			<div id="div_id_mentor_meeting_notes" class="campl-control-group">
+				<label for="id_mentor_meeting_notes" class="control-label">Brief meeting notes:</label>
+				<div class="campl-controls">
+					<textarea ng-meeting="meeting_notes" class="campl-input-xlarge textarea" cols="40" rows="5" id="id_mentor_meeting_notes" name="mentor_meeting_notes"></textarea>
+				</div>
+			</div>
+-->			
+		</form>
+		</div>
+	</div>
+	<a href="#" ng-click="close()" class="campl-btn campl-primary-red">Cancel</a>
+	<a ng-show="mentorMeetingForm.$valid" href="#" ng-click="addMentorMeeting(meeting_mentor)" class="campl-btn campl-primary-cta">Add</a>
+ 
+</script>
+
+<script type="text/ng-template" id="rm-mentor">
+	<div class="ngdialog-message">
+		<h2>Stop being {$ relationship.mentor.first_name+" "+relationship.mentor.last_name $}'s mentee</h2>
+		Are you sure?
+	</div>
+</script>
+
+
+
+<table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
+ <thead>
+	<tr>
+	<th>CRSid</th>
+	<th>Name (meetings)</th>
+	<th>Division</th>
+	<th>Research group</th>
+	<th></th>
+	</tr>
+ </thead>
+ <body>
+	<tr ng-repeat="mymentor in mymentors | filter:{is_active: true}">
+	<td>{$ mymentor.mentor.username $}</td>
+ 	<td>{$ mymentor.mentor.first_name $} {$ mymentor.mentor.last_name $} <!-- todo trigger tooltip creation after ng-repeat load --><a href="#"  ng-click="listMeetings(mymentor, mymentor.mentor.first_name+' '+mymentor.mentor.last_name)" rel="tooltip" data-tooltip-text="List meetings" ><strong>({$  mymentor.meetings.length $})</strong></a> / <a href="#" ng-click="recordMentorMeeting(mymentor)">add meeting</a></td>
+ 	<td>{$ mymentor.mentor.cued_member.research_group.division.letter $}</td>
+ 	<td>{$ mymentor.mentor.cued_member.research_group.name $}</td>
+	<td><a href="#" ng-click="removeMentor(mymentor)" class="campl-btn campl-primary-red">End</a></td>
+	</tr>
+ </body>
+</table>
+
+
+<!--    <p>
+        <a ng-click="recordMentorMeeting()" href="#" class="campl-primary-cta">Record a meeting with a mentor</a>
+    </p> 
     <p>
-        <a href="#" class="campl-primary-cta">
-            Record a meeting with a mentor
-        </a>
-    </p>
+        <a href="#" class="campl-secondary-cta">Stop being someone's mentee</a>
+    </p>-->
     <p>
-        <a href="#" class="campl-secondary-cta">
-            Stop being someone's mentee
-        </a>
+        <a href="#" class="campl-primary-cta">Invite someone new to be your mentor</a>
     </p>
-    <p>
-        <a href="#" class="campl-secondary-cta">
-            Invite someone new to be your mentor
-        </a>
-    </p>
-{% else %}
+</div>
+<div ng-hide="mymentors.length>0">
+
     <p>You do not currently have any mentors.</p>
     <p>
         <a href="#" class="campl-primary-cta">
             Invite someone to be your mentor
         </a>
     </p>
-{% endif %}
 
+</div>
+
+
+<!-- </div> end form control (mentor) -->
+
+<!-- <div ng-controller="MenteesFormCtrl"> -->
 <h1>Your mentees</h1>
 
-{% if mentees %}
-    {% member_table mentees %}
+<script type="text/ng-template" id="mentee-meeting">
+	<div class="ngdialog-message">
+		<h2>Record a meeting with a {$meeting_mentee.name $}</h2>
+		<form name="menteeMeetingForm">
+<!--			<div  id="div_id_mentee_meeeting_mentor" class="campl-control-group">
+				<label for="id_mentee_meeting_mentor" class="control-label">Mentee:</label>
+				<div class="campl-controls">
+					<select ng-model="meeting_mentee.relationship" id="id_mentor_meeting_mentor" ng-options="'/api/relationships/'+m.id+'/' as m.mentee.first_name+' '+m.mentee.last_name for m in me.mentor_relationships" required>
+						<option value="" selected="selected">--Select Mentor--</option>
+					</select>
+				</div>
+			</div>-->
+			<div  id="div_id_mentee_meeeting_date" class="campl-control-group">
+				 <label for="id_mentee_meeting_date" class="control-label">Meeting date:</label>
+				<div class="campl-controls">
+					<input  ng-model="meeting_mentee.held_on" class="html5dateinput" type="date" id="id_mentee_meeeting_date" type="text" name="mentee_meeeting_date" required/>
+				</div>
+			</div>
+			<div  id="div_id_mentee_meeeting_duration" class="campl-control-group">
+				 <label for="id_mentee_meeting_duration" class="control-label">Duration (minutes):</label>
+				<div class="campl-controls">
+					<input ng-model="meeting_mentee.approximate_duration" id="id_mentee_meeeting_duration" type="text" name="mentee_meeeting_duration" required/>
+				</div>
+			</div>
 
+			<!--<div id="div_id_mentee_meeting_notes" class="campl-control-group">
+				<label for="id_mentee_meeting_notes" class="control-label">Brief meeting notes:</label>
+				<div class="campl-controls">
+					<textarea class="campl-input-xlarge textarea" cols="40" rows="5" id="id_mentee_meeting_notes" name="mentee_meeting_notes"></textarea>
+				</div>
+			</div>-->
+			
+		</form>
+	</div>
+	<a href="#" ng-click="close()" class="campl-btn campl-primary-red">Cancel</a>
+	<a href="#" ng-show="menteeMeetingForm.$valid" ng-click="addMenteeMeeting(meeting_mentee)" class="campl-btn campl-primary-cta">Add</a>
+ 
+</script>
+
+<script type="text/ng-template" id="meeting-list">
+	<div class="ngdialog-message">
+		<h2>Your recorded meetings with: {$ name $}</h2>
+		<div ng-repeat="meeting in rel.meetings | orderBy: 'held_on':true ">
+			{$ meeting.held_on $} ({$ meeting.approximate_duration $})
+		</div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="rm-mentee">
+	<div class="ngdialog-message">
+		<h2>Stop being {$ relationship.mentee.first_name+" "+relationship.mentee.last_name $}'s Mentor</h2>
+		Are you sure?
+	</div>
+</script>
+
+
+<div ng-show="mymentees.length>0">
+
+<table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
+ <thead>
+	<tr>
+	<th>CRSid</th>
+	<th>Name</th>
+	<th>Division</th>
+	<th>Research group</th>
+	<th></th>
+	</tr>
+ </thead>
+ <body>
+	<tr ng-repeat="mymentee in mymentees | filter:{is_active: true}" >
+	<td>{$ mymentee.mentee.username $}</td>
+ 	<td>{$ mymentee.mentee.first_name $} {$ mymentee.mentee.last_name $} <!-- todo trigger tooltip creation after repeat load --><a href="#" ng-click="listMeetings(mymentee, mymentee.mentee.first_name+' '+mymentee.mentee.last_name)" rel="tooltip" data-tooltip-text="List meetings" ><strong>({$  mymentee.meetings.length $})</strong></a> / <a href="#" ng-click="recordMenteeMeeting(mymentee)">add meeting</a></td>
+ 	<td>{$ mymentee.mentee.cued_member.research_group.division.letter $}</td>
+ 	<td>{$ mymentee.mentee.cued_member.research_group.name $}</td>
+	<td><a href="#" ng-click="removeMentee(mymentee)" class="campl-btn campl-primary-red">End</a></td>
+	</tr>
+ </body>
+</table>
+
+<!--
     <p>
-        <a href="{% url "report_mentor_meeting" %}" class="campl-primary-cta">
-            Record a meeting with a mentee
-        </a>
+        <a ng-click="recordMenteeMeeting()" href="#" class="campl-primary-cta">Record a meeting with a mentee</a>
     </p>
     <p>
-        <a href="#" class="campl-secondary-cta">
-            Stop being someone's mentor
-        </a>
-    </p>
+        <a href="#" class="campl-secondary-cta">Stop being someone's mentee</a>
+    </p>-->
     <p>
-        <a href="#" class="campl-secondary-cta">
-            Invite someone new to be your mentee
-        </a>
+        <a href="#" class="campl-primary-cta">Invite someone new to be your mentor</a>
     </p>
-{% else %}
-    <p>You do not currently have any mentees.</p>
+</div>
+<div ng-hide="mymentees.length>0">
+
+    <p>You do not currently have any mentors.</p>
     <p>
         <a href="#" class="campl-primary-cta">
-            Invite someone to be your mentee
+            Invite someone to be your mentor
         </a>
     </p>
-{% endif %}
 
+</div>
+
+
+</div>
+</div><!-- end app -->
 {% endblock %}
