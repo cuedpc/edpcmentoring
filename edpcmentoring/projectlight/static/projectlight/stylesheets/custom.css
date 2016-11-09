@@ -1,0 +1,54 @@
+/* red buttons - taken from curl "https://panel.mws3.csx.cam.ac.uk/static/stylesheets/mws.css" */
+
+.campl-primary-red {
+    display: inline-block;
+    background: #D50000; /* url(../images/interface/bg-primary-cta-arrow.png) 100% 50% no-repeat; */
+    color: #fff;
+    padding: 5px 25px 5px 10px;
+    border: 0;
+    text-shadow: none;
+}
+
+.campl-primary-red:link, .campl-primary-red:visited {
+    color: #f8f8f8;
+    background: #D50000; /* url(../images/interface/bg-primary-cta-arrow.png) 100% 50% no-repeat; */
+    border: 0;
+}
+
+.campl-primary-red:focus, .campl-primary-red:hover, .campl-primary-red:active {
+    color: #f8f8f8;
+    background: #770000; /* url(../images/interface/bg-primary-cta-arrow.png) 100% 50% no-repeat; */
+    border: 0;
+    text-decoration: none;
+}
+
+.campl-focus-teaser-red {
+    background: #701010;
+}
+
+.campl-focus-link-red{
+    background-color: #630C0C;
+}
+
+.campl-primary-blue {
+    display: inline-block;
+    background: #0058c7; /* url(../images/interface/bg-primary-cta-arrow.png) 100% 50% no-repeat; */
+    color: #fff;
+    padding: 5px 25px 5px 10px;
+    border: 0;
+    text-shadow: none;
+}
+
+.campl-primary-blue:link, .campl-primary-blue:visited {
+    color: #f8f8f8;
+    background: #0058c7; /* url(../images/interface/bg-primary-cta-arrow.png) 100% 50% no-repeat; */
+    border: 0;
+}
+
+.campl-primary-blue:focus, .campl-primary-blue:hover, .campl-primary-blue:active {
+    color: #f8f8f8;
+    background: rgba(0, 86, 180, 0.69); /* url(../images/interface/bg-primary-cta-arrow.png) 100% 50% no-repeat; */
+    border: 0;
+    text-decoration: none;
+}
+
