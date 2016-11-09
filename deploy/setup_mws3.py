@@ -165,7 +165,7 @@ if is_dev:
 
 #copy the static files into position:
 print "copying static files:"
-copystatic=". %s/env/bin/activate; DJANGO_SETTINGS_MODULE=edpcmentoring.settings_mws3 PYTHONPATH=%s/edpcmentoring/edpcmentoring:%s/edpcmentoring/env/lib/python2.7/site-packages django-admin collectstatic" % (filedir_path,filedir_path)
+copystatic=". %s/env/bin/activate; export DJANGO_SETTINGS_MODULE=edpcmentoring.settings_mws3 export PYTHONPATH=%s/edpcmentoring:%s/edpcmentoring/env/lib/python2.7/site-packages; echo 'yes' | django-admin collectstatic" % (filedir_path,filedir_path,filedir_path)
 subprocess_cmd(copystatic)
 print "done\n"
 
