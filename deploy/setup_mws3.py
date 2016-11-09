@@ -163,6 +163,15 @@ if is_dev:
    subprocess_cmd(datacmd)
    print "done"
 
+#copy the static files into position:
+print "copying static files:"
+copystatic=". %s/env/bin/activate; DJANGO_SETTINGS_MODULE=edpcmentoring.settings_mws3 PYTHONPATH=%s/edpcmentoring/edpcmentoring:%s/edpcmentoring/env/lib/python2.7/site-packages django-admin collectstatic" % (filedir_path,filedir_path)
+subprocess_cmd(copystatic)
+print "done\n"
+
+
+
+
 print "You should now be able to visit your web site! "
 
 
