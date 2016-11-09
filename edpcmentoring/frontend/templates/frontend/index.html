@@ -16,7 +16,7 @@
 	<span ng-show="me['mentorship_preferences']['mentor_requirements']" > and have specified the following special requirements for your mentor:
 		<blockquote contenteditable ng-model="me.mentorship_preferences.mentor_requirements" ng-show="me['mentorship_preferences']['is_seeking_mentor'] && me['mentorship_preferences']['mentor_requirements']" >{$  me['mentorship_preferences']['mentor_requirements'] $}</blockquote>
 	</span>
-	<span ng-hide="me['mentorship_preferences']['mentor_requirements']">and have no special requirements for your mentor
+	<span ng-hide="me['mentorship_preferences']['mentor_requirements']" ng-click="me['mentorship_preferences']['mentor_requirements']='Enter requirements'">and have no special requirements for your mentor
 	</span>
 </span>
 </p>
