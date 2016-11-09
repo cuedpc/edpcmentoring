@@ -11,8 +11,8 @@ def relationship_post_save_handler(created, instance, **_):
     if not created or not instance.is_active:
         return
 
-    send([instance.mentor], 'new_mentee', {'relationship': instance})
-    send([instance.mentee], 'new_mentor', {'relationship': instance})
+#    send([instance.mentor], 'new_mentee', {'relationship': instance})
+#    send([instance.mentee], 'new_mentor', {'relationship': instance})
 
 def create_notice_types(**_):
     if 'pinax.notifications' in settings.INSTALLED_APPS:
