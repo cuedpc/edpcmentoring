@@ -13,6 +13,7 @@ router.register(r'current_preferences', views.MyPreferencesViewSet, "mypreferenc
 router.register(r'proxy', views.ProxyViewSet, "proxy")
 router.register(r'groups', views.GroupViewSet)
 router.register(r'relationships', views.RelationshipViewSet)
+router.register(r'basicrel', views.BasicRelationshipViewSet)
 #mentee viewset
 router.register(r'mentees', views.MenteeViewSet, 'mentees')
 router.register(r'mentors', views.MentorViewSet, 'mentors')

@@ -10,7 +10,7 @@ from matching.models import Preferences, Invitation
 from rest_framework import viewsets
 from django.views.decorators.csrf import ensure_csrf_cookie
 #from edpcmentoring.rest.serializers import UserSerializer, GroupSerializer
-from serializers import UserSerializer, GroupSerializer, RelationshipSerializer, MeetingSerializer, PreferencesSerializer, InvitationSerializer 
+from serializers import UserSerializer, GroupSerializer, BasicRelationshipSerializer, RelationshipSerializer, MeetingSerializer, PreferencesSerializer, InvitationSerializer 
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -141,6 +141,14 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+class BasicRelationshipViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Relationship.objects.all()
+    serializer_class = BasicRelationshipSerializer
+
 
 
 class RelationshipViewSet(viewsets.ModelViewSet):

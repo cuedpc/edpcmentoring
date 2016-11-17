@@ -206,19 +206,37 @@ app.controller("PreferencesFormCtrl", ['$scope', 'ngDialog', '$http', 'MemberSer
 	}
 }])
 
-app.controller("RmMenteeCtrl",['$scope', 'ngDialog', function($scope,ngDialog){
-	$scope.remove = function(){
-		//we want to end the relationship - update the state and send a message
+app.controller("RmMenteeCtrl",['$scope', '$rootScope', 'ngDialog', 'MemberService', function($scope,$rootScope,ngDialog,MemberService){
+        $scope.closeRel = function(myrel){
+		myrel.is_active=false
+		MemberService.closeRel(myrel).then(function(response){
+			$rootScope.mentees = new Date() //triggers watch
+			ngDialog.close()
+		},function(error){
+			console.log("FIXME: problems removing mentee")
+		})
+
 	}
+
 	$scope.close = function(){
 		ngDialog.close()
 	}
 }])
 
 
-app.controller("RmMentorCtrl",['$scope', 'ngDialog', function($scope,ngDialog){
+app.controller("RmMentorCtrl",['$scope', '$rootScope', 'ngDialog', 'MemberService', function($scope,$rootScope,ngDialog,MemberService){
 	$scope.close = function(){
 		ngDialog.close()
+	}
+        $scope.closeRel = function(myrel){
+		myrel.is_active=false
+		MemberService.closeRel(myrel).then(function(response){
+			$rootScope.mentors = new Date() //triggers watch
+			ngDialog.close()
+		},function(error){
+			console.log("FIXME: problems removing mentor")
+		})
+
 	}
 }])
 
@@ -318,6 +336,15 @@ app.service('MemberService', ['$http','$q',function($http, $q) {
       var defer = $q.defer();
       $http.post("api/meetings/",mymeeting).success(function(resp){
         defer.resolve(resp);
+      }).error( function(err) {
+        defer.reject(err);
+      });
+      return defer.promise;
+    },
+    'closeRel': function(myrel) {
+      var defer = $q.defer();
+      $http.put("api/basicrel/"+myrel.id+"/",myrel).success(function(resp){
+	defer.resolve(resp);
       }).error( function(err) {
         defer.reject(err);
       });

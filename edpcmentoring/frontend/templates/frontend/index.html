@@ -93,7 +93,8 @@ willing to take on a new mentee,
 <script type="text/ng-template" id="rm-mentor">
 	<div class="ngdialog-message">
 		<h2>Stop being {$ relationship.mentor.first_name+" "+relationship.mentor.last_name $}'s mentee</h2>
-		Are you sure?
+		<p>Are you sure?<p/>
+		<a href="#" ng-click="closeRel(relationship)" class="campl-btn campl-primary-red">Yes remove now</a>
 	</div>
 </script>
 
@@ -235,7 +236,7 @@ willing to take on a new mentee,
         <a href="#" class="campl-secondary-cta">Stop being someone's mentee</a>
     </p>-->
     <p>
-        <a href="#" class="campl-primary-cta">Invite someone new to be your mentor</a>
+        <a href="#" class="campl-primary-cta">Invite someone new to be your mentee</a>
     </p>
 </div>
 <div ng-hide="mymentees.length>0">
