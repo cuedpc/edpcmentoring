@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
+from django.db.models import Q #import 'or' for query_set filter 
 
 from django.contrib.auth.models import User, Group
 from mentoring.models import Relationship, Meeting
@@ -10,7 +11,32 @@ from matching.models import Preferences, Invitation
 from rest_framework import viewsets
 from django.views.decorators.csrf import ensure_csrf_cookie
 #from edpcmentoring.rest.serializers import UserSerializer, GroupSerializer
-from serializers import UserSerializer, GroupSerializer, BasicRelationshipSerializer, RelationshipSerializer, MeetingSerializer, PreferencesSerializer, InvitationSerializer 
+from serializers import SeekingSerializer, UserSerializer, GroupSerializer, BasicRelationshipSerializer, RelationshipSerializer, MeetingSerializer, PreferencesSerializer, MyInvitationSerializer, InvitationSerializer 
+
+class SeekingRelationshipViewSet(viewsets.ModelViewSet):
+    """
+    End point to list those members who are seeking either mentor or mentee
+    """
+    
+    serializer_class = SeekingSerializer #change this (somehow) to user!
+    
+    #attempt to filter by seeking type:
+    def get_queryset(self):
+      queryset = Preferences.objects.all()
+      mentor = self.request.query_params.get('mentor', None)
+      mentee = self.request.query_params.get('mentee', None)
+      """  
+      if mentor then is_seeking_mentor set to true
+      """
+      if mentor is not None:
+          queryset = queryset.filter(is_seeking_mentor=True)
+      """
+      if mentee then is_seeking_mentee set to true
+      """
+      if mentee is not None:
+          queryset = queryset.filter(is_seeking_mentee=True)
+
+      return queryset
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -182,6 +208,23 @@ class InvitationViewSet(viewsets.ModelViewSet):
     queryset = Invitation.objects.all()
     serializer_class = InvitationSerializer
 
+class MyInvitationViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint to list the invitations that the current user has been included in
+    The view will split this list into sender / recipient, mentee / mentor
+    """
+    # For simplicity we want to return the mentor and mentee as we end up displaying these in lists (and can avoid a further request)
+    serializer_class = MyInvitationSerializer
+
+    #Attempt to filter the results set
+    def get_queryset(self):
+      """
+      if is_superuser field set then filter by this
+      """
+      queryset = Invitation.objects.all().order_by('-created_on')
+      queryset = queryset.filter(deactivated_on__isnull=True).filter( Q(created_by=self.request.user) | Q(mentee=self.request.user) | Q(mentor=self.request.user))
+
+      return queryset
 
 #class ProfileViewSet(viewsets.ModelViewSet):
 #    """

@@ -42,6 +42,16 @@ willing to take on a new mentee,
 </p>
 <!-- </div> pref control -->
 
+<script type="text/ng-template" id="manage-my-mentee-invites">
+	Your invites: {$ invitations.myMentee.length $}
+	<div ng-repeat="inv in invitations.myMentee">
+		{$ inv.created_on $} {$ inv.mentor.first_name $} {$ inv.mentor.last_name $} 
+		<a ng-click="accept(inv)" href="#" class="campl-primary-cta">Accept</a> / <a ng-click="decline(inv)" href="#" class="campl-primary-red">Decline</a>
+	</div>
+</script>
+
+
+
 
 <!-- <div ng-controller="MentorsFormCtrl"> -->
 <h1>Your mentors</h1>
@@ -99,6 +109,27 @@ willing to take on a new mentee,
 </script>
 
 
+<script type="text/ng-template" id="ls-seeking-mentee">
+	<div class="ngdialog-message">
+		<h2 ng-hide="selected_seeker">Mentors seeking Mentees:</h2>
+		<p ng-hide="selected_seeker">Please select from the list a Mentor to invite.</p>
+		<h2 ng-show="selected_seeker">Request for a Mentor:</h2>
+		
+		<table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
+		<tr ng-click="set_seeker(seeker)" ng-show="!selected_seeker || selected_seeker.user.id == seeker.user.id" ng-repeat="seeker in seekingMentee">
+                     <td>{$ seeker.user.first_name $}</td><td> {$ seeker.user.last_name $}</td><td> {$ seeker.user.cued_member.research_group.name $} ( {$ seeker.user.cued_member.research_group.division.letter $} ) </td><td>		
+		     "{$ seeker.mentee_requirements $}</td>
+		</tr>
+		<tr ng-show="selected_seeker">
+			<td colspan="4" ng-model="message"><textarea>I would like you to be a mentor. </textarea></td>
+		</tr>
+		</table>
+		<a ng-show="selected_seeker" ng-click="selected_seeker=undefined" class="campl-btn campl-primary-red">Choose again</a>
+		<a ng-show="selected_seeker" href="#" ng-click="invite(selected_seeker,message)" class="campl-btn campl-primary-cta">Send Invite</a>
+	</div>
+</script>
+
+
 
 <table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
  <thead>
@@ -129,20 +160,23 @@ willing to take on a new mentee,
         <a href="#" class="campl-secondary-cta">Stop being someone's mentee</a>
     </p>-->
     <p>
-        <a href="#" class="campl-primary-cta">Invite someone new to be your mentor</a>
+        <a href="#" class="campl-primary-cta" ng-click="inviteMentor()">Invite someone new to be your mentor</a>
     </p>
 </div>
 <div ng-hide="mymentors.length>0">
 
     <p>You do not currently have any mentors.</p>
     <p>
-        <a href="#" class="campl-primary-cta">
+        <a href="#" class="campl-primary-cta" ng-click="inviteMentor()">
             Invite someone to be your mentor
         </a>
     </p>
 
 </div>
 
+
+You have sent {$ invitations.forMentor.length $} invitations<br/>
+You have <span ng-show=" invitations.myMentee.length>0 "><a href="#" class="campl-primary-cta" ng-click="manageMyMenteeInvites()"> {$  invitations.myMentee.length $} </a> </span> <span ng-hide="invitations.myMentee.length > 0" >0</span> invitations to be a Mentee
 
 <!-- </div> end form control (mentor) -->
 
@@ -201,6 +235,36 @@ willing to take on a new mentee,
 	<div class="ngdialog-message">
 		<h2>Stop being {$ relationship.mentee.first_name+" "+relationship.mentee.last_name $}'s Mentor</h2>
 		Are you sure?
+		<a href="#" ng-click="closeRel(relationship)" class="campl-btn campl-primary-red">Yes remove now</a>
+	</div>
+</script>
+
+
+<script type="text/ng-template" id="ls-seeking-mentor">
+	<div class="ngdialog-message">
+		<h2 ng-hide="selected_seeker">Mentees seeking Mentors:</h2>
+		<p ng-hide="selected_seeker">Please select from the list a Mentee to invite.</p>
+		<h2 ng-show="selected_seeker">Request as a Mentee:</h2>
+		
+		<table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
+		<tr ng-click="set_seeker(seeker)" ng-show="!selected_seeker || selected_seeker.user.id == seeker.user.id" ng-repeat="seeker in seekingMentor">
+                     <td>{$ seeker.user.first_name $}</td><td> {$ seeker.user.last_name $}</td><td> {$ seeker.user.cued_member.research_group.name $} ( {$ seeker.user.cued_member.research_group.division.letter $} ) </td><td>		
+		     "{$ seeker.mentor_requirements $}</td>
+		</tr>
+		<tr ng-show="selected_seeker">
+			<td colspan="4" ng-model="message"><textarea>I would like to be your mentor. </textarea></td>
+		</tr>
+		</table>
+		<a ng-show="selected_seeker" ng-click="selected_seeker=undefined" class="campl-btn campl-primary-red">Choose again</a>
+		<a ng-show="selected_seeker" href="#" ng-click="invite(selected_seeker,message)" class="campl-btn campl-primary-cta">Send Invite</a>
+	</div>
+</script>
+
+<script type="text/ng-template" id="manage-my-mentor-invites">
+	Your invites: {$ invitations.myMentor.length $}
+	<div ng-repeat="inv in invitations.myMentor">
+		{$ inv.created_on $} {$ inv.mentee.first_name $} {$ inv.mentee.last_name $} 
+		<a ng-click="accept(inv)" href="#" class="campl-primary-cta">Accept</a> / <a ng-click="decline(inv)" href="#" class="campl-primary-red">Decline</a>
 	</div>
 </script>
 
@@ -236,19 +300,22 @@ willing to take on a new mentee,
         <a href="#" class="campl-secondary-cta">Stop being someone's mentee</a>
     </p>-->
     <p>
-        <a href="#" class="campl-primary-cta">Invite someone new to be your mentee</a>
+        <a href="#" class="campl-primary-cta" ng-click="inviteMentee()">Invite someone new to be your mentee</a>
     </p>
 </div>
 <div ng-hide="mymentees.length>0">
 
-    <p>You do not currently have any mentors.</p>
+    <p>You do not currently have any mentees.</p>
     <p>
-        <a href="#" class="campl-primary-cta">
-            Invite someone to be your mentor
+        <a href="#" class="campl-primary-cta" ng-click="inviteMentee()">
+            Invite someone to be your mentee
         </a>
     </p>
 
 </div>
+
+You have sent {$ invitations.forMentee.length $} invitations<br/>
+You have <span ng-show=" invitations.myMentor.length>0 "><a href="#" class="campl-primary-cta" ng-click="manageMyMentorInvites()"> {$  invitations.myMentor.length $} </a> </span> <span ng-hide="invitations.myMentor.length > 0" >0</span> invitations to be a Mentor
 
 
 </div>

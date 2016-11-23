@@ -14,12 +14,14 @@ router.register(r'proxy', views.ProxyViewSet, "proxy")
 router.register(r'groups', views.GroupViewSet)
 router.register(r'relationships', views.RelationshipViewSet)
 router.register(r'basicrel', views.BasicRelationshipViewSet)
+router.register(r'seekrel', views.SeekingRelationshipViewSet,"seekrel")
 #mentee viewset
 router.register(r'mentees', views.MenteeViewSet, 'mentees')
 router.register(r'mentors', views.MentorViewSet, 'mentors')
 router.register(r'meetings', views.MeetingViewSet)
 router.register(r'preferences', views.PreferencesViewSet)
 router.register(r'invitations', views.InvitationViewSet)
+router.register(r'myinvitations', views.MyInvitationViewSet,'myinvitations')
 #router.register(r'profiles', views.ProfileViewSet)
 
 urlpatterns = [
