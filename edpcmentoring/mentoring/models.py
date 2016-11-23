@@ -85,6 +85,16 @@ class Relationship(models.Model):
                                   'both mentor and mentee',
                                   params={'user':str(self.mentor)})
 
+
+    def end(self,user):
+        """
+        End this relationship.
+        
+        """
+        if self.ended_on is None:
+            self.ended_on = now().date()
+	    self.ended_by = user
+
 class Meeting(models.Model):
     """
     Meetings are recorded for a particular relationship.
