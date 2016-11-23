@@ -24,7 +24,7 @@ def index(request):
 
     preferences = request.user.mentorship_preferences
 
-    return render(request, 'frontend/index.html', {
+    return render(request, 'frontend/index_2col.html', {
         'mentees': mentees, 'mentors': mentors,
         'preferences': preferences,
     })
