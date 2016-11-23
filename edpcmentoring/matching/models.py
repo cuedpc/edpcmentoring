@@ -128,7 +128,7 @@ class Invitation(models.Model):
 
         """
         if self.deactivated_on is None:
-            self.deactivated_on = now()
+            self.deactivated_on = now().date()
 
     def clean(self):
         """
@@ -195,4 +195,4 @@ def invitation_create_relationships(instance, **_):
     # OK, create the relationship and de-activate the invite
     instance.created_relationship = Relationship.objects.create(
         mentor=instance.mentor, mentee=instance.mentee)
-    instance.deactivated_on = now()
+    instance.deactivated_on = now().date()
