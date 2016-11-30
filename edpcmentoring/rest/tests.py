@@ -33,7 +33,7 @@ class CheckDenyAccessCase(TestCase):
 
 	#def test_login(self):
 	def setUp(self):
-    		call_command('loaddata', *TEST_FIXTURES)
+		call_command('loaddata', *TEST_FIXTURES)
 		setup_test_environment()
 		users=[]
 		users.append(User.objects.get(username='test0001'))
