@@ -93,7 +93,7 @@ class Relationship(models.Model):
         """
         if self.ended_on is None:
             self.ended_on = now().date()
-	    self.ended_by = user
+            self.ended_by = user
 
 class Meeting(models.Model):
     """
