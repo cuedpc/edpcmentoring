@@ -149,18 +149,17 @@ class MeetingSerializer(serializers.HyperlinkedModelSerializer):
         # get the current authenticated user 
         user = self.context['request'].user
 
-	# create a meeting if (is mentor || mentee || is_superuser )
-	# NB if we passed the relationship object we should be able to identify this straight away!
+        # create a meeting if (is mentor || mentee || is_superuser )
+        # NB if we passed the relationship object we should be able to identify this straight away!
 
-	# TODO Move this criteria soemwhere else
-	rel = validated_data['relationship']	
-	if rel.mentee.id == user.id or rel.mentor.id == user.id or user.is_superuser:
-    		return Meeting.objects.create(**validated_data) # - tests againt useryy
+        # TODO Move this criteria soemwhere else
+        rel = validated_data['relationship']	
+        if rel.mentee.id == user.id or rel.mentor.id == user.id or user.is_superuser:
+           return Meeting.objects.create(**validated_data) # - tests againt useryy
 		
-
 	# or return our error
-	raise serializers.ValidationError("Error creating meeting - invalid user!")
-	return 
+        raise serializers.ValidationError("Error creating meeting - invalid user!")
+        return 
 	
  
 
