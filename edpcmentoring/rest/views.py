@@ -11,7 +11,7 @@ from matching.models import Preferences, Invitation
 from rest_framework import viewsets
 from django.views.decorators.csrf import ensure_csrf_cookie
 #from edpcmentoring.rest.serializers import UserSerializer, GroupSerializer
-from serializers import SeekingSerializer, UserSerializer, GroupSerializer, BasicRelationshipSerializer, RelationshipSerializer, MeetingSerializer, PreferencesSerializer, MyInvitationSerializer, InvitationSerializer 
+from .serializers import SeekingSerializer, UserSerializer, GroupSerializer, BasicRelationshipSerializer, RelationshipSerializer, MeetingSerializer, PreferencesSerializer, MyInvitationSerializer, InvitationSerializer 
 
 # local permission
 from rest.permissions import IsUser, IsMentorMenteeORSuper
