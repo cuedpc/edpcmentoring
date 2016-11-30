@@ -106,15 +106,63 @@ class BasicRelationshipSerializer(serializers.HyperlinkedModelSerializer):
     #mentee = MenteeSerializer(many=False)
     class Meta:
         model = Relationship
+ 
         fields = ('id', 'started_on', 'ended_on', 'ended_by', 'is_active')
 
 
+#class PKUserSerializer(serializers.HyperlinkedModelSerializer):
+#    '''
+#	Serialize all the associated fields with primary key serializers
+#    '''
+#
+#    mentorship_preferences = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
+#    mentee_invitations = serializers.PrimaryKeyRelatedField(many=True, read_only=True) 
+#    mentor_invitations = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+#    mentee_relationships =  serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+#    mentor_relationships = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+#    cued_member = serializers.PrimaryKeyRelatedField(many=False, read_only=True) 
+#
+#    class Meta:
+#        model = User
+#        fields = ('id','is_superuser','url', 'username', 'first_name', 'last_name', 'email', 'cued_member', 'groups','mentorship_preferences','mentee_invitations','mentor_invitations','mentee_relationships','mentor_relationships')
+#
+
 
 class MeetingSerializer(serializers.HyperlinkedModelSerializer):
+    
     class Meta:
         model = Meeting
         fields =('relationship', 'held_on', 'approximate_duration')
 
+    # TODO given a meeting and the current user
+    # Find whether the current user is one of the mentor or mentee in the relationship
+    # options:
+    #     a, Create a meeting object and test from it whether this is the case?
+    #	  b, retrieve the relatioship and check that the current user is either mentor / mentee
+
+
+    def create(self, validated_data):
+        # TODO check whether a mentee or mentor is provided (perhaps both) - where are django policies?
+	# WE could put this in a permission policy but perhaps more obvious here
+        # Only allow create if request.user is mentee or mentor
+       
+        # get the current authenticated user 
+        user = self.context['request'].user
+
+	# create a meeting if (is mentor || mentee || is_superuser )
+	# NB if we passed the relationship object we should be able to identify this straight away!
+
+	# TODO Move this criteria soemwhere else
+	rel = validated_data['relationship']	
+	if rel.mentee.id == user.id or rel.mentor.id == user.id or user.is_superuser:
+    		return Meeting.objects.create(**validated_data) # - tests againt useryy
+		
+
+	# or return our error
+	raise serializers.ValidationError("Error creating meeting - invalid user!")
+	return 
+	
+ 
 
 class RelationshipSerializer(serializers.HyperlinkedModelSerializer):
     meetings = MeetingSerializer(many=True)
@@ -166,20 +214,49 @@ class InvitationSerializer(serializers.HyperlinkedModelSerializer):
 	'''
 	
         user = self.context['request'].user
-        if (    validated_data.get('mentor_response') == 'A' or  validated_data.get('mentee_response') == 'A'  ):
-		instance.respond(user, True) 
-        if (  validated_data.get('mentor_response') == 'D' or   validated_data.get('mentee_response') == 'D'  ):
-		instance.respond(user, False)
 
-	#instance.mentor_response = validated_data.get('mentor_response',instance.mentor_response)
-	#instance.mentee_response = validated_data.get('mentee_response',instance.mentee_response)
-	#TODO if the response deactivates the invitaton this is to be done in the model 
-	#instance.deactivated_on = validated_data.get('deactivated_on',instance.deactivated_on)
-	#TODO if the response produces a relationship this is to be triggered in the model
-	#instance.created_relationship = validated_data.get('mentee_response',instance.created_relationship)
 
-	instance.save()
-	return instance
+	# TODO Move this validation soemwhere else - allow update it mentor/mentee is responding or is_superuser
+        # we are acting on an object so could use permissions.py and add a permission to view
+	#rel = validated_data['relationship']	
+	#rel = instance.relationship
+	mentor_response=validated_data.get('mentor_response')
+	mentee_response=validated_data.get('mentee_response')
+
+#	if (  user.is_superuser or
+#	    (( mentor_response == 'A' or  mentor_response == 'D' ) and user == instance.mentor) or
+#	    (( mentee_response == 'A' or  mentee_response == 'D' ) and user == instance.mentee) ):
+
+#	if 1==1:		
+#        	if (    mentor_response == 'A' or  mentee_response == 'A'  ):
+#			instance.respond(user, True) 
+#        	if (    mentor_response == 'D' or  mentee_response == 'D'  ):
+#			instance.respond(user, False)
+
+
+	if (  user.is_superuser or
+	    (( validated_data.get('mentor_response') == 'A' or  validated_data.get('mentor_response') == 'D' ) and user == instance.mentor) or
+	    (( validated_data.get('mentee_response') == 'A' or  validated_data.get('mentee_response') == 'D' ) and user == instance.mentee) ):
+		
+        	if (    validated_data.get('mentor_response') == 'A' or  validated_data.get('mentee_response') == 'A'  ):
+			instance.respond(user, True) 
+        	if (  validated_data.get('mentor_response') == 'D' or   validated_data.get('mentee_response') == 'D'  ):
+			instance.respond(user, False)
+
+		#instance.mentor_response = validated_data.get('mentor_response',instance.mentor_response)
+		#instance.mentee_response = validated_data.get('mentee_response',instance.mentee_response)
+		#TODO if the response deactivates the invitaton this is to be done in the model 
+		#instance.deactivated_on = validated_data.get('deactivated_on',instance.deactivated_on)
+		#TODO if the response produces a relationship this is to be triggered in the model
+		#instance.created_relationship = validated_data.get('mentee_response',instance.created_relationship)
+
+		instance.save()
+		return instance
+
+	# or return our error
+	raise serializers.ValidationError("Error creating meeting - invalid user!")
+	return 
+	
 
     def create(self, validated_data):
         # TODO check whether a mentee or mentor is provided (perhaps both) - where are django policies?

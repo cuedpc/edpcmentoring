@@ -13,7 +13,15 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 #from edpcmentoring.rest.serializers import UserSerializer, GroupSerializer
 from serializers import SeekingSerializer, UserSerializer, GroupSerializer, BasicRelationshipSerializer, RelationshipSerializer, MeetingSerializer, PreferencesSerializer, MyInvitationSerializer, InvitationSerializer 
 
-class SeekingRelationshipViewSet(viewsets.ModelViewSet):
+# local permission
+from rest.permissions import IsUser, IsMentorMenteeORSuper
+
+# To choose actions for viewset
+from rest_framework import viewsets, mixins
+
+class SeekingRelationshipViewSet(mixins.RetrieveModelMixin, 
+                   mixins.ListModelMixin,
+                   viewsets.GenericViewSet):
     """
     End point to list those members who are seeking either mentor or mentee
     """
@@ -43,6 +51,10 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
+
+    # only allow user to see this view TODO extend to IsUserOrManager
+    permission_classes = (IsUser,)
+
     #queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
 
@@ -132,7 +144,10 @@ class MyPreferencesViewSet(viewsets.ModelViewSet):
       return queryset
 
 
-class MenteeViewSet(viewsets.ModelViewSet):
+class MenteeViewSet(mixins.RetrieveModelMixin, 
+                   mixins.ListModelMixin,
+                   viewsets.GenericViewSet):
+
     """
     View the relationship where the current user is the Mentor
     """
@@ -143,11 +158,14 @@ class MenteeViewSet(viewsets.ModelViewSet):
       Filter the realtionships
       """
       queryset = Relationship.objects.all()
-      queryset = queryset.filter(mentor=self.request.user)
+      queryset = queryset.filter(mentor=self.request.user,is_active=True)
       return queryset
 
 
-class MentorViewSet(viewsets.ModelViewSet):
+class MentorViewSet(mixins.RetrieveModelMixin, 
+                   mixins.ListModelMixin,
+                   viewsets.GenericViewSet):
+
     """
     View the relationship where the current user is the Mentor
     """
@@ -158,7 +176,7 @@ class MentorViewSet(viewsets.ModelViewSet):
       Filter the realtionships
       """
       queryset = Relationship.objects.all()
-      queryset = queryset.filter(mentee=self.request.user)
+      queryset = queryset.filter(mentee=self.request.user,is_active=True)
       return queryset
 
 class GroupViewSet(viewsets.ModelViewSet):
@@ -168,10 +186,18 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
-class BasicRelationshipViewSet(viewsets.ModelViewSet):
+#class BasicRelationshipViewSet(viewsets.ModelViewSet):
+class BasicRelationshipViewSet(mixins.CreateModelMixin, 
+                   mixins.RetrieveModelMixin, 
+                   mixins.UpdateModelMixin,
+#                   mixins.DestroyModelMixin, do not allow destroy
+                   mixins.ListModelMixin,
+                   viewsets.GenericViewSet):
+
     """
-    API endpoint that allows groups to be viewed or edited.
+    API endpoint that allows relationships to be viewed or edited.
     """
+    permission_classes = (IsMentorMenteeORSuper,)
     queryset = Relationship.objects.all()
     serializer_class = BasicRelationshipSerializer
 
@@ -185,10 +211,18 @@ class RelationshipViewSet(viewsets.ModelViewSet):
     serializer_class = RelationshipSerializer
 
 
-class MeetingViewSet(viewsets.ModelViewSet):
+class MeetingViewSet(mixins.CreateModelMixin, 
+                   mixins.ListModelMixin,
+                   viewsets.GenericViewSet):
     """
     API endpoint that allows Meetings to be viewed or edited.
     """
+    # There is no object on post so a specific has permission needs to 
+    # check the incoming form to check that user is one of mentor/mentee
+    # or we can do that in here (more obvious)
+
+#   This works at object level and when posting we are not operating on an object
+#    permission_classes = (IsMentorMenteeORSuper,)
     queryset = Meeting.objects.all()
     serializer_class = MeetingSerializer
 
@@ -208,7 +242,8 @@ class InvitationViewSet(viewsets.ModelViewSet):
     queryset = Invitation.objects.all()
     serializer_class = InvitationSerializer
 
-class MyInvitationViewSet(viewsets.ModelViewSet):
+class MyInvitationViewSet(mixins.ListModelMixin,
+                   	viewsets.GenericViewSet):
     """
     API endpoint to list the invitations that the current user has been included in
     The view will split this list into sender / recipient, mentee / mentor

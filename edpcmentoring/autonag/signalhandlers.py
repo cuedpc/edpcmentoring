@@ -10,9 +10,9 @@ def relationship_post_save_handler(created, instance, **_):
     # Only notify if this is a new *active* relationship
     if not created or not instance.is_active:
         return
-
-#    send([instance.mentor], 'new_mentee', {'relationship': instance})
-#    send([instance.mentee], 'new_mentor', {'relationship': instance})
+# These will be sent via a cron on the autonag 
+    send([instance.mentor], 'new_mentee', {'relationship': instance})
+    send([instance.mentee], 'new_mentor', {'relationship': instance})
 
 def create_notice_types(**_):
     if 'pinax.notifications' in settings.INSTALLED_APPS:
@@ -24,3 +24,4 @@ def create_notice_types(**_):
             'new_mentee', 'New mentee', 'you have a new mentee')
     else:
         print('Skipping creation of NoticeTypes as notification app not found')
+
