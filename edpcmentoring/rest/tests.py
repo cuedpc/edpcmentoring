@@ -129,7 +129,6 @@ class CheckDenyAccessCase(TestCase):
         # create a relationship test0010 - test0011, mentee - mentor
         rel = Relationship.objects.create(mentor=User.objects.get(username='test0010'),mentee=User.objects.get(username='test0011'),is_active=True)
         # what is the id of the relationship we have?
-        print rel.id
 
         #TODO use regular user (test0005 hopefully!) to test that they can not access the relatiomship 
         # log in user:
