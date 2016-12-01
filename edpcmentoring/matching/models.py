@@ -130,6 +130,20 @@ class Invitation(models.Model):
         if self.deactivated_on is None:
             self.deactivated_on = now().date()
 
+    def both_willing(self):
+        """
+        Extra validation checks that both mentor and mentee are willing
+        """
+        
+        mentor_willing = self.mentor.mentorship_preferences.is_seeking_mentee
+        mentee_seeking = self.mentee.mentorship_preferences.is_seeking_mentor
+        if not mentor_willing or not mentee_seeking:
+            raise ValidationError('Mentor '+str(mentor_willing)+' and Mentee '+str(mentee_seeking)+' must be seeking') 
+            return False
+
+        return True 
+
+
     def clean(self):
         """
         Extra validation for invitations.
@@ -146,6 +160,7 @@ class Invitation(models.Model):
         creator_is_mentor_or_mentee = creator_is_mentor or creator_is_mentee
         if not creator_is_matchmaker and not creator_is_mentor_or_mentee:
             raise ValidationError('Creator must be one of the mentor or mentee')
+ 
 
         # If the creator is one of mentor or mentee, they are assumed to have
         # accepted the invite
@@ -158,7 +173,8 @@ class Invitation(models.Model):
         return super(Invitation, self).clean()
 
     def is_accepted(self):
-        """Returns `True` iff both the mentee and mentor have accepted the
+        """
+        Returns `True` if both the mentee and mentor have accepted the
         invite.
 
         """

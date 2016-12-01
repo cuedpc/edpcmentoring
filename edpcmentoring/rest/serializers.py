@@ -3,6 +3,8 @@ from mentoring.models import Relationship, Meeting
 from matching.models import Preferences, Invitation 
 from cuedmembers.models import Member, ResearchGroup, Division 
 
+from django.core.exceptions import ValidationError, PermissionDenied
+
 from rest_framework import serializers
 
 #include the nested relationships: http://www.django-rest-framework.org/api-guide/relations/#nested-relationships
@@ -11,31 +13,6 @@ class PreferencesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Preferences
         fields = ('is_seeking_mentor','is_seeking_mentee','mentor_requirements','mentee_requirements')
-
-#class InvitationSerializer(serializers.HyperlinkedModelSerializer):
-#
-#    user = MentorSerializer(many=False, read_only=True, required=False); # Fixme 
-#    mentee = MentorSerializer(many=False, read_only=True, required=False); # Fixme 
-#    mentor = MentorSerializer(many=False, read_only=True, required=False); # Fixme 
-#
-#    class Meta:
-#        model = Invitation
-#        fields =('mentor','mentee','created_by','created_on','mentor_response','mentee_response','deactivated_on','created_relationship')
-#
-#    def create(self, validated_data):
-#        # TODO check whether a mentee or mentor is provided (perhaps both) - where are django policies?
-#    # Only allow creation of invitation if current user any of the following:
-#    # Mentor, Mentee or has admin writes
-#        # Also only allow creation if both parties are searching!?
-#        # As these need to be added as associations
-#       
-#        # get the current authenticated user 
-#        user = self.context['request'].user
-#
-#        invitation = Invitataions.objects.create({mentor:user,mentee:user,create_by:user})
-#        #invitation = Invitataions.objects.create(**validated_data)
-#        return invitation 
-
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -109,25 +86,6 @@ class BasicRelationshipSerializer(serializers.HyperlinkedModelSerializer):
  
         fields = ('id', 'started_on', 'ended_on', 'ended_by', 'is_active')
 
-
-#class PKUserSerializer(serializers.HyperlinkedModelSerializer):
-#    '''
-#    Serialize all the associated fields with primary key serializers
-#    '''
-#
-#    mentorship_preferences = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
-#    mentee_invitations = serializers.PrimaryKeyRelatedField(many=True, read_only=True) 
-#    mentor_invitations = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-#    mentee_relationships =  serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-#    mentor_relationships = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-#    cued_member = serializers.PrimaryKeyRelatedField(many=False, read_only=True) 
-#
-#    class Meta:
-#        model = User
-#        fields = ('id','is_superuser','url', 'username', 'first_name', 'last_name', 'email', 'cued_member', 'groups','mentorship_preferences','mentee_invitations','mentor_invitations','mentee_relationships','mentor_relationships')
-#
-
-
 class MeetingSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
@@ -160,8 +118,6 @@ class MeetingSerializer(serializers.HyperlinkedModelSerializer):
         # or return our error
         raise serializers.ValidationError("Error creating meeting - invalid user!")
         return 
-    
- 
 
 class RelationshipSerializer(serializers.HyperlinkedModelSerializer):
     meetings = MeetingSerializer(many=True)
@@ -193,9 +149,6 @@ class RelationshipSerializer(serializers.HyperlinkedModelSerializer):
 
 class InvitationSerializer(serializers.HyperlinkedModelSerializer):
 
-#    created_by = MentorSerializer(many=False, read_only=True, required=False); # Fixme 
-#    mentee = MentorSerializer(many=False, read_only=True, required=False); # Fixme 
-#    mentor = MentorSerializer(many=False, read_only=True, required=False); # Fixme 
     created_by = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False, default=serializers.CurrentUserDefault())
     mentee = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False,  default=serializers.CurrentUserDefault())
     mentor = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False,  default=serializers.CurrentUserDefault() )
@@ -212,25 +165,6 @@ class InvitationSerializer(serializers.HyperlinkedModelSerializer):
         Prevent mentor,mentee,created_by to be modified on update
         '''
         user = self.context['request'].user
-
-
-        # TODO Move this validation soemwhere else - allow update it mentor/mentee is responding or is_superuser
-        # we are acting on an object so could use permissions.py and add a permission to view
-        #rel = validated_data['relationship']    
-        #rel = instance.relationship
-#        mentor_response=validated_data.get('mentor_response')
-#        mentee_response=validated_data.get('mentee_response')
-
-#       if (  user.is_superuser or
-#        (( mentor_response == 'A' or  mentor_response == 'D' ) and user == instance.mentor) or
-#        (( mentee_response == 'A' or  mentee_response == 'D' ) and user == instance.mentee) ):
-
-#       if 1==1:        
-#            if (    mentor_response == 'A' or  mentee_response == 'A'  ):
-#            instance.respond(user, True) 
-#            if (    mentor_response == 'D' or  mentee_response == 'D'  ):
-#            instance.respond(user, False)
-
 
         if (  user.is_superuser or
         (( validated_data.get('mentor_response') == 'A' or  validated_data.get('mentor_response') == 'D' ) and user == instance.mentor) or
@@ -255,45 +189,19 @@ class InvitationSerializer(serializers.HyperlinkedModelSerializer):
         raise serializers.ValidationError("Error creating meeting - invalid user!")
         return 
     
-
     def create(self, validated_data):
-        # TODO check whether a mentee or mentor is provided (perhaps both) - where are django policies?
-        # Only allow creation of invitation if current user any of the following:
-        # Mentor, Mentee or has admin writes
-        # Also only allow creation if both parties are searching!?
-        # As these need to be added as associations
-       
-        # get the current authenticated user 
-        # user = self.context['request'].user
         user= validated_data['created_by']
         mentee=validated_data.get('mentee',user)
         mentor=validated_data.get('mentor',user)
-
-        #FIXME move these into a validator
-        #TODO test either mentee or mentor == user!! 
-        #     and mentee != mentor
-        #IF not return error - or access denied!
-        if mentee == mentor:
-            raise serializers.ValidationError("Error creating invitation - invitation not created")
-            return 
-        #TODO also check for user 'add_invitation' permission
-        if user != mentee and  user != mentor :
-            raise serializers.ValidationError("Error creating invitation - user neither mentee or mentor")
-            return 
-        #TODO fix me (needs puttin (elsewhere):
-        #auto accept the calling side
-        mentor_response=''
-        mentee_response=''
-        if user == mentee:
-            mentee_response='A'
-        if user == mentor:
-            mentor_response='A'
-
-        invitation = Invitation(mentor=mentor,mentee=mentee,created_by=user,mentor_response=mentor_response,mentee_response=mentee_response)
-        invitation.save()
-        #invitation = Invitation.objects.create({'mentor':user,'mentee':user,'created_by':user})
-        #invitation = Invitation.objects.create(**validated_data)
-        return invitation 
+        invitation = Invitation(mentor=mentor,mentee=mentee,created_by=user)
+        try:
+            invitation.clean()
+            invitation.both_willing()
+            invitation.save()
+            return invitation 
+        except ValidationError as e:
+            raise serializers.ValidationError("Error creating invitation: "+str(e))
+            return
 
 
 class MyInvitationSerializer(serializers.HyperlinkedModelSerializer):

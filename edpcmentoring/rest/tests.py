@@ -1,7 +1,7 @@
 from django.test import TestCase
 #from edpcmentoring.models import User
 from mentoring.models import Relationship
-from matching.models import Invitation
+from matching.models import Invitation, Preferences
 from django.contrib.auth.models import User
 from django.test.utils import setup_test_environment
 from django.utils.timezone import now
@@ -262,4 +262,92 @@ class CheckDenyAccessCase(TestCase):
         self.assertEqual(str(res['Allow']),"GET, OPTIONS")
 
 
+
+class testInvitations(TestCase):
+    '''
+    Check:
+        endpoints are protected
+        data can not be changed
+        data is protected (users can only )
+    '''
+
+    #def test_login(self):
+    def setUp(self):
+        call_command('loaddata', *TEST_FIXTURES)
+        setup_test_environment()
+        users=[]
+        users.append(User.objects.get(username='test0001'))
+        users.append(User.objects.get(username='test0002'))
+        users.append(User.objects.get(username='test0003'))
+        users.append(User.objects.get(username='test0004'))
+        users.append(User.objects.get(username='test0005'))
+        users.append(User.objects.get(username='test0006'))
+        users.append(User.objects.get(username='test0007'))
+        users.append(User.objects.get(username='test0008'))
+        users.append(User.objects.get(username='test0009'))
+        users.append(User.objects.get(username='test0010'))
+        users.append(User.objects.get(username='test0011'))
+        users.append(User.objects.get(username='test0012'))
+        for user in users:
+            user.set_password('test')
+            user.save()
+
+        #set test0001 as a superuser
+        t1 = User.objects.get(username='test0001')
+        t1.is_superuser=True
+        t1.save()
+
+        #test0002 is accepting mentees
+	Preferences.objects.create(user=User.objects.get(username='test0002'),is_seeking_mentee=True,is_seeking_mentor=False)
+
+	#test0003 is looking for a mentor
+	Preferences.objects.create(user=User.objects.get(username='test0003'),is_seeking_mentee=False,is_seeking_mentor=True)
+
+	#test0004 is not acepting mentees or looking for a mentor
+	Preferences.objects.create(user=User.objects.get(username='test0004'),is_seeking_mentee=False,is_seeking_mentor=False)
+
+	
+
+    def test_invite_mentee(self):
+
+	#test that if we are NOT accepting mentees we can not send the invite
+        response = self.client.login(username='test0004', password='test')
+        self.assertEqual(response,True)
+
+	#get base url for the test server (which might always be http://testsever!
+        response = self.client.get('/api/current/')
+        myj = json.loads(response.content.decode('utf-8'))
+	base = "/".join(myj[0]['url'].split('/')[:-4])
+	#print "base: "+base
+
+	# try someone looking for a mentor:
+	searching = base+'/api/users/'+str(User.objects.get(username='test0003').id)+'/'
+	#print searching 
+        response = self.client.post('/api/invitations/',{'mentee':searching})
+	#print str(response)        
+        self.assertEqual(response.status_code, 400)
+	
+	#Try someone who is not looking for a mentor:
+	searching = User.objects.get(username='test0002')
+        response = self.client.post('/api/invitations/',{'mentee':base+'/api/users/'+str(searching.id)+'/'})
+        self.assertEqual(response.status_code, 400)
+	#print "response:"+ response        
+
+	# LOGIN as a user looking for a Mentee! 
+	#Test that if we are accepting mentees we can not send the invite to a user not looking for a mentor
+        response = self.client.login(username='test0002', password='test')
+        self.assertEqual(response,True)
+	# try someone looking for a mentor:
+	searching = User.objects.get(username='test0004')
+        response = self.client.post('/api/invitations/',{'mentee':base+'/api/users/'+str(searching.id)+'/'})
+	#print "response: "+str(response)
+        self.assertEqual(response.status_code, 400)
+        	
+       
+	#Test that if we are accepting mentees we can send the invite to a user looking for a mentor
+	#Try someone who is looking for a mentor:
+	searching = User.objects.get(username='test0003')
+        response = self.client.post('/api/invitations/',{'mentee':base+'/api/users/'+str(searching.id)+'/'})
+	#print "response: "+str(response)
+        self.assertEqual(response.status_code, 201)
 

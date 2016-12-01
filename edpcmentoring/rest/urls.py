@@ -19,7 +19,7 @@ router.register(r'seekrel', views.SeekingRelationshipViewSet,"seekrel") #read on
 router.register(r'mentees', views.MenteeViewSet, 'mentees') #read only
 router.register(r'mentors', views.MentorViewSet, 'mentors') #read only
 router.register(r'meetings', views.MeetingViewSet) #only post by mentor mentee or super
-#router.register(r'preferences', views.PreferencesViewSet) #TODO - access by user or superuser
+router.register(r'preferences', views.PreferencesViewSet) #TODO - access by user or superuser
 router.register(r'invitations', views.InvitationViewSet) #Accept by correct user - TODO accept by superuser
 router.register(r'myinvitations', views.MyInvitationViewSet,'myinvitations')
 #router.register(r'profiles', views.ProfileViewSet)
