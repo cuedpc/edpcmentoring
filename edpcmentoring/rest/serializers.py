@@ -232,13 +232,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ('id','is_superuser','url', 'username', 'first_name', 'last_name', 'email', 'cued_member', 'groups','mentorship_preferences','mentee_invitations','mentor_invitations','mentee_relationships','mentor_relationships')
 
-    def create(self, validated_data):
-        # TODO check whether validated_data includes 'mentorship_preferences','mentee_invitations','mentor_invitations','mentee_relationships','mentor_relationships'
-        # As these need to be added as assoictions
-        user = User.objects.create(**validated_data)
-        return user 
-
-
     def update(self, instance, validated_data):
         """
         Allow the user to update preferences - only atm
