@@ -78,22 +78,22 @@ class UserViewSet(
           queryset = queryset.filter(username=username)
       return queryset
 
-class ProxyViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that provides retrieval of user by an authorized proxy.
-    """
-    serializer_class = UserSerializer
-
-    #Attempt to filter the results set
-    def get_queryset(self):
-      """
-      if is_superuser field set then filter by this
-      """
-      queryset = User.objects.all().order_by('-date_joined')
-      username = self.request.query_params.get('username',None)
-      if username is not None:
-          queryset = queryset.filter(username=username)
-      return queryset
+#class ProxyViewSet(viewsets.ModelViewSet):
+#    """
+#    API endpoint that provides retrieval of user by an authorized proxy.
+#    """
+#    serializer_class = UserSerializer
+#
+#    #Attempt to filter the results set
+#    def get_queryset(self):
+#      """
+#      if is_superuser field set then filter by this
+#      """
+#      queryset = User.objects.all().order_by('-date_joined')
+#      username = self.request.query_params.get('username',None)
+#      if username is not None:
+#          queryset = queryset.filter(username=username)
+#      return queryset
 
 
 class MyViewSet(viewsets.ModelViewSet):
