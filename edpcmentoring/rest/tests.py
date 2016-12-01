@@ -351,7 +351,47 @@ class testInvitations(TestCase):
         #print "response: "+str(response)
         self.assertEqual(response.status_code, 201)
 
+    def test_accept_decline_invite(self):
+        # send invitation to seeker        
+ 
+        # LOGIN as a user looking for a Mentee! 
+        #Test that if we are accepting mentees we can not send the invite to a user not looking for a mentor
+        response = self.client.login(username='test0002', password='test')
+        self.assertEqual(response,True)
+       
+        #get base url for the test server (which might always be http://testsever!
+        response = self.client.get('/api/current/')
+        myj = json.loads(response.content.decode('utf-8'))
+        base = "/".join(myj[0]['url'].split('/')[:-4])
+        #print "base: "+base
 
+
+        #Test that if we are accepting mentees we can send the invite to a user looking for a mentor
+        #Try someone who is looking for a mentor:
+        searching = User.objects.get(username='test0003')
+        response = self.client.post('/api/invitations/',{'mentee':base+'/api/users/'+str(searching.id)+'/'})
+        #print "response: "+str(response)
+        self.assertEqual(response.status_code, 201)
+
+        #test0003 will accept:
+        response = self.client.login(username='test0003', password='test')
+        self.assertEqual(response,True)
+        response = self.client.get("/api/myinvitations/")
+        self.assertEqual(response.status_code, 200)
+        invid = json.loads(response.content.decode('utf-8'))[0]['id']
+        self.client.put("/api/invitations/"+str(invid)+"/",json.dumps({'mentee_response':'A'}),'application/json')
+        self.assertEqual(response.status_code, 200)
+	#print str(response)
+        
+        #Above should generate a relationship now remove the relationship
+        #print "There should be a relationship in here!!!"        
+        response = self.client.get("/api/mentors/")
+	#print str(response)
+        rel = json.loads(response.content.decode('utf-8'))[0]
+	rel['is_active']=False;
+        response = self.client.put("/api/basicrel/"+str(rel['id'])+"/",json.dumps(rel),'application/json')
+        self.assertEqual(response.status_code, 200)
+	
 
 class testUser(TestCase):
     '''
