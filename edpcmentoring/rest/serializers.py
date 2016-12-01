@@ -205,26 +205,15 @@ class InvitationSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class MyInvitationSerializer(serializers.HyperlinkedModelSerializer):
-
-#   TODO - prevent POST PUT on this class for view only?!
+  
     created_by = MentorSerializer(many=False, read_only=True, required=False); # Fixme 
     mentee = MentorSerializer(many=False, read_only=True, required=False); # Fixme 
     mentor = MentorSerializer(many=False, read_only=True, required=False); # Fixme 
-#    created_by = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False, default=serializers.CurrentUserDefault())
-#    mentee = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False,  default=serializers.CurrentUserDefault())
-#    mentor = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False,  default=serializers.CurrentUserDefault() )
     class Meta:
         model = Invitation
         fields =('id','mentor','mentee','created_by','created_on','mentor_response','mentee_response','deactivated_on','created_relationship')
 
-    #FIXME: add two validators:
-    #1, Mentee != Mentor
-    #2, user is admin or user = mentee or user =mentor 
-    validators = []
 
-    def create(self, validated_data):
-        #FIME Do not allow
-        return
 
 
 
