@@ -383,7 +383,15 @@ class testInvitations(TestCase):
         self.assertEqual(response.status_code, 200)
         #print str(response)
         
-        #Above should generate a relationship now remove the relationship
+        #Above should generate a relationship check relationship exists for both parties
+        response = self.client.login(username='test0002', password='test')
+        self.assertEqual(response,True)
+        response = self.client.get("/api/mentees/")
+        self.assertEquals(len(json.loads(response.content.decode('utf-8'))),1)
+
+
+        response = self.client.login(username='test0003', password='test')
+        self.assertEqual(response,True)
         #print "There should be a relationship in here!!!"        
         response = self.client.get("/api/mentors/")
         #print str(response)
