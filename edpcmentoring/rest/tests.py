@@ -84,7 +84,7 @@ class CheckDenyAccessCase(TestCase):
         # attempt to view user/2 should be denied    
         res = self.client.get('/api/current',follow=True)
         self.assertEqual(res.status_code, 200)
-        myj = json.loads(res.content)
+        myj = json.loads(res.content.decode('utf-8'))
         self.assertEqual(myj[0][u'username'],'test0001',"logged in as user test0001")
 
 
