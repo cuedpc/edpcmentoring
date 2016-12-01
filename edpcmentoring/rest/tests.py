@@ -381,17 +381,17 @@ class testInvitations(TestCase):
         invid = json.loads(response.content.decode('utf-8'))[0]['id']
         self.client.put("/api/invitations/"+str(invid)+"/",json.dumps({'mentee_response':'A'}),'application/json')
         self.assertEqual(response.status_code, 200)
-	#print str(response)
+        #print str(response)
         
         #Above should generate a relationship now remove the relationship
         #print "There should be a relationship in here!!!"        
         response = self.client.get("/api/mentors/")
-	#print str(response)
+        #print str(response)
         rel = json.loads(response.content.decode('utf-8'))[0]
-	rel['is_active']=False;
+        rel['is_active']=False;
         response = self.client.put("/api/basicrel/"+str(rel['id'])+"/",json.dumps(rel),'application/json')
         self.assertEqual(response.status_code, 200)
-	
+        
 
 class testUser(TestCase):
     '''
