@@ -57,7 +57,7 @@ class CheckDenyAccessCase(TestCase):
         t1.is_superuser=True
         t1.save()
 
-    def tesit_api_users(self):
+    def test_api_users(self):
         # test unauth user can not log in
         response = self.client.get('/',follow=True)
         self.assertEqual(response.status_code, 404)
@@ -75,7 +75,7 @@ class CheckDenyAccessCase(TestCase):
         res = self.client.get('/api/users/1',follow=True)
         self.assertEqual(res.status_code, 200)
 
-    def tesit_api_current(self):
+    def test_api_current(self):
 
         # log in user:
         response = self.client.login(username='test0001', password='test')
@@ -88,7 +88,7 @@ class CheckDenyAccessCase(TestCase):
         self.assertEqual(myj[0][u'username'],'test0001',"logged in as user test0001")
 
 
-    def tesit_api_preferences(self):
+    def test_api_preferences(self):
         
         # log in user:
         response = self.client.login(username='test0001', password='test')
@@ -99,7 +99,7 @@ class CheckDenyAccessCase(TestCase):
         self.assertEqual(res.status_code, 200)
 
 
-    def tesit_api_proxy(self):
+    def test_api_proxy(self):
         
         #deny - not sure what this is used for atm
         #     - implement as part of management interface
@@ -111,7 +111,7 @@ class CheckDenyAccessCase(TestCase):
         self.assertEqual(res.status_code, 404)
 
 
-    def tesit_api_groups(self):
+    def test_api_groups(self):
         #deny - again to implement as part of the manager interface
         #     - when implemented make sure only managers can view
         
@@ -122,7 +122,7 @@ class CheckDenyAccessCase(TestCase):
         self.assertEqual(res.status_code, 404)
 
 
-    def tesit_api_basicrel(self):
+    def test_api_basicrel(self):
         # only allow mentor, mentee and manager ability to put / get /post
         
 
@@ -260,4 +260,6 @@ class CheckDenyAccessCase(TestCase):
         #MyInvitations are read only
         res = self.client.options('/api/myinvitations/')
         self.assertEqual(str(res['Allow']),"GET, OPTIONS")
+
+
 
