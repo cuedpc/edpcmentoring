@@ -70,12 +70,13 @@ class UserViewSet(
       if is_superuser field set then filter by this
       """
       queryset = User.objects.all().order_by('-date_joined')
-      issuper = self.request.query_params.get('is_superuser', None)
-      if issuper is not None:
-          queryset = queryset.filter(is_superuser=issuper)
-      username = self.request.query_params.get('username',None)
-      if username is not None:
-          queryset = queryset.filter(username=username)
+# To be used when we admin accounts etc
+#      issuper = self.request.query_params.get('is_superuser', None)
+#      if issuper is not None:
+#          queryset = queryset.filter(is_superuser=issuper)
+#      username = self.request.query_params.get('username',None)
+#      if username is not None:
+#          queryset = queryset.filter(username=username)
       return queryset
 
 #class ProxyViewSet(viewsets.ModelViewSet):
