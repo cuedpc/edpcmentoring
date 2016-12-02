@@ -181,12 +181,13 @@ class CheckDenyAccessCase(TestCase):
         # A super user should be able to register a meeting
         response = self.client.login(username='test0001', password='test')
         self.assertEqual(response,True,"test0001 (superuser) logged in")
-
-        res = self.client.post('/api/meetings/',{'approximate_duration':40,'held_on':now().date(),'relationship':'/api/basicrel/'+str(rel.id)+'/'})
+        datetoday = str(now().date())
+        res = self.client.post('/api/meetings/',{'approximate_duration':40,'held_on':datetoday,'relationship':'/api/basicrel/'+str(rel.id)+'/'})
         # 201 -> created
         self.assertEqual(res.status_code, 201, "allow creation of meeting where user is superuser and not mentor/mentee")
         myj = json.loads(res.content.decode('utf-8'))
         mtg = Meeting.objects.get(id=myj['id'])
+        self.assertEqual(str(mtg),'test0010 mentoring test0011 on '+datetoday)
         self.assertEqual(str(mtg.get_mentor()),'test0010')
         self.assertEqual(str(mtg.get_mentee()),'test0011')
  
