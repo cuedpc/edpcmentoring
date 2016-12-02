@@ -400,9 +400,6 @@ class testInvitations(TestCase):
         response = self.client.get("/api/mentees/")
         self.assertEquals(len(json.loads(response.content.decode('utf-8'))),1)
 
-        print "TODO ALSO CHECK THAT the appear on both seek relationship lists but not their own!"
-
-
         response = self.client.login(username='test0003', password='test')
         self.assertEqual(response,True)
         #print "There should be a relationship in here!!!"        
