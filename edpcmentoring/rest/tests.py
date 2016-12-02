@@ -324,11 +324,11 @@ class testInvitations(TestCase):
 	
         response = self.client.get('/api/seekrel/?mentee=true')
         myj = json.loads(response.content.decode('utf-8'))
-	self.assertEqual(len(myj[0]),1);
+	self.assertEqual(len(myj),1);
 	
         response = self.client.get('/api/seekrel/?mentor=true')
         myj = json.loads(response.content.decode('utf-8'))
-	self.assertEqual(len(myj[0]),1);
+	self.assertEqual(len(myj),1);
 
 
         # try someone looking for a mentor:
