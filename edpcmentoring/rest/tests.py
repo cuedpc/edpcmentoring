@@ -1,6 +1,6 @@
 from django.test import TestCase
 #from edpcmentoring.models import User
-from mentoring.models import Relationship
+from mentoring.models import Relationship, Meeting
 from matching.models import Invitation, Preferences
 from django.contrib.auth.models import User
 from django.test.utils import setup_test_environment
@@ -185,8 +185,11 @@ class CheckDenyAccessCase(TestCase):
         res = self.client.post('/api/meetings/',{'approximate_duration':40,'held_on':now().date(),'relationship':'/api/basicrel/'+str(rel.id)+'/'})
         # 201 -> created
         self.assertEqual(res.status_code, 201, "allow creation of meeting where user is superuser and not mentor/mentee")
-
-        
+        myj = json.loads(res.content.decode('utf-8'))
+        mtg = Meeting.objects.get(id=myj['id'])
+        self.assertEqual(str(mtg.get_mentor()),'test0010')
+        self.assertEqual(str(mtg.get_mentee()),'test0011')
+ 
         # The Mentor should be able to register a meeting
         response = self.client.login(username='test0010', password='test')
         self.assertEqual(response,True,"test0010 (mentor) logged in")
@@ -406,7 +409,11 @@ class testInvitations(TestCase):
         response = self.client.get("/api/mentors/")
         #print str(response)
         rel = json.loads(response.content.decode('utf-8'))[0]
-        rel['is_active']=False;
+
+        myrel = Relationship.objects.get(id=rel['id'])
+        self.assertEqual(str(myrel),'test0002 mentoring test0003',"the relationship "+str(myrel)+" is active")
+
+        rel['is_active']=False
         response = self.client.put("/api/basicrel/"+str(rel['id'])+"/",json.dumps(rel),'application/json')
         self.assertEqual(response.status_code, 200)
         

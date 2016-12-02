@@ -101,7 +101,7 @@ class MeetingSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = Meeting
-        fields =('relationship', 'held_on', 'approximate_duration')
+        fields =('id','relationship', 'held_on', 'approximate_duration')
 
     # TODO given a meeting and the current user
     # Find whether the current user is one of the mentor or mentee in the relationship
