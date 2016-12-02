@@ -198,7 +198,7 @@ class InvitationSerializer(serializers.HyperlinkedModelSerializer):
 
     # or return our error
         raise serializers.ValidationError("Error creating meeting - invalid user!")
-        return 
+        #return 
     
     def create(self, validated_data):
         user= validated_data['created_by']
@@ -212,7 +212,7 @@ class InvitationSerializer(serializers.HyperlinkedModelSerializer):
             return invitation 
         except ValidationError as e:
             raise serializers.ValidationError("Error creating invitation: "+str(e))
-            return
+            #return
 
 
 class MyInvitationSerializer(serializers.HyperlinkedModelSerializer):
