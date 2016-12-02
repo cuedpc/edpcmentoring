@@ -128,7 +128,6 @@ class MeetingSerializer(serializers.HyperlinkedModelSerializer):
         
         # or return our error
         raise serializers.ValidationError("Error creating meeting - invalid user!")
-        return 
 
 class RelationshipSerializer(serializers.HyperlinkedModelSerializer):
     meetings = MeetingSerializer(many=True)
@@ -138,24 +137,25 @@ class RelationshipSerializer(serializers.HyperlinkedModelSerializer):
         model = Relationship
         fields = ('id','mentor', 'mentee', 'started_on', 'ended_on', 'ended_by', 'is_active','meetings')
 
-    def update(self, instance, validated_data):
-        '''
-        If we are ending this relation we need to call the model method    
-        '''
-        if (instance.ended_on is None and validated_data.get('is_active') == False) :    
-            instance.end(self.context['request'].user)
-            instance.save()
-
-        '''
-        atm prevent from occuring -only status change allowed
-        else:
-        instance.mentor=validated_data.get('mentor',instance.mentor)
-        instance.mentee=validated_data.get('mentee',instance.mentee)
-        instance.started_on=validated_data.get('started_on',instance.started_on)
-        instance.is_active=validated_data.get('is_active',instance.is_active)
-        instance.meetings=validated_data.get('meetings',instance.meetings)
-        '''
-        return instance
+# We are Not provding PUT or POST to RelationshipViewSet
+#    def update(self, instance, validated_data):
+#        '''
+#        If we are ending this relation we need to call the model method    
+#        '''
+#        if (instance.ended_on is None and validated_data.get('is_active') == False) :    
+#            instance.end(self.context['request'].user)
+#            instance.save()
+#
+#        '''
+#        atm prevent from occuring -only status change allowed
+#        else:
+#        instance.mentor=validated_data.get('mentor',instance.mentor)
+#        instance.mentee=validated_data.get('mentee',instance.mentee)
+#        instance.started_on=validated_data.get('started_on',instance.started_on)
+#        instance.is_active=validated_data.get('is_active',instance.is_active)
+#        instance.meetings=validated_data.get('meetings',instance.meetings)
+#        '''
+#        return instance
 
 
 class InvitationSerializer(serializers.HyperlinkedModelSerializer):
