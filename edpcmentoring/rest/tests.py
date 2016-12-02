@@ -410,6 +410,11 @@ class testInvitations(TestCase):
         response = self.client.put("/api/basicrel/"+str(rel['id'])+"/",json.dumps(rel),'application/json')
         self.assertEqual(response.status_code, 200)
         
+        #Test that the database object has an ended on date
+        myrel = Relationship.objects.get(id=rel['id'])
+        self.assertTrue(myrel.ended_on)
+        self.assertTrue(myrel.ended_by)
+
 
 class testUser(TestCase):
     '''

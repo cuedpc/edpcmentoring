@@ -86,6 +86,17 @@ class BasicRelationshipSerializer(serializers.HyperlinkedModelSerializer):
  
         fields = ('id', 'started_on', 'ended_on', 'ended_by', 'is_active')
 
+    def update(self, instance, validated_data):
+        '''
+        If we are ending this relation we need to call the model method    
+        '''
+        if (instance.ended_on is None and validated_data.get('is_active') == False) :    
+            instance.end(self.context['request'].user)
+            instance.save()
+
+        #Note we have prevented any other modification, but is_active to false! 
+        return instance
+ 
 class MeetingSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:

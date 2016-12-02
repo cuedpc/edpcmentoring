@@ -2,6 +2,7 @@ from django.core.exceptions import ValidationError
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
+import datetime
 
 class RelationshipManager(models.Manager):
     def active(self):
@@ -92,7 +93,7 @@ class Relationship(models.Model):
         
         """
         if self.ended_on is None:
-            self.ended_on = now().date()
+            self.ended_on = datetime.datetime.now().date()
             self.ended_by = user
 
 class Meeting(models.Model):
