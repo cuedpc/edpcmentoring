@@ -319,6 +319,17 @@ class testInvitations(TestCase):
         myj = json.loads(response.content.decode('utf-8'))
         base = "/".join(myj[0]['url'].split('/')[:-4])
         #print "base: "+base
+  
+        #test0004 should be able to see both test0003 and test0002 searching for a Mentor, Mentee respectively
+	
+        response = self.client.get('/api/seekrel/?mentee=true')
+        myj = json.loads(response.content.decode('utf-8'))
+	self.assertEqual(len(myj[0]),1);
+	
+        response = self.client.get('/api/seekrel/?mentor=true')
+        myj = json.loads(response.content.decode('utf-8'))
+	self.assertEqual(len(myj[0]),1);
+
 
         # try someone looking for a mentor:
         searching = base+'/api/users/'+str(User.objects.get(username='test0003').id)+'/'
@@ -388,6 +399,8 @@ class testInvitations(TestCase):
         self.assertEqual(response,True)
         response = self.client.get("/api/mentees/")
         self.assertEquals(len(json.loads(response.content.decode('utf-8'))),1)
+
+        print "TODO ALSO CHECK THAT the appear on both seek relationship lists but not their own!"
 
 
         response = self.client.login(username='test0003', password='test')
