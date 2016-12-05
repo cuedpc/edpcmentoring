@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'email_log',
     'ucamwebauth',
     'pinax.notifications',
+    'rolepermissions',
     'rest_framework',
     'djng',
 
@@ -59,6 +60,7 @@ INSTALLED_APPS = [
 
     'autonag',
     'frontend',
+
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -160,6 +162,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Roles definitions
+# https://django-role-permissions.readthedocs.io/en/latest/quickstart.html
+ROLEPERMISSIONS_MODULE = 'edpcmentoring.roles'
 
 
 # Internationalization

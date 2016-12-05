@@ -19,7 +19,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from .serializers import SeekingSerializer, UserSerializer, GroupSerializer, BasicRelationshipSerializer, RelationshipSerializer, MeetingSerializer, PreferencesSerializer, MyInvitationSerializer, InvitationSerializer 
 
 # local permission
-from rest.permissions import IsUser, IsMentorMenteeORSuper
+from rest.permissions import IsMatchMaker, IsUser, IsMentorMenteeORSuper
 
 # To choose actions for viewset
 from rest_framework import viewsets, mixins
@@ -30,7 +30,7 @@ class SeekingRelationshipViewSet1(SeekingRelationshipViewSet):
     """
     The same access as regular members - we can see all 
     """
-
+    permission_classes = (IsMatchMaker,)
         
 #    serializer_class = SeekingSerializer #change this (somehow) to user!
 #    
