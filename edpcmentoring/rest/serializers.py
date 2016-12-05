@@ -159,8 +159,10 @@ class RelationshipSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class InvitationSerializer(serializers.HyperlinkedModelSerializer):
-
+	
+    # created_by - used to circumvent the is_valid test (it will be overwritten with the request user during create)
     created_by = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False, default=serializers.CurrentUserDefault())
+
     mentee = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False,  default=serializers.CurrentUserDefault())
     mentor = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False,  default=serializers.CurrentUserDefault() )
     class Meta:
@@ -173,7 +175,8 @@ class InvitationSerializer(serializers.HyperlinkedModelSerializer):
 
     def update(self, instance, validated_data):
         '''
-        Prevent mentor,mentee,created_by to be modified on update
+        Some validation specific to inivaation update (acceptance or decline)
+        Prevent mentor,mentee,created_by to be modified on update - only a valid response will be applied
         '''
         user = self.context['request'].user
 
@@ -185,20 +188,11 @@ class InvitationSerializer(serializers.HyperlinkedModelSerializer):
                 instance.respond(user, True) 
             if (  validated_data.get('mentor_response') == 'D' or   validated_data.get('mentee_response') == 'D'  ):
                 instance.respond(user, False)
-
-        #instance.mentor_response = validated_data.get('mentor_response',instance.mentor_response)
-        #instance.mentee_response = validated_data.get('mentee_response',instance.mentee_response)
-        #TODO if the response deactivates the invitaton this is to be done in the model 
-        #instance.deactivated_on = validated_data.get('deactivated_on',instance.deactivated_on)
-        #TODO if the response produces a relationship this is to be triggered in the model
-        #instance.created_relationship = validated_data.get('mentee_response',instance.created_relationship)
-
             instance.save()
             return instance
 
-    # or return our error
+        # or return our error
         raise serializers.ValidationError("Error creating meeting - invalid user!")
-        #return 
     
     def create(self, validated_data):
         user= validated_data['created_by']

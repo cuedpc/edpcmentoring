@@ -594,7 +594,7 @@ app.service('MemberService', ['$http','$q',function($http, $q) {
     },
     'closeRel': function(myrel) {
       var defer = $q.defer();
-      $http.put("api/basicrel/"+myrel.id+"/",myrel).success(function(resp){
+      $http.patch("api/basicrel/"+myrel.id+"/",myrel).success(function(resp){
 	defer.resolve(resp);
       }).error( function(err) {
         defer.reject(err);
@@ -621,7 +621,7 @@ app.service('MemberService', ['$http','$q',function($http, $q) {
     },
     'acceptMentee': function(myinvite) {
       var defer = $q.defer();
-      $http.put("api/invitations/"+myinvite.id+"/",{mentor_response:'A'}).success(function(resp){
+      $http.patch("api/invitations/"+myinvite.id+"/",{mentor_response:'A'}).success(function(resp){
 	defer.resolve(resp);
       }).error( function(err) {
         defer.reject(err);
@@ -631,7 +631,7 @@ app.service('MemberService', ['$http','$q',function($http, $q) {
     'acceptMentor': function(myinvite) {
       var defer = $q.defer();
       myinvite.mentee_response="ACCEPT"
-      $http.put("api/invitations/"+myinvite.id+"/",{mentee_response:'A'}).success(function(resp){
+      $http.patch("api/invitations/"+myinvite.id+"/",{mentee_response:'A'}).success(function(resp){
 	defer.resolve(resp);
       }).error( function(err) {
         defer.reject(err);
@@ -641,7 +641,7 @@ app.service('MemberService', ['$http','$q',function($http, $q) {
 
     'declineMentee': function(myinvite) {
       var defer = $q.defer();
-      $http.put("api/invitations/"+myinvite.id+"/",{mentor_response:'D'}).success(function(resp){
+      $http.patch("api/invitations/"+myinvite.id+"/",{mentor_response:'D'}).success(function(resp){
 	defer.resolve(resp);
       }).error( function(err) {
         defer.reject(err);
@@ -651,7 +651,7 @@ app.service('MemberService', ['$http','$q',function($http, $q) {
     'declineMentor': function(myinvite) {
       var defer = $q.defer();
       myinvite.mentee_response="DECLINE"
-      $http.put("api/invitations/"+myinvite.id+"/",{mentee_response:'D'}).success(function(resp){
+      $http.patch("api/invitations/"+myinvite.id+"/",{mentee_response:'D'}).success(function(resp){
 	defer.resolve(resp);
       }).error( function(err) {
         defer.reject(err);

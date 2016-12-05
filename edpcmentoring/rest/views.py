@@ -249,6 +249,10 @@ class InvitationViewSet(viewsets.ModelViewSet):
     queryset = Invitation.objects.all()
     serializer_class = InvitationSerializer
 
+#    This will be received by the Serializer after seriazer.is_valid check - therefore can not use
+#    def perform_create(self, serializer):
+#        serializer.save(created_by=self.request.user)
+
 class MyInvitationViewSet(mixins.ListModelMixin,
                    	viewsets.GenericViewSet):
     """

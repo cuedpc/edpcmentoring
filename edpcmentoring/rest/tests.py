@@ -217,18 +217,18 @@ class CheckDenyAccessCase(TestCase):
         # only allow mentor, mentee and manager ability to post a new meeting
 
         inv = Invitation.objects.create(mentor=User.objects.get(username='test0010'),mentee=User.objects.get(username='test0011'),created_by=User.objects.get(username='test0011'))
-
+        invid=inv.id
         response = self.client.login(username='test0007', password='test')
         self.assertEqual(response,True,"test0007 logged in")
 
-        res = self.client.put('/api/invitations/'+str(inv.id)+'/',{'mentor_response':'"A"'},'application/json')
+        res = self.client.patch('/api/invitations/'+str(inv.id)+'/',{'mentor_response':'"A"'},'application/json')
         # 400 invalid data (post)
         self.assertEqual(res.status_code, 400, "deny update of invitation where user not superuser and not mentor/mentee")
     
         response = self.client.login(username='test0001', password='test')
         self.assertEqual(response,True,"test0001 (superuser) logged in")
 # TODO allow at model level!
-#                res = self.client.put('/api/invitations/'+str(inv.id)+'/',json.dumps({'mentor_response':'A')},'application/json')
+#                res = self.client.patch('/api/invitations/'+str(inv.id)+'/',json.dumps({'mentor_response':'A')},'application/json')
 #        #print "can we provide the relation via id? rather than full on model? or url? "+res
 #                # 204 updated 
 #        print res.status_code
@@ -237,18 +237,18 @@ class CheckDenyAccessCase(TestCase):
         response = self.client.login(username='test0010', password='test')
         self.assertEqual(response,True,"test0010 (mentor) logged in")
 
-        res = self.client.put('/api/invitations/'+str(inv.id)+'/',json.dumps({'mentor_response':'A'}),'application/json')
+        res = self.client.patch('/api/invitations/'+str(inv.id)+'/',json.dumps({'mentor_response':'A'}),'application/json')
         # 200 updated 
-        self.assertEqual(res.status_code, 200, "allow update of invitation where user mentor updating mentor_response")
+        self.assertEqual(res.status_code, 200, "allow update of invitation where user mentor updating mentor_response: "+str(res))
     
         response = self.client.login(username='test0011', password='test')
         self.assertEqual(response,True,"test0011 (mentee) logged in")
 
-        res = self.client.put('/api/invitations/'+str(inv.id)+'/',json.dumps({'mentor_response':'A'}),'application/json')
+        res = self.client.patch('/api/invitations/'+str(inv.id)+'/',json.dumps({'mentor_response':'A'}),'application/json')
         # 400 updated 
         self.assertEqual(res.status_code, 400, "deny update of invitation where mentee updating mentor acceptance")
     
-        res = self.client.put('/api/invitations/'+str(inv.id)+'/',json.dumps({'mentee_response':'A'}),'application/json')
+        res = self.client.patch('/api/invitations/'+str(inv.id)+'/',json.dumps({'mentee_response':'A'}),'application/json')
         # 200 updated 
         self.assertEqual(res.status_code, 200, "allow update of invitation where mentee updating mentee acceptance")
 
@@ -353,7 +353,7 @@ class testInvitations(TestCase):
         response = self.client.login(username='test0002', password='test')
         self.assertEqual(response,True)
         # try someone looking for a mentor:
-        searching = User.objects.get(username='test0004')
+        searching = User.objects.get(username='test0004') # test0004 is not looking for eite a mentee or mentor
         response = self.client.post('/api/invitations/',{'mentee':base+'/api/users/'+str(searching.id)+'/'})
         #print "response: "+str(response)
         self.assertEqual(response.status_code, 400)
@@ -362,8 +362,8 @@ class testInvitations(TestCase):
         #Test that if we are accepting mentees we can send the invite to a user looking for a mentor
         #Try someone who is looking for a mentor:
         searching = User.objects.get(username='test0003')
-        response = self.client.post('/api/invitations/',{'mentee':base+'/api/users/'+str(searching.id)+'/'})
-        #print "response: "+str(response)
+        response = self.client.post('/api/invitations/',json.dumps({'mentee':base+'/api/users/'+str(searching.id)+'/'}),'application/json')
+        print "my response: "+str(response) # can we get a dump of the invitation to check that the created_by has been added correctly?
         self.assertEqual(response.status_code, 201)
 
     def test_accept_decline_invite(self):
@@ -394,7 +394,7 @@ class testInvitations(TestCase):
         response = self.client.get("/api/myinvitations/")
         self.assertEqual(response.status_code, 200)
         invid = json.loads(response.content.decode('utf-8'))[0]['id']
-        self.client.put("/api/invitations/"+str(invid)+"/",json.dumps({'mentee_response':'A'}),'application/json')
+        self.client.patch("/api/invitations/"+str(invid)+"/",json.dumps({'mentee_response':'A'}),'application/json')
         self.assertEqual(response.status_code, 200)
         #print str(response)
         
@@ -415,7 +415,7 @@ class testInvitations(TestCase):
         self.assertEqual(str(myrel),'test0002 mentoring test0003',"the relationship "+str(myrel)+" is active")
 
         rel['is_active']=False
-        response = self.client.put("/api/basicrel/"+str(rel['id'])+"/",json.dumps(rel),'application/json')
+        response = self.client.patch("/api/basicrel/"+str(rel['id'])+"/",json.dumps(rel),'application/json')
         self.assertEqual(response.status_code, 200)
         
         #Test that the database object has an ended on date
