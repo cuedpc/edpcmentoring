@@ -9,6 +9,7 @@ django-extensions
 django-filter
 django-tables2
 django-ucamwebauth
+django-role-permissions
 django<1.10
 future
 requests
