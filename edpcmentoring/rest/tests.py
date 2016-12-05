@@ -325,12 +325,20 @@ class testInvitations(TestCase):
         #print "base: "+base
   
         #test0004 should be able to see both test0003 and test0002 searching for a Mentor, Mentee respectively
-	
         response = self.client.get('/api/seekrel/?mentee=true')
         myj = json.loads(response.content.decode('utf-8'))
         self.assertEqual(len(myj),1);
 	
         response = self.client.get('/api/seekrel/?mentor=true')
+        myj = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(len(myj),1);
+
+	#Also test that the matchmakers can see the same info:
+        response = self.client.get('/api/mm/seekrel/?mentee=true')
+        myj = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(len(myj),1);
+	
+        response = self.client.get('/api/mm/seekrel/?mentor=true')
         myj = json.loads(response.content.decode('utf-8'))
         self.assertEqual(len(myj),1);
 
