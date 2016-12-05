@@ -371,7 +371,7 @@ class testInvitations(TestCase):
         #Try someone who is looking for a mentor:
         searching = User.objects.get(username='test0003')
         response = self.client.post('/api/invitations/',json.dumps({'mentee':base+'/api/users/'+str(searching.id)+'/'}),'application/json')
-        print "my response: "+str(response) # can we get a dump of the invitation to check that the created_by has been added correctly?
+        #print "my response: "+str(response) # can we get a dump of the invitation to check that the created_by has been added correctly?
         self.assertEqual(response.status_code, 201)
 
     def test_accept_decline_invite(self):
