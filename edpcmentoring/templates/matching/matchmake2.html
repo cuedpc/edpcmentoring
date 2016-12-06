@@ -1,0 +1,107 @@
+{% extends "frontend/layout/page.html" %}
+{% load render_table from django_tables2 %}
+{% load crispy_forms_tags %}
+
+{% block maincontent %}
+
+<h1>Match mentors and mentees</h1>
+
+<div ng-app="EDPCApp">
+<div ng-controller="MatchFormCtrl">
+
+<div class="campl-column5">
+
+<h2>Mentees searching</h2>
+
+
+<script type="text/ng-template" id="match-mentee">
+	<div class="ngdialog-message">
+		
+		<h2 ng-hide="selected_seeker">Match {$ mentee.user.first_name $} {$ mentee.user.last_name $} with a Mentor</h2>
+		Requirements:<strong> {$ mentee.mentor_requirements $}</strong>
+		<p ng-hide="selected_seeker">Please select from the list a Mentor to pair with</p>
+		<h2 ng-show="selected_seeker">Request for a Mentor:</h2>
+		
+		<table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
+		<tr ng-click="set_seeker(seeker)" ng-show="!selected_seeker || seeker.user.id == seeker.user.id" ng-repeat="seeker in searching_rels.mentors">
+                     <td>{$ seeker.user.first_name $}</td><td> {$ seeker.user.last_name $}</td><td> {$ seeker.user.cued_member.research_group.name $} ( {$ seeker.user.cued_member.research_group.division.letter $} ) </td><td>		
+		     "{$ seeker.mentee_requirements $}</td>
+		</tr>
+		<tr ng-show="selected_seeker">
+			<td colspan="4" ng-model="message"><textarea>I would like you to be a mentor. </textarea></td>
+		</tr>
+		</table>
+		<a ng-show="selected_seeker" ng-click="selected_seeker=undefined" class="campl-btn campl-primary-red">Choose again</a>
+		<a ng-show="selected_seeker" href="#" ng-click="match(selected_seeker,message)" class="campl-btn campl-primary-cta">Send Invite</a>
+
+		<strong>TODO:</strong> before 'matching':<br/>
+		If the mentee has outstanding invites then we should attempt to resolve (force or remove)<br/>
+		If the selected mentor has outstanind invites then we should attempt to resolve (force or remove)
+	</div>
+</script>
+
+
+<table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
+ <thead>
+	<tr>
+	<th>Name</th>
+	<th>Division</th>
+	<th>Research group</th>
+	<th>Mentors</th>
+        <th>Invites</th>
+	</tr>
+ </thead>
+<tbody >
+<tr ng-click="matchMentee(member)" ng-repeat="member in searching_rels.mentees"> 
+<td>	{$ member.user.first_name $} 	{$ member.user.last_name $}  </td>
+<td>	{$ member.user.cued_member.research_group.division.letter $} </td>
+<td>	{$ member.user.cued_member.research_group.name $} </td>
+<td>	{$ member.user.mentee_relationships.length $} </td>
+<td>	( {$ member.user.mentee_invitations.length $} ) </td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<div class="campl-column1">
+&nbsp;
+</div>
+
+<div class="campl-column5">
+
+<h2>Mentors available</h2>
+
+<table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
+ <thead>
+	<tr>
+	<th>Name</th>
+	<th>Division</th>
+	<th>Research group</th>
+	<th>Mentees</th>
+        <th>Invites</th>
+	</tr>
+ </thead>
+<tr ng-repeat="member in searching_rels.mentors">
+
+<td>	{$ member.user.first_name $} 	{$ member.user.last_name $}  </td>
+<td>	{$ member.user.cued_member.research_group.division.letter $} </td>
+<td>	{$ member.user.cued_member.research_group.name $} </td>
+<td>	{$ member.user.mentor_relationships.length $} </td>
+<td>	( {$ member.user.mentor_invitations.length $} ) </td>
+</tr>
+</table>
+
+</div>
+
+
+</div>
+
+
+</div><!-- controller --!>
+</div><!-- app --!>
+
+
+
+{% endblock %}
+
+

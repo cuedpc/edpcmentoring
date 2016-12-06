@@ -30,7 +30,7 @@ class SeekingRelationshipViewSet(mixins.RetrieveModelMixin,
     
     #attempt to filter by seeking type:
     def get_queryset(self):
-      queryset = Preferences.objects.all()
+      queryset = Preferences.objects.all().filter(Q(is_seeking_mentee=True) | Q(is_seeking_mentor=True))
       mentor = self.request.query_params.get('mentor', None)
       mentee = self.request.query_params.get('mentee', None)
       """  

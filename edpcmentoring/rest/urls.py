@@ -12,7 +12,7 @@ router.register(r'current', views.MyViewSet, "current")
 router.register(r'current_preferences', views.MyPreferencesViewSet, "mypreferences")
 #TODO an idea can we constrain these 'proxy' endpoints to an authorised user:
 # router.register(r'proxy', views.ProxyViewSet, "proxy")
-# router.register(r'groups', views.GroupViewSet)
+router.register(r'groups', views.GroupViewSet)
 router.register(r'relationships', views.RelationshipViewSet)
 router.register(r'basicrel', views.BasicRelationshipViewSet)
 router.register(r'seekrel', views.SeekingRelationshipViewSet,"seekrel") #read only

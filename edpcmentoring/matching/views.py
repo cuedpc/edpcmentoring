@@ -11,6 +11,9 @@ from cuedmembers.models import Division
 from cuedmembers.tables import MemberTable
 from frontend.layout import Submit
 
+from cuedmembers.decorators import matchmaker_required
+from django.shortcuts import render
+
 class MatchmakeFilter(filters.FilterSet):
     division = filters.ModelChoiceFilter(
         name='cued_member__research_group__division',
@@ -37,7 +40,7 @@ class MatchmakeView(PermissionRequiredMixin, TemplateView):
     http_method_names = ['get', 'head', 'options']
     permission_required = 'matching.matchmake'
     raise_exception = True
-    template_name = 'matching/matchmake.html'
+    template_name = 'matching/matchmake2.html'
 
     def get_context_data(self, **kwargs):
         # Get a list of users who are active CUED members seeking mentors
@@ -73,3 +76,7 @@ class MatchmakeView(PermissionRequiredMixin, TemplateView):
             self.request, paginate=False).configure(table)
 
         return {'table': table, 'filter': f}
+
+@matchmaker_required
+def matchmake(request):
+    return render(request, 'matching/matchmake2.html', {})

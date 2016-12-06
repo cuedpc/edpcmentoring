@@ -21,7 +21,7 @@
 {# Application specific navigation #}
 {% block nav %}
     <li><a href="{% url 'index' %}">Home</a></li>
-    {% if perms.matching.matchmake %}
+    {% if matchmaker %}
     <li><a href="{% url "matchmake" %}">Match mentors and mentees</a></li>
     {% endif %}
     {% if user.is_staff %}
@@ -117,5 +117,6 @@
 {% endblock localfooter %}
 {% block js %}
 <script type="text/javascript" src="{% static "frontend/js/app.js" %}"></script>
+<script type="text/javascript" src="{% static "frontend/js/app_matching.js" %}"></script>
 <script type="text/javascript" src="{% static "frontend/js/tooltips.js" %}" ></script>
 {% endblock js %}

@@ -32,3 +32,33 @@ def member_required(f):
         return f(request, *args, **kwargs)
 
     return wrapper
+
+def matchmaker_required(f):
+    """
+    A decorator to require that the user has the matchmaker permission
+
+    If the user is logged in but not a member of CUED, or is an inactive member,
+    a PermissionDenied exception is raised.
+
+    """
+    @wraps(f)
+    @login_required
+    def wrapper(request, *args, **kwargs):
+        # Attribute will always be on request because this wrapper is decorated
+        # with login_required.
+        user = request.user
+        assert user.is_authenticated()
+
+        try:
+            is_matchmaker = user.has_perm('matching.matchmake')
+        except :
+            raise PermissionDenied()
+
+        if not is_matchmaker:
+            raise PermissionDenied()
+
+        return f(request, *args, **kwargs)
+
+    return wrapper
+
+    

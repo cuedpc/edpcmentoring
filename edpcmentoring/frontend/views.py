@@ -25,7 +25,7 @@ def index(request):
     preferences = request.user.mentorship_preferences
 
     return render(request, 'frontend/index_2col.html', {
-        'mentees': mentees, 'mentors': mentors,
+        'mentees': mentees, 'mentors': mentors, 'matchmaker':request.user.has_perm('matching.matchmake'),
         'preferences': preferences,
     })
 

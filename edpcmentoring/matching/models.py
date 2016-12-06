@@ -71,6 +71,11 @@ class Invitation(models.Model):
 
     objects = InvitationManager()
 
+    class Meta:
+        permissions = (
+            ("matchmake", "Can matchmake users"),
+        )
+
     #: The possible responses to an invitation.
     RESPONSES = ((ACCEPT, 'Accept'), (DECLINE, 'Decline'))
 
