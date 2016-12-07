@@ -253,6 +253,6 @@ class MatchSeekingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Preferences
         fields = ('is_seeking_mentor','is_seeking_mentee','mentor_requirements','mentee_requirements','user')
-	depth = 2
+        depth = 2
  
 
