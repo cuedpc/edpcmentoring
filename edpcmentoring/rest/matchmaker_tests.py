@@ -57,7 +57,7 @@ class CheckMatchMakerCase(TestCase):
 
 
     def test_accesspage(self):
-	#Test that  asuper user can do anything:
+    #Test that  asuper user can do anything:
         t1 = User.objects.get(username='test0001')
         self.assertTrue(t1.has_perm('matching.matchmake'),"Super user can match")
 
@@ -67,14 +67,14 @@ class CheckMatchMakerCase(TestCase):
         #Test that without perms test0003 cannot access the matchmaker page :
         response = self.client.login(username='test0003', password='test')
         self.assertEqual(response,True)
-	response = self.client.get('/matching',follow=True)
+        response = self.client.get('/matching',follow=True)
         self.assertEqual(response.status_code,403)
 
         t3.user_permissions.add(Permission.objects.get(codename='matchmake'))
         t3 = User.objects.get(username='test0003')
         #assign_role(t3, 'matchmake') # the django-role-permisisons way but how do we populate?
         self.assertTrue(t3.has_perm('matching.matchmake'),"user has permission to matchmake")
-	# now t3 should be able to access '/matching
+    # now t3 should be able to access '/matching
         response = self.client.get('/matching',follow=True)
         self.assertEqual(response.status_code,200)
 
