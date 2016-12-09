@@ -262,7 +262,8 @@ class InvitationSerializer(serializers.ModelSerializer):
 #        raise serializers.ValidationError("problem with the mentee: "+str(mentee))
 
     def create(self, validated_data):
-        user= validated_data['created_by']
+#        user= validated_data['created_by'] ignore user passed by client (can we trust that )
+        user = self.context['request'].user
 # TODO what validates the data and how do we pass a valid mentor  / mentee
 #        mentee=validated_data.get('mentee',user)
         mentee=validated_data.get('mentee')
