@@ -78,7 +78,7 @@ app.controller("MatchMentorCtrl",['$scope', '$rootScope', 'ngDialog', 'MatchingS
 	//we could also setup the filtered array here too?
 	$scope.available_mentees = function (){
 		return $scope.searching_rels.mentees.filter(function(mentor){
-			return $scope.mentees_mentees.indexOf(mentor.user.id) == -1;
+			return $scope.mentors_mentees.indexOf(mentor.user.id) == -1;
 		});
 	}; 
 
@@ -133,7 +133,8 @@ app.controller("MatchMentorCtrl",['$scope', '$rootScope', 'ngDialog', 'MatchingS
 
 	$scope.addMentee = function(mentee){
 		MatchingService.addMentee(
-			{mentee:mentee,mentor:$scope.mentor.user,mentor_response:'A',mentee_response:'A'}
+			//the created by will be overwritten it is requried to validate query
+			{created_by:mentee,mentee:mentee,mentor:$scope.mentor.user,mentor_response:'A',mentee_response:'A'}
 		).then(function(response){
         	        $rootScope.rels = new Date() //triggers watch
                 	ngDialog.close()
@@ -216,7 +217,8 @@ app.controller("MatchMenteeCtrl",['$scope', '$rootScope', 'ngDialog', 'MatchingS
 
 	$scope.addMentor = function(mentor){
 		MatchingService.addMentor(
-			{mentor:mentor,mentee:$scope.mentee.user,mentee_response:'A',mentor_response:'A'}
+			//created_by will be overwritten it is required to validat the query
+			{created_by:mentor,mentor:mentor,mentee:$scope.mentee.user,mentee_response:'A',mentor_response:'A'}
 		).then(function(response){
         	        $rootScope.rels = new Date() //triggers watch
                 	ngDialog.close()
