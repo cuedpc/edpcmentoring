@@ -17,6 +17,7 @@ router.register(r'relationships', views.RelationshipViewSet)
 router.register(r'basicrel', views.BasicRelationshipViewSet)
 router.register(r'seekrel', views.SeekingRelationshipViewSet,"seekrel") #read only
 router.register(r'mm/seekrel', matchmaker_views.SeekingRelationshipViewSet1,"seekrel") #read only
+router.register(r'mm/invitations', matchmaker_views.InvitationViewSet) # patch / update only 
 #mentee viewset
 router.register(r'mentees', views.MenteeViewSet, 'mentees') #read only
 router.register(r'mentors', views.MentorViewSet, 'mentors') #read only

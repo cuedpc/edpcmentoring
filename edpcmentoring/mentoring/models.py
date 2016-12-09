@@ -56,8 +56,8 @@ class Relationship(models.Model):
         True iff this relationship is currently active.
 
     """
-    class Meta(object):
-        unique_together = (('mentor', 'mentee'),)
+#    class Meta(object):
+#        unique_together = (('mentor', 'mentee'),)
 
     mentor = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name='mentor_relationships',
@@ -86,6 +86,18 @@ class Relationship(models.Model):
                                   'both mentor and mentee',
                                   params={'user':str(self.mentor)})
 
+        """
+        Shift the unique validation here as we might want to keep a history of old relationships
+        We only want to constraint to unique mentor and mentee if relationship active
+        Doing this we must be diligent in calling clean to check that our relationships are valid
+        """
+        if not self.is_active:
+            return 
+        existing = self.__class__.objects.filter(mentor=self.mentor, mentee=self.mentee).count()
+
+        if existing > 0:
+            raise  ValidationError('Active Relatoinship entry already exists for thi smentor mentee combination')
+ 
 
     def end(self,user):
         """
@@ -95,6 +107,7 @@ class Relationship(models.Model):
         if self.ended_on is None:
             self.ended_on = datetime.datetime.now().date()
             self.ended_by = user
+            self.is_active = False
 
 class Meeting(models.Model):
     """

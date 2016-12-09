@@ -33,21 +33,20 @@ class SeekingRelationshipViewSet1(SeekingRelationshipViewSet):
     permission_classes = (IsMatchMaker,)
         
     serializer_class = MatchSeekingSerializer # includes number of invites and mentor/mentee relationships
-#    
-#    #attempt to filter by seeking type:
-#    def get_queryset(self):
-#      queryset = Preferences.objects.all()
-#      mentor = self.request.query_params.get('mentor', None)
-#      mentee = self.request.query_params.get('mentee', None)
-#      """  
-#      if mentor then is_seeking_mentor set to true
-#      """
-#      if mentor is not None:
-#          queryset = queryset.filter(is_seeking_mentor=True)
-#      """
-#      if mentee then is_seeking_mentee set to true
-#      """
-#      if mentee is not None:
-#          queryset = queryset.filter(is_seeking_mentee=True)
-#
-#      return queryset
+
+
+ 
+class InvitationViewSet(
+                        mixins.CreateModelMixin,
+                        mixins.UpdateModelMixin,
+                        viewsets.GenericViewSet):
+    """
+    API endpoint that allows Invitations to be viewed or edited.
+    """
+    queryset = Invitation.objects.all()
+    serializer_class = InvitationSerializer
+
+#    This will be received by the Serializer after seriazer.is_valid check - therefore can not use
+#    def perform_create(self, serializer):
+#        serializer.save(created_by=self.request.user)
+

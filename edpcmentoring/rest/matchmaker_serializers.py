@@ -7,6 +7,38 @@ from django.core.exceptions import ValidationError, PermissionDenied
 
 from rest_framework import serializers
 
+# To allow the creation of an object whose related objects already exist:
+# http://www.erol.si/2015/09/django-rest-framework-nestedserializer-with-relation-and-crud/
+from rest_framework.fields import empty
+ 
+class RelationModelSerializer(serializers.ModelSerializer):
+    def __init__(self, instance=None, data=empty, **kwargs):
+        self.is_relation = kwargs.pop('is_relation', False)
+        super(RelationModelSerializer, self).__init__(instance, data, **kwargs)
+
+    def validate_empty_values(self, data):
+        if self.is_relation:
+            model = getattr(self.Meta, 'model')
+            model_pk = model._meta.pk.name
+
+            if not isinstance(data, dict):
+                error_message = self.default_error_messages['invalid'].format(datatype=type(data).__name__)
+                raise serializers.ValidationError(error_message)
+
+            if not model_pk in data:
+                raise serializers.ValidationError({model_pk: model_pk + ' is required'})
+
+            try:
+                instance = model.objects.get(pk=data[model_pk])
+                return True, instance
+            except:
+                raise serializers.ValidationError({model_pk: model_pk + ' is not valid'})
+
+        return super(RelationModelSerializer, self).validate_empty_values(data)
+
+
+
+
 #include the nested relationships: http://www.django-rest-framework.org/api-guide/relations/#nested-relationships
 
 class PreferencesSerializer(serializers.HyperlinkedModelSerializer):
@@ -36,9 +68,9 @@ class MemberSerializer(serializers.HyperlinkedModelSerializer):
         model = Member
         fields =('first_names','research_group')
 
+# TODO consolidate Mentee and Mentor Serializer into depth=1 User serializer
 
-
-class MenteeSerializer(serializers.HyperlinkedModelSerializer):
+class MenteeSerializer(RelationModelSerializer):
     '''
        A special type of user who is a Mentor
     '''
@@ -49,7 +81,7 @@ class MenteeSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id','is_superuser','url', 'username', 'email', 'first_name', 'last_name', 'cued_member' )
 
  
-class MentorSerializer(serializers.HyperlinkedModelSerializer):
+class MentorSerializer(RelationModelSerializer):
     '''
        A special type of user who is a Mentor
     '''
@@ -118,6 +150,23 @@ class MeetingSerializer(serializers.HyperlinkedModelSerializer):
         # or return our error
         raise serializers.ValidationError("Error creating meeting - invalid user!")
 
+#http://stackoverflow.com/questions/28163556/how-do-you-filter-a-nested-serializer-in-django-rest-framework
+class ActiveRelationshipListSerializer(serializers.ListSerializer):
+
+    def to_representation(self, data):
+        data = data.filter(ended_on__isnull=True)
+        return super(ActiveRelationshipListSerializer, self).to_representation(data)
+
+class ActiveRelationshipSerializer(serializers.HyperlinkedModelSerializer):
+    meetings = MeetingSerializer(many=True)
+    mentor = MentorSerializer(many=False)
+    mentee = MenteeSerializer(many=False)
+    class Meta:
+        list_serializer_class = ActiveRelationshipListSerializer
+        model = Relationship
+        fields = ('id','mentor', 'mentee', 'started_on', 'ended_on', 'ended_by', 'is_active','meetings')
+
+
 class RelationshipSerializer(serializers.HyperlinkedModelSerializer):
     meetings = MeetingSerializer(many=True)
     mentor = MentorSerializer(many=False)
@@ -146,14 +195,37 @@ class RelationshipSerializer(serializers.HyperlinkedModelSerializer):
 #        '''
 #        return instance
 
+#http://stackoverflow.com/questions/28163556/how-do-you-filter-a-nested-serializer-in-django-rest-framework
+class ActiveInvitationListSerializer(serializers.ListSerializer):
+ 
+    def to_representation(self, data):
+        data = data.filter(deactivated_on__isnull=True)
+        return super(ActiveInvitationListSerializer, self).to_representation(data)
 
-class InvitationSerializer(serializers.HyperlinkedModelSerializer):
+## TODO inherit and override the InvitationSerializer class rathe than define a new one (can we?)
+#
+#class ActiveInvitationSerializer(serializers.HyperlinkedModelSerializer):
+#    created_by = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False, default=serializers.CurrentUserDefault())
+#
+#    mentee = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False,  default=serializers.CurrentUserDefault())
+#    mentor = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False,  default=serializers.CurrentUserDefault() )
+# 
+#    class Meta:
+#        list_serializer_class = ActiveInvitationListSerializer
+#        model = Invitation
+#        fields =('id','mentor','mentee','created_by','created_on','mentor_response','mentee_response','deactivated_on','created_relationship')
+
+
+class InvitationSerializer(serializers.ModelSerializer):
 	
     # created_by - used to circumvent the is_valid test (it will be overwritten with the request user during create)
-    created_by = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False, default=serializers.CurrentUserDefault())
+    # created_by = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False, default=serializers.CurrentUserDefault())
+    created_by = MenteeSerializer(many=False, is_relation=True, default=serializers.CurrentUserDefault() )
 
-    mentee = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False,  default=serializers.CurrentUserDefault())
-    mentor = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False,  default=serializers.CurrentUserDefault() )
+    #mentee = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False,  default=serializers.CurrentUserDefault())
+    mentee = MenteeSerializer(many=False, read_only=False, is_relation=True, default=serializers.CurrentUserDefault())
+    #mentor = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False,  default=serializers.CurrentUserDefault() )
+    mentor = MentorSerializer(many=False, read_only=False, is_relation=True, default=serializers.CurrentUserDefault())
     class Meta:
         model = Invitation
         fields =('id','mentor','mentee','created_by','created_on','mentor_response','mentee_response','deactivated_on','created_relationship')
@@ -169,7 +241,7 @@ class InvitationSerializer(serializers.HyperlinkedModelSerializer):
         '''
         user = self.context['request'].user
 
-        if (  user.is_superuser or
+        if (  user.has_perm('matchmake') or
         (( validated_data.get('mentor_response') == 'A' or  validated_data.get('mentor_response') == 'D' ) and user == instance.mentor) or
         (( validated_data.get('mentee_response') == 'A' or  validated_data.get('mentee_response') == 'D' ) and user == instance.mentee) ):
 
@@ -177,17 +249,26 @@ class InvitationSerializer(serializers.HyperlinkedModelSerializer):
                 instance.respond(user, True) 
             if (  validated_data.get('mentor_response') == 'D' or   validated_data.get('mentee_response') == 'D'  ):
                 instance.respond(user, False)
+#            if (user.has_perm('matchmake')): #done in model if matchmake?
+#                instance.created_by = user
+
             instance.save()
             return instance
 
         # or return our error
         raise serializers.ValidationError("Error creating meeting - invalid user!")
     
+#    def validate_mentee(self,value):
+#        raise serializers.ValidationError("problem with the mentee: "+str(mentee))
+
     def create(self, validated_data):
         user= validated_data['created_by']
-        mentee=validated_data.get('mentee',user)
-        mentor=validated_data.get('mentor',user)
-        invitation = Invitation(mentor=mentor,mentee=mentee,created_by=user)
+# TODO what validates the data and how do we pass a valid mentor  / mentee
+#        mentee=validated_data.get('mentee',user)
+        mentee=validated_data.get('mentee')
+#        mentor=validated_data.get('mentor',user)
+        mentor=validated_data.get('mentor')
+        invitation = Invitation(mentor=mentor,mentee=mentee,created_by=user,mentee_response=validated_data.get('mentee_response'),mentor_response=validated_data.get('mentor_response'))
         try:
             invitation.clean()
             invitation.both_willing()
@@ -196,6 +277,20 @@ class InvitationSerializer(serializers.HyperlinkedModelSerializer):
         except ValidationError as e:
             raise serializers.ValidationError("Error creating invitation: "+str(e))
             #return
+
+
+class ActiveInvitationSerializer(InvitationSerializer):
+#    created_by = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False, default=serializers.CurrentUserDefault())
+#
+#    mentee = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False,  default=serializers.CurrentUserDefault())
+#    mentor = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail', required=False,  default=serializers.CurrentUserDefault() )
+# 
+    class Meta:
+        list_serializer_class = ActiveInvitationListSerializer
+        model = Invitation
+        fields =('id','mentor','mentee','created_by','created_on','mentor_response','mentee_response','deactivated_on','created_relationship')
+
+
 
 
 class MyInvitationSerializer(serializers.HyperlinkedModelSerializer):
@@ -209,17 +304,14 @@ class MyInvitationSerializer(serializers.HyperlinkedModelSerializer):
 
 
 
-
-
-
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     mentorship_preferences = PreferencesSerializer(many=False, read_only=False)
     #mentorship_preferences = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
-    mentee_invitations = InvitationSerializer(many=True, read_only=True)
-    mentor_invitations = InvitationSerializer(many=True, read_only=True)
-    mentee_relationships = RelationshipSerializer(many=True, read_only=True)
-    mentor_relationships = RelationshipSerializer(many=True, read_only=True)
+    mentee_invitations = ActiveInvitationSerializer(many=True, read_only=True)
+    mentor_invitations = ActiveInvitationSerializer(many=True, read_only=True)
+    mentee_relationships = ActiveRelationshipSerializer(many=True, read_only=True)
+    mentor_relationships = ActiveRelationshipSerializer(many=True, read_only=True)
     cued_member = MemberSerializer(many=False, read_only=True) 
 
     class Meta:

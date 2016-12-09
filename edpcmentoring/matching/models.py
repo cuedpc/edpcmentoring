@@ -109,12 +109,18 @@ class Invitation(models.Model):
 
     def respond(self, user, accepted):
         """
-        Set the response of the specified user. If the user is neither the
+        Set the response of the specified user. 
+        Unless the user has 'matchmake' and the user is neither the
         mentor or mentee then a PermissionDenied exception is raised.
 
+	If the user is a matchmake then the inivtaton is stolen 
+	and both responses are set to the one chosen by the user
         """
         response = Invitation.ACCEPT if accepted else Invitation.DECLINE
-        if user.id == self.mentor.id:
+        if  user.has_perm('matchmake'): # first so that matchmakers can match their own!
+            self.mentee_response = response
+            self.mentor_response = response
+        elif user.id == self.mentor.id:
             self.mentor_response = response
         elif user.id == self.mentee.id:
             self.mentee_response = response
@@ -165,6 +171,9 @@ class Invitation(models.Model):
         creator_is_mentor_or_mentee = creator_is_mentor or creator_is_mentee
         if not creator_is_matchmaker and not creator_is_mentor_or_mentee:
             raise ValidationError('Creator must be one of the mentor or mentee')
+
+        if (self.mentor.id ==  self.mentee.id):
+            raise ValidationError('Mentor can not be Mentee')
  
 
         # If the creator is one of mentor or mentee, they are assumed to have
@@ -213,7 +222,13 @@ def invitation_create_relationships(instance, **_):
     if instance.created_relationship is not None:
         return
 
+    #TODO place the bottom two queries (+save invite) in a transaction -HELP
+
     # OK, create the relationship and de-activate the invite
+    # TODO we should call clean on our relationship eg to prevent mentor = mentee
     instance.created_relationship = Relationship.objects.create(
         mentor=instance.mentor, mentee=instance.mentee)
     instance.deactivated_on = now().date()
+
+    # Deactive any other matching invites
+    Invitation.objects.filter(mentor=instance.mentor,mentee=instance.mentee,deactivated_on__isnull=True).update(deactivated_on=now().date())

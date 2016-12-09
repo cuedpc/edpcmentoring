@@ -662,7 +662,7 @@ app.service('MemberService', ['$http','$q',function($http, $q) {
 
     'seekingMentee': function() { //list those seeking a mentee
       var defer = $q.defer();
-      $http.get("api/seekrel/?mentor=true").success(function(resp){
+      $http.get("api/seekrel/?mentee=true").success(function(resp){
 	defer.resolve(resp);
       }).error( function(err) {
         defer.reject(err);
@@ -671,7 +671,7 @@ app.service('MemberService', ['$http','$q',function($http, $q) {
     },
     'seekingMentor': function() { //list those seeking a mentor
       var defer = $q.defer();
-      $http.get("api/seekrel/?mentee=true").success(function(resp){
+      $http.get("api/seekrel/?mentor=true").success(function(resp){
 	defer.resolve(resp);
       }).error( function(err) {
         defer.reject(err);

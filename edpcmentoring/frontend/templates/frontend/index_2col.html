@@ -132,7 +132,7 @@
 	</tr>
  </thead>
  <body>
-	<tr ng-repeat="mymentor in mymentors | filter:{is_active: true}">
+	<tr ng-repeat="mymentor in mymentors | filter:{ended_on: null}">
 	<td>{$ mymentor.mentor.username $}</td>
  	<td>{$ mymentor.mentor.first_name $} {$ mymentor.mentor.last_name $} <!-- todo trigger tooltip creation after ng-repeat load --><a href="#"  ng-click="listMeetings(mymentor, mymentor.mentor.first_name+' '+mymentor.mentor.last_name)" rel="tooltip" data-tooltip-text="List meetings" ><strong>({$  mymentor.meetings.length $})</strong></a> / <a href="#" ng-click="recordMentorMeeting(mymentor)">add meeting</a></td>
  	<td>{$ mymentor.mentor.cued_member.research_group.division.letter $}</td>
@@ -292,7 +292,7 @@ willing to take on a new mentee,
 	</tr>
  </thead>
  <body>
-	<tr ng-repeat="mymentee in mymentees | filter:{is_active: true}" >
+	<tr ng-repeat="mymentee in mymentees | filter:{ended_on: null}" >
 	<td>{$ mymentee.mentee.username $}</td>
  	<td>{$ mymentee.mentee.first_name $} {$ mymentee.mentee.last_name $} <!-- todo trigger tooltip creation after repeat load --><a href="#" ng-click="listMeetings(mymentee, mymentee.mentee.first_name+' '+mymentee.mentee.last_name)" rel="tooltip" data-tooltip-text="List meetings" ><strong>({$  mymentee.meetings.length $})</strong></a> / <a href="#" ng-click="recordMenteeMeeting(mymentee)">add meeting</a></td>
  	<td>{$ mymentee.mentee.cued_member.research_group.division.letter $}</td>

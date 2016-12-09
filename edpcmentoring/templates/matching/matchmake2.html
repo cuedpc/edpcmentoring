@@ -9,36 +9,74 @@
 <div ng-app="EDPCApp">
 <div ng-controller="MatchFormCtrl">
 
+
+<script type="text/ng-template" id="match-mentee" >
+	<div class="ngdialog-message">
+		<h2>Match {$ mentee.user.first_name $} {$ mentee.user.last_name $} with a Mentor</h2>
+		{$ mentee.user.first_name $}'s requirements:<strong> {$ mentee.mentor_requirements $}</strong>
+		<p ng-show="filtered_invites.length > 0 ">
+		<strong>Before matching:</strong>This user has pending invitations which need actioning
+			<div ng-repeat="invite in mentee.user.mentee_invitations | filter: {hide:'!'} as filtered_invites">{$ invite.id $} -- {$ invite.mentor.first_name $} {$ invite.mentor.last_name $} created by: {$ invite.created_by.first_name $} {$  invite.created_by.last_name  $} </br>
+			<button class="campl-btn campl-primary-cta" ng-click="actionInvite(invite)">Action</button>
+			<button class="campl-btn campl-primary-red" ng-click="declineInvite(invite)">Decline</button>
+			<button class="campl-btn" ng-click="invite.hide=1">Skip</button>
+			</div>
+		</p>
+
+		<!-- http://stackoverflow.com/questions/25177004/ng-repeat-filter-for-where-an-attribute-is-undefined -->
+		<div ng-show=" filtered_invites.length == 0 ">
+		<p ng-hide="selected_seeker">Select a mentor to pair with</p>
+		<h2 ng-show="selected_seeker">Create a relationship with:</h2>
+		
+		<table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
+		<tr ng-click="set_seeker(seeker)" ng-show="!selected_seeker || seeker == selected_seeker" ng-repeat="seeker in available_mentors(searching_rels.mentors)">
+                     <td>{$ seeker.user.first_name $}</td><td> {$ seeker.user.last_name $}</td><td> {$ seeker.user.cued_member.research_group.name $} ( {$ seeker.user.cued_member.research_group.division.letter $} ) </td><td>		
+		     "{$ seeker.mentee_requirements $}</td>
+		</tr>
+		</table>
+		<a ng-show="selected_seeker" ng-click="selected_seeker=undefined" class="campl-btn campl-primary-red">Choose again</a>
+		<a ng-show="selected_seeker" href="#" ng-click="addMentor(selected_seeker.user)" class="campl-btn campl-primary-cta">Create</a>
+
+		</div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="match-mentor" >
+	<div class="ngdialog-message">
+		<h2>Match {$ mentee.user.first_name $} {$ mentee.user.last_name $} with a Mentee</h2>
+		{$ mentor.user.first_name $}'s requirements:<strong> {$ mentor.mentee_requirements $}</strong>
+		<p ng-show="filtered_invites.length > 0 ">
+		<strong>Before matching:</strong>This user has pending invitations which need actioning
+			<div ng-repeat="invite in mentor.user.mentor_invitations | filter: {hide:'!'} as filtered_invites">{$ invite.id $} -- {$ invite.mentee.first_name $} {$ invite.mentee.last_name $} created by: {$ invite.created_by.first_name $} {$  invite.created_by.last_name  $} </br>
+			<button class="campl-btn campl-primary-cta" ng-click="actionInvite(invite)">Action</button>
+			<button class="campl-btn campl-primary-red" ng-click="declineInvite(invite)">Decline</button>
+			<button class="campl-btn" ng-click="invite.hide=1">Skip</button>
+			</div>
+		</p>
+
+		<!-- http://stackoverflow.com/questions/25177004/ng-repeat-filter-for-where-an-attribute-is-undefined -->
+		<div ng-show=" filtered_invites.length == 0 ">
+		<p ng-hide="selected_seeker">Select a mentee to pair with</p>
+		<h2 ng-show="selected_seeker">Create a relationship with:</h2>
+		
+		<table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
+		<tr ng-click="set_seeker(seeker)" ng-show="!selected_seeker || seeker == selected_seeker" ng-repeat="seeker in available_mentees(searching_rels.mentees)">
+                     <td>{$ seeker.user.first_name $}</td><td> {$ seeker.user.last_name $}</td><td> {$ seeker.user.cued_member.research_group.name $} ( {$ seeker.user.cued_member.research_group.division.letter $} ) </td><td>		
+		     "{$ seeker.mentor_requirements $}</td>
+		</tr>
+		</table>
+		<a ng-show="selected_seeker" ng-click="selected_seeker=undefined" class="campl-btn campl-primary-red">Choose again</a>
+		<a ng-show="selected_seeker" href="#" ng-click="addMentee(selected_seeker.user)" class="campl-btn campl-primary-cta">Create</a>
+
+		</div>
+	</div>
+</script>
+
+
 <div class="campl-column5">
 
 <h2>Mentees searching</h2>
 
-
-<script type="text/ng-template" id="match-mentee">
-	<div class="ngdialog-message">
-		
-		<h2 ng-hide="selected_seeker">Match {$ mentee.user.first_name $} {$ mentee.user.last_name $} with a Mentor</h2>
-		Requirements:<strong> {$ mentee.mentor_requirements $}</strong>
-		<p ng-hide="selected_seeker">Please select from the list a Mentor to pair with</p>
-		<h2 ng-show="selected_seeker">Request for a Mentor:</h2>
-		
-		<table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
-		<tr ng-click="set_seeker(seeker)" ng-show="!selected_seeker || seeker.user.id == seeker.user.id" ng-repeat="seeker in searching_rels.mentors">
-                     <td>{$ seeker.user.first_name $}</td><td> {$ seeker.user.last_name $}</td><td> {$ seeker.user.cued_member.research_group.name $} ( {$ seeker.user.cued_member.research_group.division.letter $} ) </td><td>		
-		     "{$ seeker.mentee_requirements $}</td>
-		</tr>
-		<tr ng-show="selected_seeker">
-			<td colspan="4" ng-model="message"><textarea>I would like you to be a mentor. </textarea></td>
-		</tr>
-		</table>
-		<a ng-show="selected_seeker" ng-click="selected_seeker=undefined" class="campl-btn campl-primary-red">Choose again</a>
-		<a ng-show="selected_seeker" href="#" ng-click="match(selected_seeker,message)" class="campl-btn campl-primary-cta">Send Invite</a>
-
-		<strong>TODO:</strong> before 'matching':<br/>
-		If the mentee has outstanding invites then we should attempt to resolve (force or remove)<br/>
-		If the selected mentor has outstanind invites then we should attempt to resolve (force or remove)
-	</div>
-</script>
 
 
 <table class="campl-table-bordered campl-table-striped campl-table campl-vertical-stacking-table">
@@ -81,7 +119,7 @@
         <th>Invites</th>
 	</tr>
  </thead>
-<tr ng-repeat="member in searching_rels.mentors">
+<tr ng-click="matchMentor(member)"  ng-repeat="member in searching_rels.mentors">
 
 <td>	{$ member.user.first_name $} 	{$ member.user.last_name $}  </td>
 <td>	{$ member.user.cued_member.research_group.division.letter $} </td>
