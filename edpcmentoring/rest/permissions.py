@@ -13,7 +13,9 @@ class IsMatchMaker(permissions.BasePermission):
     This user has been assigned the matchmaker role
     '''
     def has_permission(self,request,view):
-        return has_permission(request.user,'make_matches')  
+#        return has_permission(request.user,'make_matches')  
+        return request.user.has_perm('matching.matchmake')
+
 
 class IsMentorMenteeORSuper(permissions.BasePermission):
     '''
