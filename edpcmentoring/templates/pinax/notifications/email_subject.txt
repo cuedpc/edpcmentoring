@@ -1,1 +1,1 @@
-test EMAIL subject
+{{ message }}
