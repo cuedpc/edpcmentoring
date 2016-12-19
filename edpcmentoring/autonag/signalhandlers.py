@@ -4,6 +4,7 @@ from django.dispatch import receiver
 from pinax.notifications.models import send
 
 from mentoring.models import Relationship
+from matching.models import Invitation
 
 @receiver(post_save, sender=Relationship, dispatch_uid='relationship_create')
 def relationship_post_save_handler(created, instance, **_):
@@ -26,6 +27,30 @@ def relationship_post_save_handler(created, instance, **_):
 #    send([instance.mentor], 'end_mentee', {'relationship': instance})
 #    send([instance.mentee], 'end_mentee', {'relationship': instance})
 
+
+@receiver(post_save, sender=Invitation, dispatch_uid='invitation_create')
+def invitation_post_save_handler(created, instance, **_):
+    if created: 
+        if not instance.mentor_response and instance.mentee_response == 'A':
+        # Invite to Mentor 
+            send([instance.mentor], 'invite_mentor', {'invitation': instance})
+        if not instance.mentee_response and instance.mentor_response == 'A':
+        # Invite to Mentee 
+            send([instance.mentee], 'invite_mentee', {'invitation': instance})
+
+    if not created:
+        if instance.mentor_response == 'D' and instance.mentee_response == 'A':
+        # Invite to Mentor declined notify mentee
+            send([instance.mentee], 'mentor_declined', {'invitation': instance})
+        if instance.mentee_response == 'D' and instance.mentor_response == 'A':
+        # Invite to Mentee declined notify mentor
+            send([instance.mentor], 'mentee_declined', {'invitation': instance})
+            
+    return
+
+
+
+
 def create_notice_types(**_):
     if 'pinax.notifications' in settings.INSTALLED_APPS:
         from pinax.notifications.models import NoticeType
@@ -38,6 +63,14 @@ def create_notice_types(**_):
             'end_mentee', 'End mentee', 'A mentee relatiohip has ended')
         NoticeType.create(
             'end_mentor', 'End mentor', 'A mentor relatiohip has ended')
+        NoticeType.create(
+            'invite_mentor', 'Invite mentor', 'Invite a mentor to a relationship')
+        NoticeType.create(
+            'invite_mentee', 'Invite mentee', 'Invite a mentee to a relationship')
+        NoticeType.create(
+            'mentor_declined', 'Mentor declined invite', 'Invite declined by mentor')
+        NoticeType.create(
+            'mentee_declined', 'Mentee declined invite', 'Invite declined by mentee')
     else:
         print('Skipping creation of NoticeTypes as notification app not found')
 

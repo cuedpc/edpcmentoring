@@ -118,8 +118,10 @@ class Invitation(models.Model):
         """
         response = Invitation.ACCEPT if accepted else Invitation.DECLINE
         if  user.has_perm('matchmake'): # first so that matchmakers can match their own!
-            self.mentee_response = response
-            self.mentor_response = response
+            if not self.mentee_response:
+                self.mentee_response = response
+            if not self.mentor_response:
+                self.mentor_response = response
         elif user.id == self.mentor.id:
             self.mentor_response = response
         elif user.id == self.mentee.id:

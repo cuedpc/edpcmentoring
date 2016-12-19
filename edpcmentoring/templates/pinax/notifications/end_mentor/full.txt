@@ -1,0 +1,1 @@
+Your relationship with Mentor {{ relationship.mentor.username }} has just ended

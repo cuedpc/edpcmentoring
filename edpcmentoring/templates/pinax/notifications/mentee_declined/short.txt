@@ -1,0 +1,1 @@
+Declined: Offer to {{ invitation.mentee.username }} 

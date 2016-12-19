@@ -1,0 +1,1 @@
+Your offer to mentor {{ invitation.mentee.username }} has been declined.
