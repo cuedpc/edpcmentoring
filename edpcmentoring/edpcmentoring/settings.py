@@ -118,7 +118,7 @@ if 'DATABASE_URL' in os.environ:
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
 
-SITE_ID = 1
+SITE_ID = 2 
 
 FILTERS_HELP_TEXT_FILTER = False
 
@@ -132,10 +132,13 @@ X_FRAME_OPTIONS = 'DENY'
 #SESSION_COOKIE_SECURE = True
 
 # Email
+# Uncomment to activate the email notifications
+# PS you may wish to update user record emails to  test messages: update auth_user set email = concat('crsid+',username.'@cam.ac.uk') 
+#PINAX_NOTIFICATIONS_BACKENDS=[("email", "pinax.notifications.backends.email.EmailBackend"),]
 EMAIL_BACKEND = 'email_log.backends.EmailBackend'
 EMAIL_SUBJECT_PREFIX = '[EDPC Mentoring] '
 EMAIL_LOG_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
-DEFAULT_FROM_EMAIL = 'edpc-mentoring@example.com'
+DEFAULT_FROM_EMAIL = 'edpc-mentoring@eng.cam.ac.uk'
 
 # Login URLs
 LOGIN_URL = 'raven_login'

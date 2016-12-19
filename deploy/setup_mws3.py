@@ -163,6 +163,7 @@ if is_dev:
    subprocess_cmd(datacmd)
    print "done"
 
+
 #copy the static files into position:
 print "copying static files:"
 copystatic=". %s/env/bin/activate; export DJANGO_SETTINGS_MODULE=edpcmentoring.settings_mws3 export PYTHONPATH=%s/edpcmentoring:%s/edpcmentoring/env/lib/python2.7/site-packages; echo 'yes' | django-admin collectstatic" % (filedir_path,filedir_path,filedir_path)
@@ -173,6 +174,10 @@ print "done\n"
 
 
 print "You should now be able to visit your web site! "
+
+
+# TODO: Load the site name and url (this could be edited in the admin pages - Sites model )
+print "Please add the site name to the Site model via the admin interface"
 
 
 
