@@ -150,14 +150,14 @@
         <a href="#" class="campl-secondary-cta">Stop being someone's mentee</a>
     </p>-->
     <p>
-        <a href="#" class="campl-primary-cta" ng-click="inviteMentor()">Invite someone new to be your mentor</a>
+        <a ng-show="me['mentorship_preferences']['is_seeking_mentor']" href="#" class="campl-primary-cta" ng-click="inviteMentor()">Invite someone new to be your mentor</a>
     </p>
 </div>
 <div ng-hide="mymentors.length>0">
 
     <p>You do not currently have any mentors.</p>
     <p>
-        <a href="#" class="campl-primary-cta" ng-click="inviteMentor()">
+        <a ng-show="me['mentorship_preferences']['is_seeking_mentor']" href="#" class="campl-primary-cta" ng-click="inviteMentor()">
             Invite someone to be your mentor
         </a>
     </p>
@@ -310,14 +310,14 @@ willing to take on a new mentee,
         <a href="#" class="campl-secondary-cta">Stop being someone's mentee</a>
     </p>-->
     <p>
-        <a href="#" class="campl-primary-cta" ng-click="inviteMentee()">Invite someone new to be your mentee</a>
+        <a  ng-show="me['mentorship_preferences']['is_seeking_mentee']"  href="#" class="campl-primary-cta" ng-click="inviteMentee()">Invite someone new to be your mentee</a>
     </p>
 </div>
 <div ng-hide="mymentees.length>0">
 
     <p>You do not currently have any mentees.</p>
     <p>
-        <a href="#" class="campl-primary-cta" ng-click="inviteMentee()">
+        <a  ng-show="me['mentorship_preferences']['is_seeking_mentee']"  href="#" class="campl-primary-cta" ng-click="inviteMentee()">
             Invite someone to be your mentee
         </a>
     </p>
