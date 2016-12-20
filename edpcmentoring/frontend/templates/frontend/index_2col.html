@@ -10,14 +10,19 @@
 
 <div ng-controller="PreferencesFormCtrl" ng-init="edit_mentor_pref=false" ng-cloak>
 
-
-<!--<p>
-    <a href="#" class="campl-icon-link">
-        <span class="campl-icon campl-help-icon"></span>
-        What do these preferences mean?
-    </a>
-</p>-->
-<!-- </div> pref control -->
+<div ng-show="invitations.myMentee.length > 0 || invitations.myMentor.length > 0 " class="campl-column12">
+	<article class="node node-external-link view-mode-focus_on clearfix campl-horizontal-teaser campl-teaser campl-focus-teaser" style="background: #D05252">
+		<div class="campl-focus-teaser-txt">
+			<div style="padding: 20px; color:white">
+				<h2 style="color: white">Messages</h2>
+				<ul>
+					<li ng-show="invitations.myMentor.length > 0" >You have offer(s) from mentor(s)</li>
+					<li ng-show="invitations.myMentee.length > 0" >You have invitations to be a mentee</li>
+				</ul>
+			</div>
+		</div>
+        </article>
+</div>
 
 <script type="text/ng-template" id="manage-my-mentee-invites">
 	Your invites: {$ invitations.myMentee.length $}
