@@ -16,8 +16,8 @@
 			<div style="padding: 20px; color:white">
 				<h2 style="color: white">Messages</h2>
 				<ul>
-					<li ng-show="invitations.myMentor.length > 0" >You have offer(s) from mentor(s)</li>
-					<li ng-show="invitations.myMentee.length > 0" >You have invitations to be a mentee</li>
+					<li ng-show="invitations.myMentor.length > 0" >You have offers from mentors</li>
+					<li ng-show="invitations.myMentee.length > 0" >You have requests from mentees</li>
 				</ul>
 			</div>
 		</div>
@@ -118,9 +118,6 @@
 		<tr ng-click="set_seeker(seeker)" ng-show="!selected_seeker || selected_seeker.user.id == seeker.user.id" ng-repeat="seeker in seekingMentee">
                      <td>{$ seeker.user.first_name $}</td><td> {$ seeker.user.last_name $}</td><td> {$ seeker.user.cued_member.research_group.name $} ( {$ seeker.user.cued_member.research_group.division.letter $} ) </td><td>		
 		     "{$ seeker.mentee_requirements $}</td>
-		</tr>
-		<tr ng-show="selected_seeker">
-			<td colspan="4" ng-model="message"><textarea>I would like you to be a mentor. </textarea></td>
 		</tr>
 		</table>
 		<a ng-show="selected_seeker" ng-click="selected_seeker=undefined" class="campl-btn campl-primary-red">Choose again</a>
@@ -269,9 +266,6 @@ willing to take on a new mentee,
 		<tr ng-click="set_seeker(seeker)" ng-show="!selected_seeker || selected_seeker.user.id == seeker.user.id" ng-repeat="seeker in seekingMentor">
                      <td>{$ seeker.user.first_name $}</td><td> {$ seeker.user.last_name $}</td><td> {$ seeker.user.cued_member.research_group.name $} ( {$ seeker.user.cued_member.research_group.division.letter $} ) </td><td>		
 		     "{$ seeker.mentor_requirements $}</td>
-		</tr>
-		<tr ng-show="selected_seeker">
-			<td colspan="4" ng-model="message"><textarea>I would like to be your mentor. </textarea></td>
 		</tr>
 		</table>
 		<a ng-show="selected_seeker" ng-click="selected_seeker=undefined" class="campl-btn campl-primary-red">Choose again</a>
