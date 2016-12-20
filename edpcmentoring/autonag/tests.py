@@ -81,7 +81,7 @@ class NewRelationshipTestCase(TestCase):
             mentor=u1, mentee=u2).count(), 1)
 
         # Update the invite so that Mentor_response='D'!
-	myinv.mentor_response='D'
+        myinv.mentor_response='D'
         myinv.save()
 
         mail_counts = {}
@@ -105,7 +105,7 @@ class NewRelationshipTestCase(TestCase):
             mentor=u1, mentee=u2).count(), 1)
 
         # Update the invite to reflect mentee decline mentee_response='D'!
-	myinv.mentee_response='D'
+        myinv.mentee_response='D'
         myinv.save()
 
         mail_counts = {}
