@@ -65,3 +65,16 @@ class RelationshipTestCase(TestCase):
         with self.assertRaises(ValidationError):
             r.clean()
 
+    def test_list_mentors(self):
+        u1, u2, u3 = [m.user for m in Member.objects.all()[:3]]
+
+        # should succeed
+        r = Relationship(mentor=u1, mentee=u2, is_active=True)
+        r.save()
+
+        # should succeed
+        r = Relationship(mentor=u3, mentee=u2, is_active=True)
+        r.save()
+
+        self.assertEqual(Relationship.objects.mentors_for_user(u2).count(), 2)
+
