@@ -1,0 +1,6 @@
+A new meeting has been added.
+
+The list of meetings registered for the relationship {{ relationship }} is as follows:
+
+{% for meeting in relationship.meetings.all %}{{ meeting }} duration: {{ meeting.approximate_duration }}
+{% endfor %} 

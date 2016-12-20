@@ -3,7 +3,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from pinax.notifications.models import send
 
-from mentoring.models import Relationship
+from mentoring.models import Relationship, Meeting
 from matching.models import Invitation
 
 @receiver(post_save, sender=Relationship, dispatch_uid='relationship_create')
@@ -26,6 +26,22 @@ def relationship_post_save_handler(created, instance, **_):
 ## Send these if the relationship has ended
 #    send([instance.mentor], 'end_mentee', {'relationship': instance})
 #    send([instance.mentee], 'end_mentee', {'relationship': instance})
+
+
+@receiver(post_save, sender=Meeting, dispatch_uid='meeting_create')
+def meeting_post_save_handler(created, instance, **_):
+    # Only notify if this is a new *active* relationship
+    if created: # or not instance.is_active:
+        # Get the relationship and list the meetings
+        # instance.relationship.meetings
+        # if instance.ended_on:
+        # Send these if the relationship has ended
+        send([instance.relationship.mentor], 'new_meeting', {'relationship': instance.relationship})
+        send([instance.relationship.mentee], 'new_meeting', {'relationship': instance.relationship})
+            
+    return
+
+#
 
 
 @receiver(post_save, sender=Invitation, dispatch_uid='invitation_create')
@@ -71,6 +87,8 @@ def create_notice_types(**_):
             'mentor_declined', 'Mentor declined invite', 'Invite declined by mentor')
         NoticeType.create(
             'mentee_declined', 'Mentee declined invite', 'Invite declined by mentee')
+        NoticeType.create(
+            'new_meeting', 'A meeting has been recorded', 'A meeting has been recorded')
     else:
         print('Skipping creation of NoticeTypes as notification app not found')
 
