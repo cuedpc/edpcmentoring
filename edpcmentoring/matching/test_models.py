@@ -242,7 +242,7 @@ class InvitationTestCase(TestCase):
         #invite.save()
         #self.assertFalse(invite.is_active())
         #self.assertFalse(invite.is_accepted())
-	with self.assertRaises(PermissionDenied):
+        with self.assertRaises(PermissionDenied):
             invite.respond(self.users[2], False)
             invite.save()
 
