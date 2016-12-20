@@ -363,6 +363,7 @@ app.controller("manageMyMenteeInvitesCtrl",['$scope', '$rootScope', 'ngDialog', 
                 //sets up a message to send to the mentor
                 MemberService.acceptMentor(invite).then(function(response){
 			$rootScope.myinvs = new Date() //triggers watch and invite rebuild
+                        $rootScope.mentors = new Date() // triggers append to mentor list
                         //ngDialog.close()
                 },function(error){
                         console.log("FIXME: problems accepting mentee")
@@ -393,6 +394,7 @@ app.controller("manageMyMentorInvitesCtrl",['$scope', '$rootScope', 'ngDialog', 
                 //sets up a message to send to the mentor
                 MemberService.acceptMentee(invite).then(function(response){
 			$rootScope.myinvs = new Date() //triggers watch and invite rebuild
+                        $rootScope.mentees = new Date() // triggers append to mentee list
                         //ngDialog.close()
                 },function(error){
                         console.log("FIXME: problems accepting mentee")

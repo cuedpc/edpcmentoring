@@ -25,6 +25,10 @@
 		{$ inv.created_on $} {$ inv.mentor.first_name $} {$ inv.mentor.last_name $} 
 		<a ng-click="accept(inv)" href="#" class="campl-primary-cta">Accept</a> / <a ng-click="decline(inv)" href="#" class="campl-primary-red">Decline</a>
 	</div>
+       	<div>
+        <a href="#" ng-show="invitations.myMentee.length == 0" class="campl-primary-cta" ng-click="close()">Close</a>
+	</div>
+
 </script>
 
 <!--start col left-->
@@ -275,6 +279,9 @@ willing to take on a new mentee,
 	<div ng-repeat="inv in invitations.myMentor">
 		{$ inv.created_on $} {$ inv.mentee.first_name $} {$ inv.mentee.last_name $} 
 		<a ng-click="accept(inv)" href="#" class="campl-primary-cta">Accept</a> / <a ng-click="decline(inv)" href="#" class="campl-primary-red">Decline</a>
+	</div>
+	<div>
+        <a href="#" ng-show="invitations.myMentor.length == 0" class="campl-primary-cta" ng-click="close()">Close</a>
 	</div>
 </script>
 
