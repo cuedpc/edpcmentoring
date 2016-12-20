@@ -49,6 +49,17 @@ class RelationshipTestCase(TestCase):
         r = Relationship(mentor=u1, mentee=u2, is_active=True)
         r.save()
 
+        # should succeed (multiple inactive relationships allowed)
+        r = Relationship(mentor=u1, mentee=u2, is_active=False)
+        r.clean()
+
+
+        # should succeed (multiple inactive relationships allowed)
+        r = Relationship(mentor=u1, mentee=u2, is_active=False)
+        r.clean()
+
+       
+
         # should fail due to non uniqueness
         r = Relationship(mentor=u1, mentee=u2, is_active=True)
         with self.assertRaises(ValidationError):
