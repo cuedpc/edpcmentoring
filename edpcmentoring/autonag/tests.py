@@ -71,7 +71,7 @@ class NewRelationshipTestCase(TestCase):
         #self.assertEqual(mail_counts[u2.email], 1)
 
     def test_email_sent_on_mentor_invite_declined(self):
-        """Creating a new relationship should notify the members."""
+        """Creating a new invite and declining should notify the member."""
         u1, u2 = [m.user for m in Member.objects.active()[3:5]]
         self.assertEqual(Invitation.objects.filter(
             mentor=u1, mentee=u2).count(), 0)
@@ -91,6 +91,30 @@ class NewRelationshipTestCase(TestCase):
         #self.assertEqual(len(mail_counts), 2)
         #self.assertEqual(mail_counts[u1.email], 1)
         self.assertEqual(mail_counts[u2.email], 1)
+
+
+
+    def test_email_sent_on_mentee_invite_declined(self):
+        """Creating a new invite and declining should notify the member."""
+        u1, u2 = [m.user for m in Member.objects.active()[3:5]]
+        self.assertEqual(Invitation.objects.filter(
+            mentor=u1, mentee=u2).count(), 0)
+        self.assertEqual(len(mail.outbox), 0)
+        myinv = Invitation.objects.create(mentor=u1, mentee=u2, created_by_id=u1.id, mentor_response='A')
+        self.assertEqual(Invitation.objects.filter(
+            mentor=u1, mentee=u2).count(), 1)
+
+        # Update the invite to reflect mentee decline mentee_response='D'!
+	myinv.mentee_response='D'
+        myinv.save()
+
+        mail_counts = {}
+        for m in mail.outbox:
+            for addr in m.to:
+                mail_counts[addr] = mail_counts.get(addr, 0) + 1
+        #self.assertEqual(len(mail_counts), 2) 
+        self.assertEqual(mail_counts[u1.email], 1)
+        #self.assertEqual(mail_counts[u2.email], 0)
 
 
 
