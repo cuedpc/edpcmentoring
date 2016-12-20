@@ -1,9 +1,10 @@
 from __future__ import unicode_literals
 
 from django.contrib.auth.models import Permission, User
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, PermissionDenied
 from django.test import TestCase
 from mentoring.models import Relationship
+from matching.models import Invitation
 from cuedmembers.models import Member
 
 from .models import Preferences, Invitation
@@ -38,6 +39,11 @@ class InvitationTestCase(TestCase):
         q = User.objects.filter(
             cued_member__isnull=False, is_superuser=False, is_staff=False)
         self.users = q[:10]
+
+        q1 = User.objects.filter(
+            cued_member__isnull=False, is_superuser=True)
+        self.superu = q[:1]
+
 
     def test_no_matchmaking_without_permission(self):
         invite = Invitation(mentor=self.users[0], mentee=self.users[1],
@@ -81,6 +87,12 @@ class InvitationTestCase(TestCase):
         invite = Invitation(mentor=self.users[0], mentee=self.users[1],
                             created_by=self.users[0])
         invite.full_clean()
+        invite.save()
+        
+        #There should be one active invite
+        #self.assertEquals(Invitation.objects.filter(deactivated_on__isnull=False).count(),1)
+        self.assertEquals(Invitation.objects.active().count(),1)
+
         self.assertIs(invite.mentor_response, Invitation.ACCEPT)
         self.assertIs(invite.mentee_response, '')
 
@@ -198,3 +210,61 @@ class InvitationTestCase(TestCase):
         invite.save()
         self.assertFalse(invite.is_active())
         self.assertTrue(invite.is_accepted())
+
+    def test_matchmaker_respond_accept(self):
+        invite = Invitation(mentor=self.users[0], mentee=self.users[1],
+                            created_by=self.users[1])
+        self.assertTrue(invite.is_active())
+        invite.full_clean()
+       
+        invite.respond(self.superu[0], True)
+        invite.save()
+        self.assertFalse(invite.is_active())
+        self.assertTrue(invite.is_accepted())
+
+    def test_matchmaker_respond_decline(self):
+        invite = Invitation(mentor=self.users[0], mentee=self.users[1],
+                            created_by=self.users[1])
+        self.assertTrue(invite.is_active())
+        invite.full_clean()
+        invite.respond(self.superu[0], False)
+        invite.save()
+        self.assertFalse(invite.is_active())
+        self.assertFalse(invite.is_accepted())
+
+
+    def test_permission_to_respond(self):
+        invite = Invitation(mentor=self.users[0], mentee=self.users[1],
+                            created_by=self.users[1])
+        self.assertTrue(invite.is_active())
+        invite.full_clean()
+        #invite.respond(self.users[2], False)
+        #invite.save()
+        #self.assertFalse(invite.is_active())
+        #self.assertFalse(invite.is_accepted())
+	with self.assertRaises(PermissionDenied):
+            invite.respond(self.users[2], False)
+            invite.save()
+
+
+
+    def test_mentor_cannotbe_mentee(self):
+        invite = Invitation(mentor=self.users[0], mentee=self.users[0],
+                            created_by=self.users[0])
+        #invite.full_clean()
+        #invite.respond(self.users[2], False)
+        #invite.save()
+        #self.assertFalse(invite.is_active())
+        #self.assertFalse(invite.is_accepted())
+	with self.assertRaises(ValidationError):
+            invite.full_clean()
+            #invite.respond(self.users[2], False)
+            #invite.save()
+
+
+
+
+
+
+
+
