@@ -46,11 +46,11 @@ class RelationshipTestCase(TestCase):
         u1, u2 = [m.user for m in Member.objects.all()[:2]]
 
         # should succeed
-        r = Relationship(mentor=u1, mentee=u2, is_active=False)
+        r = Relationship(mentor=u1, mentee=u2, is_active=True)
         r.save()
 
         # should fail due to non uniqueness
         r = Relationship(mentor=u1, mentee=u2, is_active=True)
-        with self.assertRaises(IntegrityError):
-            r.save()
+        with self.assertRaises(ValidationError):
+            r.clean()
 

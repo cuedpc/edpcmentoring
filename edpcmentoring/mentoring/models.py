@@ -96,7 +96,7 @@ class Relationship(models.Model):
         existing = self.__class__.objects.filter(mentor=self.mentor, mentee=self.mentee).count()
 
         if existing > 0:
-            raise  ValidationError('Active Relatoinship entry already exists for thi smentor mentee combination')
+            raise  ValidationError('Active Relationship entry already exists for this mentor - mentee combination')
  
 
     def end(self,user):
