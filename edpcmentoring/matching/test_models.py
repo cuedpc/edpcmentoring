@@ -256,7 +256,7 @@ class InvitationTestCase(TestCase):
         #invite.save()
         #self.assertFalse(invite.is_active())
         #self.assertFalse(invite.is_accepted())
-	with self.assertRaises(ValidationError):
+        with self.assertRaises(ValidationError):
             invite.full_clean()
             #invite.respond(self.users[2], False)
             #invite.save()
