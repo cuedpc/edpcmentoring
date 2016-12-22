@@ -1,3 +1,0 @@
-[ {"model": "auth.permission", "pk": 49, "fields": {"name": "Can matchmake users", "content_type": 16, "codename": "matchmake"} }
-, {"model": "auth.group", "pk": 2, "fields": {"name": "matchmakers", "permissions": [49]} }
-]
