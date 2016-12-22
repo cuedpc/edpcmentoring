@@ -22,7 +22,7 @@ AUTHENTICATION_BACKENDS = [
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.MD5PasswordHasher',
 ]
-
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 STATIC_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 ]
