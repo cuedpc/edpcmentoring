@@ -76,7 +76,6 @@ class CheckMatchMakerAccessCase(TestCase):
         self.assertFalse(t3.has_perm('matching.matchmake'),"user does not have permission to add matchmake")
         t3.groups.add(matchmakers)
         perm = Permission.objects.get(codename='matchmake')
-        print perm
         t3.user_permissions.add(perm)
         
         #t3 = get_object_or_404(User, pk=t3.id)
