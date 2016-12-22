@@ -158,7 +158,7 @@ print "done\n"
 
 #Load some basic fixtrues:
 print "Load some fixtures (roles/perms)"
-schemacmd=". %s/env/bin/activate; %s/edpcmentoring/manage.py loaddata --settings edpcmentoring.settings_mws3 %s/edpcmentoring/fixtures/edpcmentoring_perms.json" % (filedir_path,filedir_path,filedir_path)
+schemacmd=". %s/env/bin/activate; %s/edpcmentoring/manage.py loaddata --settings edpcmentoring.settings_mws3 %s/edpcmentoring/edpcmentoring/fixtures/edpcmentoring_perms.json" % (filedir_path,filedir_path,filedir_path)
 subprocess_cmd(schemacmd)
 print "done\n"
 
