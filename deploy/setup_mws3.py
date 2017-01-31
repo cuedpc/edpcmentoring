@@ -55,7 +55,7 @@ password = raw_input("Enter a password your applicaton will use to access this d
 secret_key = raw_input("Enter a secret key for your application (this will be used by the application): ")
 development = raw_input("Do you wish to load example data? [N]y: ")
 is_dev=False
-if development.lower() == "y":
+if development.lower()[:1] == "y":
     is_dev=True
 
 username="%s_web" % dbname
