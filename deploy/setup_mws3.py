@@ -63,7 +63,7 @@ username="%s_web" % dbname
 
 
 try:
-    con = mdb.connect('localhost', 'root', rootpass, 'test');
+    con = mdb.connect('localhost', 'root', rootpass, '');
     cur = con.cursor()
 
     cur.execute("create database %s " % dbname)
@@ -84,6 +84,10 @@ finally:
     config = """
 # This file has been generated using %s
 from edpcmentoring.settings import *
+
+MIDDLEWARE_CLASSES += (
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+)
 
 SECRET_KEY='%s'
 DEBUG = True
