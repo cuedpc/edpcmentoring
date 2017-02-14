@@ -16,7 +16,7 @@ Forms
 .. automodule:: matching.forms
     :members:
 
-Authorization to Matchmake
+Authorize a user to 'matchmake'
 --------------------------
 
 Users will have the ability to matchmake if one of:
