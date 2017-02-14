@@ -91,14 +91,6 @@ class MentorSerializer(RelationModelSerializer):
         model = User
         fields = ('id','is_superuser','url', 'username', 'email', 'first_name', 'last_name', 'cued_member' )
 
-#TODO remove this:?  
-class RawRelationshipSerializer(serializers.HyperlinkedModelSerializer):
-    mentor = MentorSerializer(many=False)
-    mentee = MenteeSerializer(many=False)
-    class Meta:
-        model = Relationship
-        fields = ('mentor', 'mentee', 'started_on', 'ended_on', 'ended_by', 'is_active','meetings')
-
 class BasicRelationshipSerializer(serializers.HyperlinkedModelSerializer):
     #mentor = MentorSerializer(many=False)
     #mentee = MenteeSerializer(many=False)

@@ -69,14 +69,6 @@ class SeekingSerializer(serializers.HyperlinkedModelSerializer):
         model = Preferences
         fields = ('is_seeking_mentor','is_seeking_mentee','mentor_requirements','mentee_requirements','user')
 
- 
-#TODO remove this:?  
-class RawRelationshipSerializer(serializers.HyperlinkedModelSerializer):
-    mentor = MentorSerializer(many=False)
-    mentee = MenteeSerializer(many=False)
-    class Meta:
-        model = Relationship
-        fields = ('mentor', 'mentee', 'started_on', 'ended_on', 'ended_by', 'is_active','meetings')
 
 class BasicRelationshipSerializer(serializers.HyperlinkedModelSerializer):
     #mentor = MentorSerializer(many=False)
