@@ -70,5 +70,5 @@ Reminding users
 Periodically we wish to 'nag' users to undertake tasks, if for example:
 
 * They have no Mentees and registered to become a mentor x weeks ago.
-* They are a mentor / Mentee of a particula rperson but have not had a meeting in X weeks.
+* They are a mentor / Mentee of a particular person but have not had a meeting in X weeks.
 
