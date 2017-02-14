@@ -6,7 +6,14 @@ they should be aware of and reminding them of tasks they have yet to complete.
 
 .. automodule:: autonag
     :members:
-  
+    
+Configuring emails to be sent (rather than logged in the EMAIL LOG: E-mails table)
+---------------------------------------------------------------------------------
+
+In the settings.py file removes comments from ::
+
+    #PINAX_NOTIFICATIONS_BACKENDS=[("email", "pinax.notifications.backends.email.EmailBackend"),]
+
 
 Where are the notification configured and how are they triggered?
 -----------------------------------------------------------------
