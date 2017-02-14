@@ -43,7 +43,7 @@ Messages are sent to users by calling send(<user>,<NoticeType>,<dictoinary>)::
 
 Where the dictionary can be accessed in the message templates (short.txt,full.txt)
 
-The send commands are to be called in autonag/signalhanlders.py during interception of a even signals, eg a new meeting was registered, send summary of all meeting to mentee and mentor::
+The send commands are to be called in autonag/signalhanlders.py during interception of event signals, eg a new meeting was registered; send summary of all meeting to mentee and mentor::
 
     
     @receiver(post_save, sender=Meeting, dispatch_uid='meeting_create')
