@@ -1,5 +1,7 @@
 # Requirements for running in production. See dev-requirements.txt for
 # other requirements.
+appdirs
+packaging
 dj-database-url==0.4.0
 django-annoying
 django-crispy-forms
