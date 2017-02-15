@@ -24,7 +24,7 @@
     {% if matchmaker %}
     <li><a href="{% url "matchmake" %}">Match mentors and mentees</a></li>
     {% endif %}
-    {% if user.is_staff %}
+    {% if user.is_superuser %}
     <li><a href="{% url 'admin:index' %}">Admin interface</a></li>
     {% endif %}
     {% if user.cued_member %}
