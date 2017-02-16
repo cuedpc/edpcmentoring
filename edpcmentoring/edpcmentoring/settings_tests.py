@@ -26,4 +26,5 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 STATIC_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 ]
-
+# Send emails immediately - when testing, hopefully to a file?!
+PINAX_NOTIFICATIONS_QUEUE_ALL=False
