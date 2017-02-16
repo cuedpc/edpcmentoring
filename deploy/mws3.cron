@@ -1,0 +1,20 @@
+import subprocess
+
+def subprocess_cmd(command):
+    """
+        Function used to run shell commands
+        This is Python that creates a Python env
+        which then runs Python commands - hhmmm
+    """
+    process = subprocess.Popen(command,stdout=subprocess.PIPE, shell=True)
+    proc_stdout = process.communicate()[0].strip()
+    print proc_stdout
+
+
+import os
+
+filedir_path = "%s/.." % os.path.dirname(os.path.realpath(__file__))
+
+schemacmd=". %s/env/bin/activate; %s/edpcmentoring/manage.py emit_notices  --settings=edpcmentoring.settings_mws3  2>&1 | sed -e '/RemovedInDjango110Warning/d' | sed -e '/raven_return, name/d'" % (filedir_path,filedir_path)
+subprocess_cmd(schemacmd)
+

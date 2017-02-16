@@ -178,6 +178,11 @@ copystatic=". %s/env/bin/activate; export DJANGO_SETTINGS_MODULE=edpcmentoring.s
 subprocess_cmd(copystatic)
 print "done\n"
 
+#install the cron job NB this wipes all other cron entries!:
+print "installing the cronjob"
+installcron = "(crontab -l | head -n6; echo \"*/5 * * * * python %s/deploy/mws3.cron\") | crontab -" % (filedir_path)
+subprocess_cmd(installcron)
+print "installed cron"
 
 
 

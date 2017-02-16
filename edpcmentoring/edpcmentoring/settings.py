@@ -135,10 +135,16 @@ X_FRAME_OPTIONS = 'DENY'
 # Uncomment to activate the email notifications
 # PS you may wish to update user record emails to  test messages: update auth_user set email = concat('crsid+',username.'@cam.ac.uk') 
 #PINAX_NOTIFICATIONS_BACKENDS=[("email", "pinax.notifications.backends.email.EmailBackend"),]
+# queue all notifications until emit_notices is called
+#We can there for check for queued notifications and failed mail_logs (can we join the two?)
+PINAX_NOTIFICATIONS_QUEUE_ALL=True
 EMAIL_BACKEND = 'email_log.backends.EmailBackend'
 EMAIL_SUBJECT_PREFIX = '[EDPC Mentoring] '
-EMAIL_LOG_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+#EMAIL_LOG_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 DEFAULT_FROM_EMAIL = 'edpc-mentoring@eng.cam.ac.uk'
+
+#exception info (eg failure to run emit_notices) emailed to: 
+ADMIN = [('S.Shorrock','sms67+edpc@cam.ac.uk'),('Mentoring App','edpc-mentoring@eng.cam.ac.uk')]
 
 # Login URLs
 LOGIN_URL = 'raven_login'
